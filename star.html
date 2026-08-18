@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>七芒星と曜日の順番</title>
+<style>
+  :root{
+    --ground:#13201E;
+    --ground-2:#1B2C29;
+    --brass:#C39B4E;
+    --brass-dim:#7C6434;
+    --brass-bright:#F0D89A;
+    --minium:#CE4A30;
+    --patina:#71A79A;
+    --ink:#E9E1CC;
+    --ink-dim:#9AA79F;
+    --mincho:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP","Times New Roman",serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ground);
+    background-image:
+      radial-gradient(120% 80% at 50% 0%, #233934 0%, transparent 60%),
+      radial-gradient(90% 60% at 50% 100%, #101B1A 0%, transparent 70%);
+    color:var(--ink);
+    font-family:var(--mincho);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:32px 20px 64px;}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--brass-dim);margin:0 0 10px;
+  }
+  h1{
+    font-size:30px;font-weight:500;line-height:1.4;margin:0 0 8px;
+    letter-spacing:.04em;color:var(--ink);
+  }
+  .lede{margin:0 0 28px;color:var(--ink-dim);font-size:14.5px;}
+
+  .plate{
+    background:linear-gradient(160deg,#1F312D 0%,#16241F 100%);
+    border:1px solid rgba(195,155,78,.22);
+    border-radius:2px;
+    padding:8px 8px 0;
+    box-shadow:0 1px 0 rgba(240,216,154,.08) inset, 0 18px 40px -24px #000;
+  }
+  svg{display:block;width:100%;height:auto;}
+
+  .rubric{
+    min-height:66px;
+    padding:14px 16px 16px;
+    border-top:1px solid rgba(195,155,78,.18);
+    background:rgba(0,0,0,.16);
+  }
+  .rubric .day{
+    font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+    color:var(--minium);margin-bottom:4px;
+  }
+  .rubric .line{font-size:15px;color:var(--ink);}
+
+  .controls{display:flex;gap:10px;margin:16px 0 0;}
+  button{
+    flex:1;
+    font-family:var(--mincho);font-size:14.5px;letter-spacing:.06em;
+    padding:13px 10px;
+    color:var(--ground);background:var(--brass);
+    border:none;border-radius:2px;cursor:pointer;
+    transition:background .15s ease;
+  }
+  button.ghost{background:transparent;color:var(--brass);border:1px solid rgba(195,155,78,.4);}
+  button:hover{background:var(--brass-bright);}
+  button.ghost:hover{background:rgba(195,155,78,.12);color:var(--brass-bright);}
+  button:focus-visible{outline:2px solid var(--patina);outline-offset:2px;}
+  button[disabled]{opacity:.35;cursor:default;}
+
+  h2{
+    font-size:20px;font-weight:500;letter-spacing:.04em;
+    margin:56px 0 6px;padding-top:22px;
+    border-top:1px solid rgba(195,155,78,.2);
+  }
+  p{font-size:15px;margin:0 0 18px;}
+  .dim{color:var(--ink-dim);}
+
+  /* hour grid */
+  .grid{
+    display:grid;grid-template-columns:repeat(7,1fr);
+    gap:4px;margin:22px 0 8px;
+  }
+  .cell{
+    aspect-ratio:1/1;border-radius:2px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:rgba(195,155,78,.07);
+    border:1px solid rgba(195,155,78,.14);
+    color:var(--brass);
+  }
+  .cell .g{font-size:17px;line-height:1;}
+  .cell .h{font-family:var(--mono);font-size:8.5px;color:var(--brass-dim);margin-top:3px;}
+  .cell.rest{
+    background:rgba(206,74,48,.14);
+    border-color:rgba(206,74,48,.5);color:#E9836C;
+  }
+  .cell.rest .h{color:rgba(206,74,48,.85);}
+  .cell.next{
+    background:rgba(113,167,154,.16);
+    border-color:var(--patina);color:#A8D6CB;
+  }
+  .cell.next .h{color:var(--patina);}
+  .cell.blank{background:none;border:1px dashed rgba(195,155,78,.13);}
+
+  .rowtag{
+    display:flex;justify-content:space-between;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    color:var(--brass-dim);margin:14px 0 -6px;
+  }
+  .math{
+    font-family:var(--mono);font-size:13px;letter-spacing:.06em;
+    color:var(--brass-bright);
+    border-left:2px solid var(--minium);
+    padding:6px 0 6px 14px;margin:22px 0;
+  }
+  .key{color:var(--minium);}
+  .key2{color:var(--patina);}
+  footer{
+    margin-top:48px;font-size:12.5px;color:var(--brass-dim);
+    font-family:var(--mono);letter-spacing:.1em;
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Ordo Chaldaeorum</p>
+  <h1>七芒星が<br>曜日を一筆で描く</h1>
+  <p class="lede">外周は公転の遅い順（カルデア順序）。ここから2つ飛ばして線を引くと、土・日・月・火…が現れます。</p>
+
+  <div class="plate">
+    <svg viewBox="0 0 400 400" role="img" aria-label="カルデア順序に並ぶ七惑星と、2つ飛ばしで結ぶ七芒星">
+      <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <circle cx="200" cy="200" r="176" fill="none" stroke="#C39B4E" stroke-opacity=".25"/>
+      <circle cx="200" cy="200" r="169" fill="none" stroke="#C39B4E" stroke-opacity=".14"/>
+      <g id="ticks"></g>
+      <circle cx="200" cy="200" r="128" fill="none" stroke="#C39B4E" stroke-opacity=".16" stroke-dasharray="2 5"/>
+      <g id="chords"></g>
+      <g id="nodes"></g>
+    </svg>
+    <div class="rubric">
+      <div class="day" id="dayLabel">土曜日</div>
+      <div class="line" id="stepLine">土星から出発します。ここが週の起点です。</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="next">ひとつ進める</button>
+    <button id="reset" class="ghost">最初から</button>
+  </div>
+
+  <h2>なぜ3つ目に着地するのか</h2>
+  <p class="dim">図形の規則ではなく、惑星時間の割り算の結果です。日の出から1時間ずつカルデア順序を下り、7時間で一巡します。日曜日から数えてみます。</p>
+
+  <div class="rowtag"><span>1周目</span><span>7 HOURS</span></div>
+  <div class="grid" id="g1"></div>
+  <div class="rowtag"><span>2周目</span><span>14</span></div>
+  <div class="grid" id="g2"></div>
+  <div class="rowtag"><span>3周目</span><span>21</span></div>
+  <div class="grid" id="g3"></div>
+  <div class="rowtag"><span class="key">あまり3時間</span><span class="key">22 – 24</span></div>
+  <div class="grid" id="g4"></div>
+
+  <div class="math">24 ÷ 7 ＝ 3 <span class="key">あまり 3</span><br>翌日の1時間目 → <span class="key2">3つ先の惑星</span></div>
+
+  <p>1日は7でちょうど割り切れません。<span style="color:var(--brass-bright)">この余りの3</span>だけ次の日の起点がずれ、太陽から金星・水星を飛ばした<span class="key2">月</span>が月曜日を支配します。七芒星の「2つ飛ばし」は、この余りを図にしたものです。</p>
+
+  <footer>SATURN · JUPITER · MARS · SOL · VENUS · MERCURY · LUNA</footer>
+</div>
+
+<script>
+const PL = [
+  {g:"♄", jp:"土星", day:"土曜日"},
+  {g:"♃", jp:"木星", day:"木曜日"},
+  {g:"♂", jp:"火星", day:"火曜日"},
+  {g:"☉", jp:"太陽", day:"日曜日"},
+  {g:"♀", jp:"金星", day:"金曜日"},
+  {g:"☿", jp:"水星", day:"水曜日"},
+  {g:"☽", jp:"月",   day:"月曜日"}
+];
+const C=200, R=128, LR=160, NS=7;
+const pos = i => {
+  const a = (-90 + i*(360/NS)) * Math.PI/180;
+  return {x:C+R*Math.cos(a), y:C+R*Math.sin(a), lx:C+LR*Math.cos(a), ly:C+LR*Math.sin(a)};
+};
+const NSU="http://www.w3.org/2000/svg";
+const el=(t,a)=>{const e=document.createElementNS(NSU,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+
+// engraved rim ticks
+const ticks=document.getElementById("ticks");
+for(let d=0; d<360; d+=5){
+  const a=(d-90)*Math.PI/180, big=d%15===0, r1=big?160:164, r2=169;
+  ticks.appendChild(el("line",{x1:C+r1*Math.cos(a),y1:C+r1*Math.sin(a),
+    x2:C+r2*Math.cos(a),y2:C+r2*Math.sin(a),stroke:"#C39B4E","stroke-opacity":big?.3:.15,"stroke-width":1}));
+}
+
+// nodes
+const nodes=document.getElementById("nodes"), chords=document.getElementById("chords");
+const nodeEls=[];
+PL.forEach((p,i)=>{
+  const {x,y,lx,ly}=pos(i);
+  const g=el("g",{});
+  const halo=el("circle",{cx:x,cy:y,r:20,fill:"#13201E",stroke:"#C39B4E","stroke-opacity":".35"});
+  const glyph=el("text",{x:x,y:y+8,"text-anchor":"middle","font-size":"23",fill:"#C39B4E","font-family":"serif"});
+  glyph.textContent=p.g;
+  const lab=el("text",{x:lx,y:ly+5,"text-anchor":"middle","font-size":"12.5",fill:"#7C6434","font-family":"serif"});
+  lab.textContent=p.jp;
+  g.append(halo,glyph,lab); nodes.appendChild(g);
+  nodeEls.push({halo,glyph,lab});
+});
+
+let step=0;
+const order=[0]; for(let k=1;k<=7;k++) order.push((order[k-1]+3)%7);
+const dayLabel=document.getElementById("dayLabel"), stepLine=document.getElementById("stepLine");
+const btnNext=document.getElementById("next"), btnReset=document.getElementById("reset");
+
+function paint(){
+  nodeEls.forEach((n,i)=>{
+    const done = order.slice(0,step+1).includes(i);
+    n.halo.setAttribute("stroke-opacity", done?".85":".35");
+    n.halo.setAttribute("fill", i===order[step]?"#2A413A":"#13201E");
+    n.glyph.setAttribute("fill", done?"#F0D89A":"#7C6434");
+    n.lab.setAttribute("fill", done?"#C39B4E":"#5C4E2E");
+    n.halo.setAttribute("filter", i===order[step]?"url(#glow)":"");
+  });
+}
+function advance(){
+  if(step>=7) return;
+  const from=order[step], to=order[step+1];
+  const a=pos(from), b=pos(to);
+  const line=el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:"#CE4A30","stroke-width":"1.6","stroke-linecap":"round"});
+  const len=Math.hypot(b.x-a.x,b.y-a.y);
+  line.setAttribute("stroke-dasharray",len); line.setAttribute("stroke-dashoffset",len);
+  chords.appendChild(line);
+  requestAnimationFrame(()=>{ line.style.transition="stroke-dashoffset .55s ease"; line.setAttribute("stroke-dashoffset",0); });
+  setTimeout(()=>{ line.style.transition="stroke .6s ease"; line.setAttribute("stroke","#C39B4E"); },700);
+
+  const s1=PL[(from+1)%7].jp, s2=PL[(from+2)%7].jp;
+  step++;
+  dayLabel.textContent=PL[to].day;
+  stepLine.textContent=`${PL[from].jp}から ${s1}・${s2} を飛ばして ${PL[to].jp} へ。`;
+  paint();
+  if(step>=7){ btnNext.disabled=true; dayLabel.textContent="一巡"; stepLine.textContent="七本の線が閉じ、土曜へ戻りました。一筆書きで週が完成します。"; }
+}
+btnNext.addEventListener("click",advance);
+btnReset.addEventListener("click",()=>{
+  chords.innerHTML=""; step=0; btnNext.disabled=false;
+  dayLabel.textContent="土曜日"; stepLine.textContent="土星から出発します。ここが週の起点です。"; paint();
+});
+paint();
+
+// planetary hours, starting from the Sun (Sunday)
+const START=3;
+function fill(id,from,to,cls){
+  const g=document.getElementById(id);
+  for(let h=from;h<=to;h++){
+    const p=PL[(START+h-1)%7];
+    const d=document.createElement("div");
+    d.className="cell"+(cls?" "+cls:"");
+    d.innerHTML=`<span class="g">${p.g}</span><span class="h">${h}</span>`;
+    g.appendChild(d);
+  }
+}
+fill("g1",1,7); fill("g2",8,14); fill("g3",15,21); fill("g4",22,24,"rest");
+const g4=document.getElementById("g4");
+["blank","blank","blank"].forEach(()=>{const d=document.createElement("div");d.className="cell blank";g4.appendChild(d);});
+const nx=document.createElement("div");
+nx.className="cell next";
+nx.innerHTML=`<span class="g">${PL[(START+24)%7].g}</span><span class="h">25</span>`;
+g4.appendChild(nx);
+</script>
+</body>
+</html>
