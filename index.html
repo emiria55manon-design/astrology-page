@@ -37,6 +37,7 @@
 
   .wrap{max-width:920px;margin:0 auto;padding:72px 28px 120px;}
 
+  /* ---- Header / hero ---- */
   .eyebrow{
     font-family:'IBM Plex Mono', monospace;
     font-size:12px;
@@ -60,6 +61,7 @@
     margin:0 0 40px;
   }
 
+  /* Orbital signature strip: descending Chaldean order glyphs */
   .orbit-strip{
     display:flex;
     align-items:center;
@@ -114,13 +116,14 @@
     letter-spacing:0.02em;
   }
 
+  /* ---- Timeline ---- */
   .timeline{position:relative;}
   .era{
     position:relative;
     padding-left:34px;
     margin-bottom:8px;
   }
-  .era::before{
+  .era::before{ /* vertical rail */
     content:"";
     position:absolute;
     left:5px;top:38px;bottom:-8px;
@@ -197,6 +200,37 @@
     padding:26px 26px 4px;
     margin-bottom:44px;
     border:1px solid rgba(255,255,255,0.04);
+  }
+
+  /* ---- Notes panel ---- */
+  .notes{
+    margin-top:70px;
+    padding:30px 28px;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+  }
+  .notes h2{
+    font-family:'Noto Serif JP',serif;
+    font-size:18px;
+    color:var(--brass);
+    margin:0 0 18px;
+    font-weight:600;
+  }
+  .notes dl{margin:0;}
+  .notes dt{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--orbit);
+    margin-top:18px;
+    letter-spacing:0.02em;
+  }
+  .notes dt:first-child{margin-top:0;}
+  .notes dd{
+    margin:6px 0 0;
+    color:var(--star-dim);
+    font-size:14px;
+    max-width:66ch;
   }
 
   footer{
@@ -403,4 +437,19 @@
 
         <div class="event">
           <span class="event-meta">1543年</span>
-          <div class="event-body"><strong>ニコラウス・コペルニクス</strong>が『天球の回転について』を発表。地球中
+          <div class="event-body"><strong>ニコラウス・コペルニクス</strong>が『天球の回転について』を発表。地球中心の天球構造モデルとしてのカルディアン・オーダーは天文学的役割を終える。</div>
+        </div>
+        <div class="event">
+          <span class="event-meta">現代</span>
+          <div class="event-body">物理モデルとしての天動説崩壊後も、紀元前2世紀に設計された「降順カルディアン・オーダーと余り3の数理構造」は、7曜日の配列および伝統的占星術の基本技法（フェイス、プラネタリー・アワー等）として完全に継承されている。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Ordo Chaldaeorum — 降順基準 · 24 ÷ 7 = 3 周 余り3</footer>
+
+</div>
+</body>
+</html>
