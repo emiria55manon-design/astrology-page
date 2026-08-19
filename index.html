@@ -16,7 +16,7 @@
   3. ホラリーの説明文：#horary 内のテキスト（仕組みの説明のみ。実例を追加したくなったら後で足せます）
   ・#content 内、七芒星は star.html、合は high.html にリンクしています
   ・YouTubeチャンネル情報：#videos 内、da-icon.png をアップロード（Divination Arcanaのロゴ）。個別の動画リンクは video-card の「準備中」表示を外して href を追加
-  ・スペシャルサンクス：#thanks 内、鵺さんの写真は nue.png をアップロード（無い間は「鵺」の文字プレースホルダーが表示される）。リンク先は NUE_URL を実際のURLに差し替え
+  ・スペシャルサンクス：#thanks 内、鵺さんの写真は nue.png をアップロード。Webサイト・Xのリンク設定済み
   ・太陽・月の画像：sun.png、moon.png を index.html と同じ場所（リポジトリ直下）にアップロードしてください（差し替える場合はファイル名を揃えるか、SVG内の href を変更）
   ・解説コンテンツのサムネイル：star-thumb.png、high-thumb.png も同じくリポジトリ直下にアップロード
   4. SUNO楽曲：#music 内、.track-list に曲を足す場合は同じ形式でコピーして貼り足す。ジャケット画像は track1.png / track2.png / track3.png という名前でアップロードすると自動で反映（画像が無い間は何も表示されないだけで、レイアウトは崩れません）
@@ -29,16 +29,16 @@
   :root{
     --paper:#EDE3C8;
     --paper-2:#E2D3AA;
-    --ink:#2B2314;
-    --ink-soft:#5C4E33;
-    --ink-faint:#8A7A57;
+    --ink:#241D10;
+    --ink-soft:#3F3320;
+    --ink-faint:#6B5C3D;
     --midnight:#10161F;
     --midnight-2:#182333;
     --gold:#A9812E;
     --gold-bright:#C99F45;
     --vermilion:#9B3A26;
-    --star:#EFE6C9;
-    --star-dim:#9AA3B5;
+    --star:#F3EBD2;
+    --star-dim:#B8C0D0;
     --rule:rgba(43,35,20,.16);
     --mincho:"Shippori Mincho","Noto Serif JP",serif;
     --serif:"Noto Serif JP",serif;
@@ -66,12 +66,12 @@
 
   .eyebrow{
     font-family:var(--gothic);
-    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    font-size:12.5px;letter-spacing:.3em;text-transform:uppercase;
     color:var(--gold);margin:0 0 16px;
   }
   h1,h2,h3{font-family:var(--mincho);font-weight:600;color:var(--ink);margin:0;}
-  h2{font-size:26px;letter-spacing:.06em;margin-bottom:28px;}
-  p{margin:0 0 16px;font-size:15.5px;color:var(--ink-soft);}
+  h2{font-size:30px;letter-spacing:.06em;margin-bottom:28px;}
+  p{margin:0 0 16px;font-size:17px;color:var(--ink-soft);}
   .dim{color:var(--ink-faint);}
 
   /* ---------- NAV ---------- */
@@ -91,7 +91,7 @@
     white-space:nowrap;
   }
   .nav-links{
-    display:flex;gap:20px;font-family:var(--gothic);font-size:12.5px;
+    display:flex;gap:20px;font-family:var(--gothic);font-size:14.5px;
     letter-spacing:.04em;overflow-x:auto;
   }
   .nav-links a{text-decoration:none;color:var(--ink-soft);white-space:nowrap;}
@@ -100,7 +100,7 @@
   /* ---------- HERO ---------- */
   .hero{padding:64px 0 40px;border-top:none;text-align:center;}
   .hero h1{font-size:clamp(30px,5.4vw,46px);line-height:1.5;margin-bottom:14px;}
-  .hero .lede{max-width:44ch;margin:0 auto 40px;font-size:15px;}
+  .hero .lede{max-width:44ch;margin:0 auto 40px;font-size:17px;}
   .chart-wrap{width:min(400px,84vw);margin:0 auto;}
   .chart-wrap .lbl{font-family:"Zen Kaku Gothic New",sans-serif;font-size:10px;fill:#8A7A57;letter-spacing:.04em;}
   .chart-wrap .roman{font-family:"Shippori Mincho",serif;font-size:12px;fill:#A9812E;}
@@ -118,17 +118,17 @@
     letter-spacing:.03em;margin-bottom:2px;
   }
   .profile-name-kana{
-    font-family:var(--gothic);font-size:13px;color:var(--ink-faint);
+    font-family:var(--gothic);font-size:14.5px;color:var(--ink-faint);
     font-weight:400;margin-left:6px;
   }
   .profile-tagline{
-    font-family:var(--gothic);font-size:12.5px;color:var(--gold);
+    font-family:var(--gothic);font-size:14px;color:var(--gold);
     letter-spacing:.06em;margin-bottom:16px;
   }
   .social-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;}
   .social-link{
     display:inline-flex;align-items:center;gap:7px;
-    font-family:var(--gothic);font-size:12px;color:var(--ink-soft);
+    font-family:var(--gothic);font-size:13.5px;color:var(--ink-soft);
     text-decoration:none;border:1px solid rgba(43,35,20,.22);
     border-radius:999px;padding:6px 14px 6px 6px;
   }
@@ -163,14 +163,14 @@
   .track:hover{background:#1E2C40;}
   .track.pending{cursor:default;opacity:.6;}
   .track.pending:hover{background:var(--midnight-2);}
-  .track .num{font-family:var(--gothic);font-size:11px;color:var(--gold-bright);width:22px;flex-shrink:0;}
+  .track .num{font-family:var(--gothic);font-size:12.5px;color:var(--gold-bright);width:22px;flex-shrink:0;}
   .track .cover{
     width:44px;height:44px;flex-shrink:0;border-radius:2px;overflow:hidden;
     background:rgba(240,216,154,.08);border:1px solid rgba(201,159,69,.25);
   }
   .track .cover img{width:100%;height:100%;object-fit:cover;display:block;}
-  .track .t-title{font-family:var(--mincho);font-size:15.5px;color:var(--star);flex:1;}
-  .track .t-note{font-family:var(--gothic);font-size:11.5px;color:var(--star-dim);white-space:nowrap;}
+  .track .t-title{font-family:var(--mincho);font-size:17px;color:var(--star);flex:1;}
+  .track .t-note{font-family:var(--gothic);font-size:13px;color:var(--star-dim);white-space:nowrap;}
   .badge-pending{
     font-family:var(--gothic);font-size:10px;color:var(--gold-bright);
     border:1px solid rgba(201,159,69,.5);border-radius:999px;padding:2px 9px;
@@ -178,7 +178,7 @@
   }
   .suno-cta{
     display:inline-block;margin-top:22px;
-    font-family:var(--gothic);font-size:12.5px;letter-spacing:.05em;
+    font-family:var(--gothic);font-size:14px;letter-spacing:.05em;
     color:var(--midnight);background:var(--gold-bright);
     padding:11px 22px;border-radius:2px;text-decoration:none;
   }
@@ -190,10 +190,10 @@
     background:linear-gradient(160deg,var(--midnight),var(--midnight-2));
     border-radius:2px;padding:24px;margin-bottom:24px;
   }
-  .channel-icon{width:76px;height:76px;border-radius:50%;object-fit:cover;flex-shrink:0;}
-  .channel-name{font-family:var(--mincho);font-size:18px;color:var(--star);letter-spacing:.03em;}
-  .channel-by{font-family:var(--gothic);font-size:11.5px;color:var(--gold-bright);margin:3px 0 10px;}
-  .channel-desc{font-family:var(--gothic);font-size:12.5px;color:var(--star-dim);margin:0 0 14px;}
+  .channel-icon{width:76px;height:76px;object-fit:contain;flex-shrink:0;display:block;}
+  .channel-name{font-family:var(--mincho);font-size:20px;color:var(--star);letter-spacing:.03em;}
+  .channel-by{font-family:var(--gothic);font-size:13px;color:var(--gold-bright);margin:3px 0 10px;}
+  .channel-desc{font-family:var(--gothic);font-size:14px;color:var(--star-dim);margin:0 0 14px;}
   .channel-cta{margin-top:0;}
   @media (max-width:520px){.channel-card{flex-direction:column;text-align:center;}}
 
@@ -215,11 +215,12 @@
     font-family:var(--mincho);font-size:34px;color:var(--gold);
     background:rgba(169,129,46,.08);
   }
-  .thanks-name{font-family:var(--mincho);font-size:19px;color:var(--ink);margin-bottom:4px;}
-  .thanks-tagline{font-family:var(--gothic);font-size:12.5px;color:var(--ink-soft);margin-bottom:2px;}
-  .thanks-sub{font-family:var(--gothic);font-size:10.5px;color:var(--ink-faint);letter-spacing:.2em;margin-bottom:16px;}
+  .thanks-name{font-family:var(--mincho);font-size:21px;color:var(--ink);margin-bottom:4px;}
+  .thanks-tagline{font-family:var(--gothic);font-size:14px;color:var(--ink-soft);margin-bottom:2px;}
+  .thanks-sub{font-family:var(--gothic);font-size:12px;color:var(--ink-faint);letter-spacing:.2em;margin-bottom:16px;}
+  .thanks-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
   .thanks-link{
-    display:inline-block;font-family:var(--gothic);font-size:12px;letter-spacing:.04em;
+    display:inline-block;font-family:var(--gothic);font-size:13.5px;letter-spacing:.04em;
     color:var(--ink);border:1px solid var(--gold);padding:8px 18px;border-radius:2px;
     text-decoration:none;
   }
@@ -241,7 +242,7 @@
     display:flex;align-items:center;justify-content:center;
     color:var(--gold);font-family:var(--gothic);font-size:11px;letter-spacing:.1em;
   }
-  .video-card .v-title{padding:12px 14px 14px;font-family:var(--mincho);font-size:14px;color:var(--ink);}
+  .video-card .v-title{padding:12px 14px 14px;font-family:var(--mincho);font-size:15.5px;color:var(--ink);}
   @media (max-width:560px){.video-grid{grid-template-columns:1fr;}}
 
   .content-card{
@@ -254,8 +255,8 @@
     display:block;width:100%;aspect-ratio:16/9;
     object-fit:cover;background:var(--midnight);
   }
-  .content-card .v-title{padding:12px 14px 4px;font-family:var(--mincho);font-size:14px;color:var(--ink);}
-  .content-card .c-desc{padding:0 14px 14px;font-family:var(--gothic);font-size:11.5px;color:var(--ink-faint);}
+  .content-card .v-title{padding:12px 14px 4px;font-family:var(--mincho);font-size:16px;color:var(--ink);}
+  .content-card .c-desc{padding:0 14px 14px;font-family:var(--gothic);font-size:13px;color:var(--ink-faint);}
 
   /* ---------- MENU ---------- */
   .menu-list{border-top:1px solid var(--rule);}
@@ -263,9 +264,9 @@
     display:flex;justify-content:space-between;gap:16px;
     padding:22px 0;border-bottom:1px solid var(--rule);
   }
-  .menu-item .m-name{font-family:var(--mincho);font-size:16.5px;margin-bottom:6px;}
-  .menu-item .m-desc{font-family:var(--gothic);font-size:12.5px;color:var(--ink-faint);max-width:46ch;}
-  .menu-item .m-price{font-family:var(--gothic);font-size:14px;color:var(--vermilion);white-space:nowrap;padding-top:2px;}
+  .menu-item .m-name{font-family:var(--mincho);font-size:18px;margin-bottom:6px;}
+  .menu-item .m-desc{font-family:var(--gothic);font-size:14px;color:var(--ink-faint);max-width:46ch;}
+  .menu-item .m-price{font-family:var(--gothic);font-size:15px;color:var(--vermilion);white-space:nowrap;padding-top:2px;}
   .pending-menu{opacity:.6;}
   .pending-menu .m-price{color:var(--ink-faint);}
 
@@ -273,7 +274,7 @@
   #contact{text-align:center;}
   .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
   .contact-links a{
-    font-family:var(--gothic);font-size:12.5px;letter-spacing:.04em;
+    font-family:var(--gothic);font-size:14px;letter-spacing:.04em;
     border:1px solid var(--gold);color:var(--ink);
     padding:10px 20px;border-radius:2px;text-decoration:none;
   }
@@ -284,13 +285,13 @@
     display:flex;flex-direction:column;gap:16px;
   }
   .contact-form label{
-    font-family:var(--gothic);font-size:12.5px;color:var(--ink-soft);
+    font-family:var(--gothic);font-size:14px;color:var(--ink-soft);
     display:flex;flex-direction:column;gap:6px;
   }
   .contact-form input[type="text"],
   .contact-form input[type="email"],
   .contact-form textarea{
-    font-family:var(--serif);font-size:14.5px;color:var(--ink);
+    font-family:var(--serif);font-size:16px;color:var(--ink);
     background:rgba(255,255,255,.5);
     border:1px solid rgba(43,35,20,.28);border-radius:2px;
     padding:10px 12px;resize:vertical;
@@ -298,20 +299,20 @@
   .contact-form input:focus,
   .contact-form textarea:focus{outline:2px solid var(--gold-bright);outline-offset:1px;}
   .submit-btn{
-    font-family:var(--gothic);font-size:13px;letter-spacing:.05em;
+    font-family:var(--gothic);font-size:14.5px;letter-spacing:.05em;
     color:var(--paper);background:var(--vermilion);
     border:none;border-radius:2px;padding:13px 20px;cursor:pointer;
   }
   .submit-btn:hover{background:#832E20;}
   .submit-btn[disabled]{opacity:.5;cursor:default;}
   .form-result{
-    font-family:var(--gothic);font-size:12.5px;color:var(--ink-soft);
+    font-family:var(--gothic);font-size:14px;color:var(--ink-soft);
     min-height:16px;margin:0;
   }
 
   footer{
     padding:36px 24px 64px;text-align:center;
-    font-family:var(--gothic);font-size:11px;letter-spacing:.08em;
+    font-family:var(--gothic);font-size:12.5px;letter-spacing:.08em;
     color:var(--ink-faint);
   }
 
@@ -552,7 +553,10 @@
       <div class="thanks-name">鵺 〜Nue〜 様</div>
       <div class="thanks-tagline">量子の波に漂いこの世の果てで星を詠む</div>
       <div class="thanks-sub">QUANTUM LAPLACE</div>
-      <a class="thanks-link" href="NUE_URL" target="_blank" rel="noopener">Webサイトを見る →</a>
+      <div class="thanks-links">
+        <a class="thanks-link" href="https://nue.quantum-laplace.com/astrology/index.html" target="_blank" rel="noopener">Webサイト →</a>
+        <a class="thanks-link" href="https://x.com/quantum_laplace" target="_blank" rel="noopener">X →</a>
+      </div>
     </div>
   </div>
 </section>
