@@ -12,11 +12,14 @@
 <!-- ================================================================
   ◆ 差し替えポイント一覧（このコメントは公開前に削除してOK）
   1. サイト名・タイトル：<title> と .site-name
-  2. プロフィール文章：#profile 内のテキスト
+  2. プロフィール文章・肩書き：#profile 内のテキスト。ポートレート画像は portrait.png、SNSアイコンは social-icon.jpg をアップロード
   3. ホラリーの説明文：#horary 内のテキスト（仕組みの説明のみ。実例を追加したくなったら後で足せます）
   ・#content 内、七芒星は star.html、合は high.html にリンクしています
+  ・YouTubeチャンネル情報：#videos 内、da-icon.png をアップロード（Divination Arcanaのロゴ）。個別の動画リンクは video-card の「準備中」表示を外して href を追加
+  ・スペシャルサンクス：#thanks 内、鵺さんの写真は nue.png をアップロード（無い間は「鵺」の文字プレースホルダーが表示される）。リンク先は NUE_URL を実際のURLに差し替え
   ・太陽・月の画像：sun.png、moon.png を index.html と同じ場所（リポジトリ直下）にアップロードしてください（差し替える場合はファイル名を揃えるか、SVG内の href を変更）
-  4. SUNO楽曲：#music 内、.track-list に曲を足す場合は同じ形式でコピーして貼り足す
+  ・解説コンテンツのサムネイル：star-thumb.png、high-thumb.png も同じくリポジトリ直下にアップロード
+  4. SUNO楽曲：#music 内、.track-list に曲を足す場合は同じ形式でコピーして貼り足す。ジャケット画像は track1.png / track2.png / track3.png という名前でアップロードすると自動で反映（画像が無い間は何も表示されないだけで、レイアウトは崩れません）
   5. YouTube動画：#videos 内、各 .video-card（今は「準備中」表示）に href を追加して <a> に戻す
   6. 鑑定メニューの料金・内容：#menu 内のテーブル（今は「準備中」表示。公開する際は .pending-menu クラスを外し、m-price の中身を実際の料金に差し替える）
   7. お問い合わせフォーム：#contact 内、Web3Formsのaccess_keyを設定済み（キー: d5bdb364-...）。フォーム送信先メールは Web3Forms側の設定（emiria55manon@gmail.com）に届く
@@ -103,15 +106,43 @@
   .chart-wrap .roman{font-family:"Shippori Mincho",serif;font-size:12px;fill:#A9812E;}
 
   /* ---------- PROFILE ---------- */
-  .profile-grid{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start;}
-  .profile-seal{
-    width:92px;height:92px;border-radius:50%;
-    border:1.5px solid var(--gold);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--mincho);font-size:13px;color:var(--gold);
-    letter-spacing:.1em;text-align:center;flex-shrink:0;
+  .profile-grid{display:grid;grid-template-columns:180px 1fr;gap:36px;align-items:start;}
+  .profile-portrait{
+    width:180px;height:180px;border-radius:50%;
+    object-fit:cover;object-position:50% 20%;
+    border:3px solid var(--gold);flex-shrink:0;
+    box-shadow:0 0 0 6px rgba(169,129,46,.12);
   }
-  @media (max-width:520px){.profile-grid{grid-template-columns:1fr;}.profile-seal{margin:0 auto;}}
+  .profile-name{
+    font-family:var(--mincho);font-size:24px;color:var(--ink);
+    letter-spacing:.03em;margin-bottom:2px;
+  }
+  .profile-name-kana{
+    font-family:var(--gothic);font-size:13px;color:var(--ink-faint);
+    font-weight:400;margin-left:6px;
+  }
+  .profile-tagline{
+    font-family:var(--gothic);font-size:12.5px;color:var(--gold);
+    letter-spacing:.06em;margin-bottom:16px;
+  }
+  .social-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;}
+  .social-link{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--gothic);font-size:12px;color:var(--ink-soft);
+    text-decoration:none;border:1px solid rgba(43,35,20,.22);
+    border-radius:999px;padding:6px 14px 6px 6px;
+  }
+  .social-link:hover{border-color:var(--gold);color:var(--ink);}
+  .social-link img{width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+  .social-link-yt{
+    width:22px;height:22px;border-radius:50%;flex-shrink:0;
+    background:var(--vermilion);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;font-size:9px;
+  }
+  @media (max-width:520px){
+    .profile-grid{grid-template-columns:1fr;justify-items:center;text-align:center;}
+    .social-row{justify-content:center;}
+  }
 
   /* ---------- HORARY ---------- */
   /* ---------- MUSIC (night sky) ---------- */
@@ -133,6 +164,11 @@
   .track.pending{cursor:default;opacity:.6;}
   .track.pending:hover{background:var(--midnight-2);}
   .track .num{font-family:var(--gothic);font-size:11px;color:var(--gold-bright);width:22px;flex-shrink:0;}
+  .track .cover{
+    width:44px;height:44px;flex-shrink:0;border-radius:2px;overflow:hidden;
+    background:rgba(240,216,154,.08);border:1px solid rgba(201,159,69,.25);
+  }
+  .track .cover img{width:100%;height:100%;object-fit:cover;display:block;}
   .track .t-title{font-family:var(--mincho);font-size:15.5px;color:var(--star);flex:1;}
   .track .t-note{font-family:var(--gothic);font-size:11.5px;color:var(--star-dim);white-space:nowrap;}
   .badge-pending{
@@ -149,6 +185,45 @@
 
   /* ---------- VIDEOS ---------- */
   .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .channel-card{
+    display:flex;gap:20px;align-items:center;
+    background:linear-gradient(160deg,var(--midnight),var(--midnight-2));
+    border-radius:2px;padding:24px;margin-bottom:24px;
+  }
+  .channel-icon{width:76px;height:76px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+  .channel-name{font-family:var(--mincho);font-size:18px;color:var(--star);letter-spacing:.03em;}
+  .channel-by{font-family:var(--gothic);font-size:11.5px;color:var(--gold-bright);margin:3px 0 10px;}
+  .channel-desc{font-family:var(--gothic);font-size:12.5px;color:var(--star-dim);margin:0 0 14px;}
+  .channel-cta{margin-top:0;}
+  @media (max-width:520px){.channel-card{flex-direction:column;text-align:center;}}
+
+  .thanks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:520px;}
+  .thanks-card{
+    border:1px solid var(--rule);border-radius:2px;
+    background:rgba(255,255,255,.28);padding:28px 22px 24px;
+    text-align:center;
+  }
+  .thanks-portrait{
+    width:128px;height:128px;border-radius:50%;object-fit:cover;
+    border:2px solid var(--gold);margin:0 auto 16px;display:block;
+    box-shadow:0 0 0 5px rgba(169,129,46,.12);
+  }
+  .thanks-portrait-fallback{
+    display:none;width:128px;height:128px;border-radius:50%;
+    border:2px solid var(--gold);margin:0 auto 16px;
+    align-items:center;justify-content:center;
+    font-family:var(--mincho);font-size:34px;color:var(--gold);
+    background:rgba(169,129,46,.08);
+  }
+  .thanks-name{font-family:var(--mincho);font-size:19px;color:var(--ink);margin-bottom:4px;}
+  .thanks-tagline{font-family:var(--gothic);font-size:12.5px;color:var(--ink-soft);margin-bottom:2px;}
+  .thanks-sub{font-family:var(--gothic);font-size:10.5px;color:var(--ink-faint);letter-spacing:.2em;margin-bottom:16px;}
+  .thanks-link{
+    display:inline-block;font-family:var(--gothic);font-size:12px;letter-spacing:.04em;
+    color:var(--ink);border:1px solid var(--gold);padding:8px 18px;border-radius:2px;
+    text-decoration:none;
+  }
+  .thanks-link:hover{background:var(--gold);color:var(--paper);}
   .video-card{
     border:1px solid var(--rule);border-radius:2px;overflow:hidden;
     text-decoration:none;background:rgba(255,255,255,.25);
@@ -176,10 +251,8 @@
   }
   .content-card:hover{background:rgba(255,255,255,.5);border-color:var(--gold);}
   .content-thumb{
-    aspect-ratio:16/9;
-    background:linear-gradient(160deg,var(--midnight),var(--midnight-2));
-    display:flex;align-items:center;justify-content:center;
-    color:var(--gold-bright);font-family:var(--mincho);font-size:22px;letter-spacing:.1em;
+    display:block;width:100%;aspect-ratio:16/9;
+    object-fit:cover;background:var(--midnight);
   }
   .content-card .v-title{padding:12px 14px 4px;font-family:var(--mincho);font-size:14px;color:var(--ink);}
   .content-card .c-desc{padding:0 14px 14px;font-family:var(--gothic);font-size:11.5px;color:var(--ink-faint);}
@@ -256,6 +329,7 @@
       <a href="#content">コンテンツ</a>
       <a href="#music">音楽</a>
       <a href="#videos">動画</a>
+      <a href="#thanks">サンクス</a>
       <a href="#menu">鑑定</a>
       <a href="#contact">連絡</a>
     </div>
@@ -291,8 +365,8 @@
     </g>
 
     <!-- 太陽（9ハウス＝太陽のジョイ）と月（3ハウス＝月のジョイ） -->
-    <image href="sun.png" xlink:href="sun.png" x="152" y="43" width="80" height="80"/>
-    <image href="moon.png" xlink:href="moon.png" x="108" y="217" width="80" height="80"/>
+    <image href="sun.png" xlink:href="sun.png" x="140" y="31" width="104" height="104"/>
+    <image href="moon.png" xlink:href="moon.png" x="96" y="205" width="104" height="104"/>
 
 
     <!-- 補助の12分割線（各辺を4等分した点から中心へ） -->
@@ -321,13 +395,13 @@
     <!-- ハウス数字（ASC＝左中央を1室とし、時計回りに配置） -->
     <text class="roman" x="72" y="194" text-anchor="middle">I</text>
     <text class="roman" x="97" y="243" text-anchor="middle">II</text>
-    <text class="roman" x="132" y="308" text-anchor="middle">III</text>
+    <text class="roman" x="112" y="322" text-anchor="middle">III</text>
     <text class="roman" x="194" y="268" text-anchor="middle">IV</text>
     <text class="roman" x="243" y="243" text-anchor="middle">V</text>
     <text class="roman" x="268" y="194" text-anchor="middle">VI</text>
     <text class="roman" x="268" y="146" text-anchor="middle">VII</text>
     <text class="roman" x="243" y="97" text-anchor="middle">VIII</text>
-    <text class="roman" x="208" y="34" text-anchor="middle">IX</text>
+    <text class="roman" x="228" y="20" text-anchor="middle">IX</text>
     <text class="roman" x="146" y="72.5" text-anchor="middle">X</text>
     <text class="roman" x="97" y="97" text-anchor="middle">XI</text>
     <text class="roman" x="72.5" y="146" text-anchor="middle">XII</text>
@@ -365,10 +439,23 @@
   <p class="eyebrow">Profile</p>
   <h2>プロフィール</h2>
   <div class="profile-grid">
-    <div class="profile-seal">占星術師<br>の印</div>
+    <img class="profile-portrait" src="portrait.png" alt="emiria☆manon">
     <div>
-      <p>広島を拠点に、伝統的占星術（トラディショナル・アストロロジー）を実践しています。専門はホラリー占星術――尋ねられたその瞬間の天球図から答えを読み解く技法です。ホールサインハウス、エジプシャン・ターム、ドロセウス的トリプリシティといった古典的な理論体系を用いています。</p>
-      <p>ネイタルチャート、プロフェクション、ソーラーリターンを用いた人生の読み解きも行うほか、占星術のシンボリズムに着想を得た音楽制作、YouTubeでの解説動画発信も続けています。</p>
+      <div class="profile-name">emiria☆manon<span class="profile-name-kana">（エミリア✩マノン）</span></div>
+      <div class="profile-tagline">星と音楽、タロットと占星の旅</div>
+      <p>タイツタロット／Hawaiian Loa Tarot 読み手。古典占星術とホラリー占星術のロジックをベースに、タイツタロット等を用いたリーディングを行う。</p>
+      <p>音楽動画作成が好きで、そこで培ったユニークな表現力や感性を星読みにも活かしている。論理と遊び心を大切にする占術家。広島を拠点に活動中。</p>
+      <div class="social-row">
+        <a href="https://x.com/Emiria55Manon" target="_blank" rel="noopener" class="social-link">
+          <img src="social-icon.jpg" alt=""><span>X</span>
+        </a>
+        <a href="https://www.instagram.com/emiria55manon/?hl=ja" target="_blank" rel="noopener" class="social-link">
+          <img src="social-icon.jpg" alt=""><span>Instagram</span>
+        </a>
+        <a href="https://www.youtube.com/@Divination-Arcana" target="_blank" rel="noopener" class="social-link">
+          <span class="social-link-yt">▶</span><span>YouTube</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -386,32 +473,12 @@
   <p>占星術の仕組みを、動く図で見てみるページです。</p>
   <div class="video-grid">
     <a class="content-card" href="star.html" target="_blank" rel="noopener">
-      <div class="content-thumb">
-        <svg viewBox="0 0 120 120" width="72" height="72">
-          <circle cx="60" cy="60" r="46" fill="none" stroke="#C99F45" stroke-opacity=".5"/>
-          <polygon points="60,16 71,73 20,40 100,40 49,73"
-            fill="none" stroke="#F0D89A" stroke-width="1.6" stroke-linejoin="round"/>
-          <circle cx="60" cy="16" r="3" fill="#F0D89A"/>
-          <circle cx="71" cy="73" r="3" fill="#F0D89A"/>
-          <circle cx="20" cy="40" r="3" fill="#F0D89A"/>
-          <circle cx="100" cy="40" r="3" fill="#F0D89A"/>
-          <circle cx="49" cy="73" r="3" fill="#F0D89A"/>
-        </svg>
-      </div>
+      <img class="content-thumb" src="star-thumb.png" alt="七芒星が曜日を一筆で描く">
       <div class="v-title">七芒星が曜日を一筆で描く</div>
       <div class="c-desc">カルデア順序と曜日の関係を、一筆書きのアニメーションで見る</div>
     </a>
     <a class="content-card" href="high.html" target="_blank" rel="noopener">
-      <div class="content-thumb">
-        <svg viewBox="0 0 120 120" width="72" height="72">
-          <circle cx="60" cy="60" r="4" fill="#F0D89A"/>
-          <ellipse cx="60" cy="60" rx="46" ry="18" fill="none" stroke="#C99F45" stroke-opacity=".5"/>
-          <ellipse cx="60" cy="60" rx="28" ry="11" fill="none" stroke="#C99F45" stroke-opacity=".5"/>
-          <circle cx="88" cy="60" r="5" fill="#F0D89A"/>
-          <circle cx="34" cy="55" r="3" fill="#F0D89A" opacity=".85"/>
-          <line x1="60" y1="60" x2="88" y2="60" stroke="#F0D89A" stroke-opacity=".4" stroke-dasharray="2 3"/>
-        </svg>
-      </div>
+      <img class="content-thumb" src="high-thumb.png" alt="合（コンジャンクション）を3Dで見る">
       <div class="v-title">合（コンジャンクション）を3Dで見る</div>
       <div class="c-desc">地球から見て重なる惑星も、宇宙では距離が違う――その奥行きを立体で見る</div>
     </a>
@@ -426,16 +493,19 @@
 
     <div class="track-list">
       <a class="track" href="https://suno.com/song/51bec457-47c7-490c-b52b-c4af7cf92885" target="_blank" rel="noopener">
+        <span class="cover"><img src="track1.png" alt="" onerror="this.style.display='none'"></span>
         <span class="num">01</span>
         <span class="t-title">Divination Arcana: The Trinity</span>
         <span class="t-note">Listen ↗</span>
       </a>
       <a class="track" href="https://suno.com/s/1OxFOV3Nj1wByouO" target="_blank" rel="noopener">
+        <span class="cover"><img src="track2.png" alt="" onerror="this.style.display='none'"></span>
         <span class="num">02</span>
         <span class="t-title">Arôme Gravity －二人の調香（コード）－</span>
         <span class="t-note">Listen ↗</span>
       </a>
       <a class="track" href="https://suno.com/song/5db4395a-e08c-44e5-83ac-3e11bffd1471" target="_blank" rel="noopener">
+        <span class="cover"><img src="track3.png" alt="" onerror="this.style.display='none'"></span>
         <span class="num">03</span>
         <span class="t-title">Beyond the Star Map</span>
         <span class="t-note">Listen ↗</span>
@@ -448,7 +518,15 @@
 <section id="videos" class="wrap">
   <p class="eyebrow">Videos</p>
   <h2>動画</h2>
-  <p>占星術の技法や実例を、YouTubeで解説しています。</p>
+  <div class="channel-card">
+    <img class="channel-icon" src="da-icon.png" alt="Divination Arcana">
+    <div>
+      <div class="channel-name">Divination Arcana</div>
+      <div class="channel-by">emiria☆manon &amp; QuantumLaplace〜鵺〜</div>
+      <p class="channel-desc">ヘレニズム占星術・古典占星術の歴史をテーマに、鵺さんと共同で発信しているYouTubeチャンネルです。</p>
+      <a class="suno-cta channel-cta" href="https://www.youtube.com/@Divination-Arcana" target="_blank" rel="noopener">チャンネルを見る →</a>
+    </div>
+  </div>
   <div class="video-grid">
     <div class="video-card pending">
       <span class="badge-pending2">準備中</span>
@@ -459,6 +537,22 @@
       <span class="badge-pending2">準備中</span>
       <div class="video-thumb">YOUTUBE</div>
       <div class="v-title">月のボイドオブコース、リリーの例外規定</div>
+    </div>
+  </div>
+</section>
+
+<section id="thanks" class="wrap">
+  <p class="eyebrow">Special Thanks</p>
+  <h2>スペシャルサンクス</h2>
+  <p>活動を共にしてくださっている方々です。</p>
+  <div class="thanks-grid">
+    <div class="thanks-card">
+      <img class="thanks-portrait" src="nue.png" alt="鵺さん" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="thanks-portrait-fallback">鵺</div>
+      <div class="thanks-name">鵺 〜Nue〜 様</div>
+      <div class="thanks-tagline">量子の波に漂いこの世の果てで星を詠む</div>
+      <div class="thanks-sub">QUANTUM LAPLACE</div>
+      <a class="thanks-link" href="NUE_URL" target="_blank" rel="noopener">Webサイトを見る →</a>
     </div>
   </div>
 </section>
