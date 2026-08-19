@@ -3,453 +3,545 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>カルディアン・オーダー歴史年表</title>
+<title>星に問う — クラシカル占星術と星の音楽</title>
+<meta name="description" content="広島を拠点とするクラシカル占星術（ホラリー）の実践と、星にちなんだ音楽作品のポータルサイト">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Noto+Serif+JP:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ================================================================
+  ◆ 差し替えポイント一覧（このコメントは公開前に削除してOK）
+  1. サイト名・タイトル：<title> と .site-name
+  2. プロフィール文章：#profile 内のテキスト
+  3. ホラリーの説明文：#horary 内のテキスト（仕組みの説明のみ。実例を追加したくなったら後で足せます）
+  ・#content 内、七芒星は star.html、合は high.html にリンクしています
+  ・太陽・月の画像：sun.png、moon.png を index.html と同じ場所（リポジトリ直下）にアップロードしてください（差し替える場合はファイル名を揃えるか、SVG内の href を変更）
+  4. SUNO楽曲：#music 内、.track-list に曲を足す場合は同じ形式でコピーして貼り足す
+  5. YouTube動画：#videos 内、各 .video-card（今は「準備中」表示）に href を追加して <a> に戻す
+  6. 鑑定メニューの料金・内容：#menu 内のテーブル（今は「準備中」表示。公開する際は .pending-menu クラスを外し、m-price の中身を実際の料金に差し替える）
+  7. お問い合わせフォーム：#contact 内、Web3Formsのaccess_keyを設定済み（キー: d5bdb364-...）。フォーム送信先メールは Web3Forms側の設定（emiria55manon@gmail.com）に届く
+================================================================== -->
+
 <style>
   :root{
-    --bg-void:#0F1424;
-    --bg-panel:#171E36;
-    --bg-panel-2:#1D2542;
-    --brass:#C9A461;
-    --brass-dim:#8A7548;
-    --star:#EDE8DA;
-    --star-dim:#9AA1BE;
-    --orbit:#7C8FFF;
-    --line:rgba(201,164,97,0.22);
-    --rule:rgba(154,161,190,0.16);
+    --paper:#EDE3C8;
+    --paper-2:#E2D3AA;
+    --ink:#2B2314;
+    --ink-soft:#5C4E33;
+    --ink-faint:#8A7A57;
+    --midnight:#10161F;
+    --midnight-2:#182333;
+    --gold:#A9812E;
+    --gold-bright:#C99F45;
+    --vermilion:#9B3A26;
+    --star:#EFE6C9;
+    --star-dim:#9AA3B5;
+    --rule:rgba(43,35,20,.16);
+    --mincho:"Shippori Mincho","Noto Serif JP",serif;
+    --serif:"Noto Serif JP",serif;
+    --gothic:"Zen Kaku Gothic New",sans-serif;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:
-      radial-gradient(1200px 600px at 15% -10%, rgba(124,143,255,0.08), transparent 60%),
-      radial-gradient(900px 500px at 100% 0%, rgba(201,164,97,0.07), transparent 55%),
-      var(--bg-void);
-    color:var(--star);
-    font-family:'Noto Sans JP', sans-serif;
-    line-height:1.75;
+    background:var(--paper);
+    background-image:
+      radial-gradient(1100px 500px at 85% -8%, rgba(169,129,46,.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(43,35,20,.05), transparent 55%);
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.9;
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
 
-  .wrap{max-width:920px;margin:0 auto;padding:72px 28px 120px;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+  section{padding:88px 0;}
+  section+section{border-top:1px solid var(--rule);}
 
-  /* ---- Header / hero ---- */
   .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:0.22em;
-    color:var(--brass);
-    text-transform:uppercase;
-    margin:0 0 18px;
+    font-family:var(--gothic);
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--gold);margin:0 0 16px;
   }
-  h1{
-    font-family:'Noto Serif JP', serif;
-    font-weight:700;
-    font-size:clamp(28px,5vw,42px);
-    line-height:1.4;
-    margin:0 0 14px;
-    color:var(--star);
-  }
-  .lede{
-    color:var(--star-dim);
-    font-size:15px;
-    max-width:56ch;
-    margin:0 0 40px;
-  }
+  h1,h2,h3{font-family:var(--mincho);font-weight:600;color:var(--ink);margin:0;}
+  h2{font-size:26px;letter-spacing:.06em;margin-bottom:28px;}
+  p{margin:0 0 16px;font-size:15.5px;color:var(--ink-soft);}
+  .dim{color:var(--ink-faint);}
 
-  /* Orbital signature strip: descending Chaldean order glyphs */
-  .orbit-strip{
-    display:flex;
-    align-items:center;
-    gap:0;
-    padding:22px 20px;
-    background:linear-gradient(180deg, var(--bg-panel), var(--bg-panel-2));
-    border:1px solid var(--line);
-    border-radius:14px;
-    margin-bottom:56px;
-    overflow-x:auto;
-  }
-  .orbit-strip .planet{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:8px;
-    min-width:64px;
-    position:relative;
-  }
-  .orbit-strip .glyph{
-    width:34px;height:34px;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size:17px;
-    color:var(--bg-void);
-    background:var(--brass);
-    font-family:'IBM Plex Mono',monospace;
-    flex-shrink:0;
-  }
-  .orbit-strip .glyph.moon{background:var(--orbit);color:var(--bg-void);}
-  .orbit-strip .label{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:10.5px;
-    color:var(--star-dim);
-    letter-spacing:0.02em;
-  }
-  .orbit-strip .arrow{
-    flex:1;
-    height:1px;
-    min-width:18px;
-    background:repeating-linear-gradient(90deg, var(--brass-dim) 0 6px, transparent 6px 11px);
-    margin:0 -2px;
-    position:relative;
-    top:-13px;
-  }
-  .orbit-strip-caption{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-    color:var(--star-dim);
-    text-align:right;
-    margin:-44px 0 56px;
-    letter-spacing:0.02em;
-  }
-
-  /* ---- Timeline ---- */
-  .timeline{position:relative;}
-  .era{
-    position:relative;
-    padding-left:34px;
-    margin-bottom:8px;
-  }
-  .era::before{ /* vertical rail */
-    content:"";
-    position:absolute;
-    left:5px;top:38px;bottom:-8px;
-    width:1px;
-    background:var(--line);
-  }
-  .era:last-child::before{display:none;}
-
-  .era-head{
-    position:relative;
-    display:flex;
-    align-items:baseline;
-    gap:12px;
-    margin-bottom:22px;
-  }
-  .era-node{
-    position:absolute;
-    left:-34px;top:3px;
-    width:11px;height:11px;
-    border-radius:50%;
-    background:var(--brass);
-    box-shadow:0 0 0 4px rgba(201,164,97,0.14);
-  }
-  .era-num{
-    font-family:'IBM Plex Mono',monospace;
-    color:var(--brass);
-    font-size:12px;
-    letter-spacing:0.05em;
-  }
-  .era-title{
-    font-family:'Noto Serif JP', serif;
-    font-weight:600;
-    font-size:20px;
-    color:var(--star);
-    margin:0;
-  }
-
-  .event{
-    position:relative;
-    padding:0 0 26px 0;
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(237,227,200,.92);
+    backdrop-filter:blur(6px);
     border-bottom:1px solid var(--rule);
-    margin-bottom:26px;
   }
-  .event:last-child{border-bottom:none;margin-bottom:8px;padding-bottom:0;}
-  .event::before{
-    content:"";
-    position:absolute;
-    left:-30.5px;top:7px;
-    width:6px;height:6px;
-    border-radius:50%;
-    background:var(--orbit);
+  .nav-inner{
+    max-width:880px;margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;
   }
-  .event-meta{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12.5px;
-    color:var(--brass);
-    letter-spacing:0.03em;
-    margin-bottom:6px;
-    display:block;
+  .site-name{
+    font-family:var(--mincho);font-size:17px;letter-spacing:.08em;
+    white-space:nowrap;
   }
-  .event-body{
-    color:var(--star-dim);
-    font-size:14.5px;
-    max-width:64ch;
+  .nav-links{
+    display:flex;gap:20px;font-family:var(--gothic);font-size:12.5px;
+    letter-spacing:.04em;overflow-x:auto;
   }
-  .event-body strong{
+  .nav-links a{text-decoration:none;color:var(--ink-soft);white-space:nowrap;}
+  .nav-links a:hover{color:var(--vermilion);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:64px 0 40px;border-top:none;text-align:center;}
+  .hero h1{font-size:clamp(30px,5.4vw,46px);line-height:1.5;margin-bottom:14px;}
+  .hero .lede{max-width:44ch;margin:0 auto 40px;font-size:15px;}
+  .chart-wrap{width:min(400px,84vw);margin:0 auto;}
+  .chart-wrap .lbl{font-family:"Zen Kaku Gothic New",sans-serif;font-size:10px;fill:#8A7A57;letter-spacing:.04em;}
+  .chart-wrap .roman{font-family:"Shippori Mincho",serif;font-size:12px;fill:#A9812E;}
+
+  /* ---------- PROFILE ---------- */
+  .profile-grid{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start;}
+  .profile-seal{
+    width:92px;height:92px;border-radius:50%;
+    border:1.5px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mincho);font-size:13px;color:var(--gold);
+    letter-spacing:.1em;text-align:center;flex-shrink:0;
+  }
+  @media (max-width:520px){.profile-grid{grid-template-columns:1fr;}.profile-seal{margin:0 auto;}}
+
+  /* ---------- HORARY ---------- */
+  /* ---------- MUSIC (night sky) ---------- */
+  #music{
+    background:var(--midnight);
+    background-image:radial-gradient(700px 400px at 20% 0%, rgba(201,159,69,.08), transparent 60%);
     color:var(--star);
-    font-weight:600;
+  }
+  #music .eyebrow{color:var(--gold-bright);}
+  #music h2{color:var(--star);}
+  #music p{color:var(--star-dim);}
+  .track-list{display:flex;flex-direction:column;gap:1px;background:rgba(239,230,201,.1);border-radius:2px;overflow:hidden;}
+  .track{
+    display:flex;align-items:center;gap:16px;
+    padding:18px 18px;background:var(--midnight-2);
+    text-decoration:none;transition:background .15s ease;
+  }
+  .track:hover{background:#1E2C40;}
+  .track.pending{cursor:default;opacity:.6;}
+  .track.pending:hover{background:var(--midnight-2);}
+  .track .num{font-family:var(--gothic);font-size:11px;color:var(--gold-bright);width:22px;flex-shrink:0;}
+  .track .t-title{font-family:var(--mincho);font-size:15.5px;color:var(--star);flex:1;}
+  .track .t-note{font-family:var(--gothic);font-size:11.5px;color:var(--star-dim);white-space:nowrap;}
+  .badge-pending{
+    font-family:var(--gothic);font-size:10px;color:var(--gold-bright);
+    border:1px solid rgba(201,159,69,.5);border-radius:999px;padding:2px 9px;
+    white-space:nowrap;
+  }
+  .suno-cta{
+    display:inline-block;margin-top:22px;
+    font-family:var(--gothic);font-size:12.5px;letter-spacing:.05em;
+    color:var(--midnight);background:var(--gold-bright);
+    padding:11px 22px;border-radius:2px;text-decoration:none;
   }
 
-  .era-block{
-    background:rgba(255,255,255,0.014);
-    border-radius:14px;
-    padding:26px 26px 4px;
-    margin-bottom:44px;
-    border:1px solid rgba(255,255,255,0.04);
+  /* ---------- VIDEOS ---------- */
+  .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .video-card{
+    border:1px solid var(--rule);border-radius:2px;overflow:hidden;
+    text-decoration:none;background:rgba(255,255,255,.25);
+    display:block;position:relative;
   }
+  .video-card.pending{cursor:default;opacity:.7;}
+  .video-card .badge-pending2{
+    position:absolute;top:8px;right:8px;
+    font-family:var(--gothic);font-size:10px;color:var(--ink);
+    background:var(--paper);border:1px solid var(--gold);border-radius:999px;
+    padding:2px 9px;
+  }
+  .video-thumb{
+    aspect-ratio:16/9;background:linear-gradient(160deg,#DDCC9E,#C9B57F);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold);font-family:var(--gothic);font-size:11px;letter-spacing:.1em;
+  }
+  .video-card .v-title{padding:12px 14px 14px;font-family:var(--mincho);font-size:14px;color:var(--ink);}
+  @media (max-width:560px){.video-grid{grid-template-columns:1fr;}}
 
-  /* ---- Notes panel ---- */
-  .notes{
-    margin-top:70px;
-    padding:30px 28px;
-    background:var(--bg-panel);
-    border:1px solid var(--line);
-    border-radius:14px;
+  .content-card{
+    border:1px solid var(--rule);border-radius:2px;overflow:hidden;
+    text-decoration:none;background:rgba(255,255,255,.25);
+    display:block;transition:background .15s ease,border-color .15s ease;
   }
-  .notes h2{
-    font-family:'Noto Serif JP',serif;
-    font-size:18px;
-    color:var(--brass);
-    margin:0 0 18px;
-    font-weight:600;
+  .content-card:hover{background:rgba(255,255,255,.5);border-color:var(--gold);}
+  .content-thumb{
+    aspect-ratio:16/9;
+    background:linear-gradient(160deg,var(--midnight),var(--midnight-2));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold-bright);font-family:var(--mincho);font-size:22px;letter-spacing:.1em;
   }
-  .notes dl{margin:0;}
-  .notes dt{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    color:var(--orbit);
-    margin-top:18px;
-    letter-spacing:0.02em;
+  .content-card .v-title{padding:12px 14px 4px;font-family:var(--mincho);font-size:14px;color:var(--ink);}
+  .content-card .c-desc{padding:0 14px 14px;font-family:var(--gothic);font-size:11.5px;color:var(--ink-faint);}
+
+  /* ---------- MENU ---------- */
+  .menu-list{border-top:1px solid var(--rule);}
+  .menu-item{
+    display:flex;justify-content:space-between;gap:16px;
+    padding:22px 0;border-bottom:1px solid var(--rule);
   }
-  .notes dt:first-child{margin-top:0;}
-  .notes dd{
-    margin:6px 0 0;
-    color:var(--star-dim);
-    font-size:14px;
-    max-width:66ch;
+  .menu-item .m-name{font-family:var(--mincho);font-size:16.5px;margin-bottom:6px;}
+  .menu-item .m-desc{font-family:var(--gothic);font-size:12.5px;color:var(--ink-faint);max-width:46ch;}
+  .menu-item .m-price{font-family:var(--gothic);font-size:14px;color:var(--vermilion);white-space:nowrap;padding-top:2px;}
+  .pending-menu{opacity:.6;}
+  .pending-menu .m-price{color:var(--ink-faint);}
+
+  /* ---------- CONTACT ---------- */
+  #contact{text-align:center;}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
+  .contact-links a{
+    font-family:var(--gothic);font-size:12.5px;letter-spacing:.04em;
+    border:1px solid var(--gold);color:var(--ink);
+    padding:10px 20px;border-radius:2px;text-decoration:none;
+  }
+  .contact-links a:hover{background:var(--gold);color:var(--paper);}
+
+  .contact-form{
+    max-width:420px;margin:28px auto 0;text-align:left;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .contact-form label{
+    font-family:var(--gothic);font-size:12.5px;color:var(--ink-soft);
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea{
+    font-family:var(--serif);font-size:14.5px;color:var(--ink);
+    background:rgba(255,255,255,.5);
+    border:1px solid rgba(43,35,20,.28);border-radius:2px;
+    padding:10px 12px;resize:vertical;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus{outline:2px solid var(--gold-bright);outline-offset:1px;}
+  .submit-btn{
+    font-family:var(--gothic);font-size:13px;letter-spacing:.05em;
+    color:var(--paper);background:var(--vermilion);
+    border:none;border-radius:2px;padding:13px 20px;cursor:pointer;
+  }
+  .submit-btn:hover{background:#832E20;}
+  .submit-btn[disabled]{opacity:.5;cursor:default;}
+  .form-result{
+    font-family:var(--gothic);font-size:12.5px;color:var(--ink-soft);
+    min-height:16px;margin:0;
   }
 
   footer{
-    margin-top:56px;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-    color:var(--brass-dim);
-    letter-spacing:0.04em;
+    padding:36px 24px 64px;text-align:center;
+    font-family:var(--gothic);font-size:11px;letter-spacing:.08em;
+    color:var(--ink-faint);
   }
 
-  @media (max-width:600px){
-    .wrap{padding:48px 18px 90px;}
-    .era{padding-left:26px;}
-    .era-node{left:-26px;}
-    .event::before{left:-22.5px;}
-    .era-block{padding:20px 16px 4px;}
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <p class="eyebrow">Ordo Chaldaeorum · 紀元前2000年 — 現代</p>
-  <h1>カルディアン・オーダー<br>歴史年表</h1>
-  <p class="lede">バビロニアの観測的黎明期からヘレニズム期における体系化、中世・ルネサンス期を経て近代天文学に至るまで。伝統占星術の理論体系（ディグニティ、セクト、プラネタリー・アワー、ハウス象意）との整合性を精査した修正版。</p>
-
-  <div class="orbit-strip" aria-label="降順カルディアン・オーダー：土星から月へ">
-    <div class="planet"><span class="glyph">♄</span><span class="label">土星</span></div>
-    <div class="arrow"></div>
-    <div class="planet"><span class="glyph">♃</span><span class="label">木星</span></div>
-    <div class="arrow"></div>
-    <div class="planet"><span class="glyph">♂</span><span class="label">火星</span></div>
-    <div class="arrow"></div>
-    <div class="planet"><span class="glyph">☉</span><span class="label">太陽</span></div>
-    <div class="arrow"></div>
-    <div class="planet"><span class="glyph">♀</span><span class="label">金星</span></div>
-    <div class="arrow"></div>
-    <div class="planet"><span class="glyph">☿</span><span class="label">水星</span></div>
-    <div class="arrow"></div>
-    <div class="planet"><span class="glyph moon">☽</span><span class="label">月</span></div>
+<nav>
+  <div class="nav-inner">
+    <div class="site-name">星に問う</div>
+    <div class="nav-links">
+      <a href="#profile">プロフィール</a>
+      <a href="#horary">ホラリー</a>
+      <a href="#content">コンテンツ</a>
+      <a href="#music">音楽</a>
+      <a href="#videos">動画</a>
+      <a href="#menu">鑑定</a>
+      <a href="#contact">連絡</a>
+    </div>
   </div>
-  <p class="orbit-strip-caption">降順（標準基準）— 技法適用時の基準方向</p>
+</nav>
 
-  <div class="timeline">
+<section class="hero wrap">
+  <p class="eyebrow">Traditional Astrology · Horary</p>
+  <h1>星は、尋ねられた瞬間に<br>答えを持っている</h1>
+  <p class="lede">ホールサインハウス、エジプシャン・ターム、ドロセウス三区分――伝統的な技法で読むホラリー占星術。広島より、鑑定と音楽を届けています。</p>
 
-    <div class="era">
-      <div class="era-block">
-        <div class="era-head">
-          <span class="era-node"></span>
-          <span class="era-num">I</span>
-          <h2 class="era-title">メソポタミア・エジプトの黎明期</h2>
-        </div>
+  <svg class="chart-wrap" viewBox="-30 -30 400 400" role="img" aria-label="リリー式ホラリーチャート（装飾）">
 
-        <div class="event">
-          <span class="event-meta">前2000年頃〜</span>
-          <div class="event-body">メソポタミアで組織的な天体観測が開始。<strong>オメン占星術</strong>（自然現象の前兆観察）や、方向・空間分割に基づく肝臓占術の象徴体系が形成される。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">前1000年頃</span>
-          <div class="event-body">バビロニアの天文粘土板<strong>『ムル・アピン（MUL.APIN）』</strong>等において、恒星カタログや惑星周期の観測データ、後の「エグザルテーション（高揚）」の原型となる星配置が記録される。</div>
-        </div>
-      </div>
+    <!-- 外周の目盛りリング（アストロラーベ風） -->
+    <circle cx="170" cy="170" r="182" fill="none" stroke="#A9812E" stroke-opacity=".3" stroke-width="1"/>
+    <circle cx="170" cy="170" r="176" fill="none" stroke="#A9812E" stroke-opacity=".18" stroke-width="1"/>
+    <g id="ring-ticks" stroke="#A9812E" stroke-width="1"></g>
+
+    <!-- 外枠 -->
+    <rect x="20" y="20" width="300" height="300" fill="none" stroke="#A9812E" stroke-width="1.4"/>
+    <!-- 四隅の飾り（コーナーフラリッシュ） -->
+    <g stroke="#A9812E" stroke-opacity=".85" stroke-width="1" fill="none">
+      <path d="M 20 34 Q 20 20 34 20"/>
+      <path d="M 306 20 Q 320 20 320 34"/>
+      <path d="M 320 306 Q 320 320 306 320"/>
+      <path d="M 34 320 Q 20 320 20 306"/>
+    </g>
+    <g fill="#A9812E">
+      <circle cx="20" cy="20" r="2"/>
+      <circle cx="320" cy="20" r="2"/>
+      <circle cx="320" cy="320" r="2"/>
+      <circle cx="20" cy="320" r="2"/>
+    </g>
+
+    <!-- 太陽（9ハウス＝太陽のジョイ）と月（3ハウス＝月のジョイ） -->
+    <image href="sun.png" x="152" y="43" width="80" height="80"/>
+    <image href="moon.png" x="108" y="217" width="80" height="80"/>
+
+
+    <!-- 補助の12分割線（各辺を4等分した点から中心へ） -->
+    <g stroke="#A9812E" stroke-opacity=".45" stroke-width="1">
+      <line x1="170" y1="170" x2="20" y2="245"/>
+      <line x1="170" y1="170" x2="95" y2="320"/>
+      <line x1="170" y1="170" x2="245" y2="320"/>
+      <line x1="170" y1="170" x2="320" y2="245"/>
+      <line x1="170" y1="170" x2="320" y2="95"/>
+      <line x1="170" y1="170" x2="245" y2="20"/>
+      <line x1="170" y1="170" x2="95" y2="20"/>
+      <line x1="170" y1="170" x2="20" y2="95"/>
+    </g>
+    <!-- 4アングル（ASC/MC/DSC/IC）：東西南北の十字線として強調 -->
+    <g stroke="#9B3A26" stroke-opacity=".8" stroke-width="1.4">
+      <line x1="20" y1="170" x2="320" y2="170"/>
+      <line x1="170" y1="20" x2="170" y2="320"/>
+    </g>
+    <!-- 内枠（中央のセル） -->
+    <rect x="120" y="120" width="100" height="100" fill="none" stroke="#A9812E" stroke-opacity=".5" stroke-width="1"/>
+    <!-- 中心の紋章（小さな星） -->
+    <g fill="#9B3A26">
+      <path d="M170 162 L173 168 L179.5 168.5 L174.5 172.8 L176 179 L170 175.6 L164 179 L165.5 172.8 L160.5 168.5 L167 168 Z"/>
+    </g>
+
+    <!-- ハウス数字（ASC＝左中央を1室とし、時計回りに配置） -->
+    <text class="roman" x="72" y="194" text-anchor="middle">I</text>
+    <text class="roman" x="97" y="243" text-anchor="middle">II</text>
+    <text class="roman" x="132" y="308" text-anchor="middle">III</text>
+    <text class="roman" x="194" y="268" text-anchor="middle">IV</text>
+    <text class="roman" x="243" y="243" text-anchor="middle">V</text>
+    <text class="roman" x="268" y="194" text-anchor="middle">VI</text>
+    <text class="roman" x="268" y="146" text-anchor="middle">VII</text>
+    <text class="roman" x="243" y="97" text-anchor="middle">VIII</text>
+    <text class="roman" x="208" y="34" text-anchor="middle">IX</text>
+    <text class="roman" x="146" y="72.5" text-anchor="middle">X</text>
+    <text class="roman" x="97" y="97" text-anchor="middle">XI</text>
+    <text class="roman" x="72.5" y="146" text-anchor="middle">XII</text>
+
+    <!-- 4アングルのラベル：東西南北の真ん中、枠の外側に配置 -->
+    <text class="lbl" x="0" y="174" text-anchor="end">ASC</text>
+    <text class="lbl" x="170" y="6" text-anchor="middle">MC</text>
+    <text class="lbl" x="340" y="174" text-anchor="start">DSC</text>
+    <text class="lbl" x="170" y="352" text-anchor="middle">IC</text>
+  </svg>
+</section>
+
+<script>
+// 外周リングの目盛り（装飾）
+(function(){
+  const NSU="http://www.w3.org/2000/svg";
+  const ring=document.getElementById("ring-ticks");
+  if(!ring) return;
+  const C=170,R1=176,R2big=169,R2small=172;
+  for(let d=0; d<360; d+=5){
+    const a=(d-90)*Math.PI/180, big=d%30===0;
+    const r2=big?R2big:R2small;
+    const line=document.createElementNS(NSU,"line");
+    line.setAttribute("x1",C+R1*Math.cos(a));
+    line.setAttribute("y1",C+R1*Math.sin(a));
+    line.setAttribute("x2",C+r2*Math.cos(a));
+    line.setAttribute("y2",C+r2*Math.sin(a));
+    line.setAttribute("stroke-opacity", big?".55":".22");
+    ring.appendChild(line);
+  }
+})();
+</script>
+
+<section id="profile" class="wrap">
+  <p class="eyebrow">Profile</p>
+  <h2>プロフィール</h2>
+  <div class="profile-grid">
+    <div class="profile-seal">占星術師<br>の印</div>
+    <div>
+      <p>広島を拠点に、伝統的占星術（トラディショナル・アストロロジー）を実践しています。専門はホラリー占星術――尋ねられたその瞬間の天球図から答えを読み解く技法です。ホールサインハウス、エジプシャン・ターム、ドロセウス的トリプリシティといった古典的な理論体系を用いています。</p>
+      <p>ネイタルチャート、プロフェクション、ソーラーリターンを用いた人生の読み解きも行うほか、占星術のシンボリズムに着想を得た音楽制作、YouTubeでの解説動画発信も続けています。</p>
     </div>
-
-    <div class="era">
-      <div class="era-block">
-        <div class="era-head">
-          <span class="era-node"></span>
-          <span class="era-num">II</span>
-          <h2 class="era-title">ギリシャ天文学の発展とプラトンの順序</h2>
-        </div>
-
-        <div class="event">
-          <span class="event-meta">前360年頃</span>
-          <div class="event-body">プラトンが<strong>『ティマイオス』</strong>において、地球に近い順に「月→太陽→金星→水星→火星→木星→土星」とする同心円モデル（プラトンの順序）を採用。公転周期が同等（約1年）である太陽・金星・水星の配置に議論が残る。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">前331年</span>
-          <div class="event-body">アレクサンドロス大王の遠征により<strong>アレクサンドリア</strong>が建設され、メソポタミアの数理天文学、エジプトの空間神話論、ギリシャの自然哲学が融合するヘレニズム期が幕を開ける。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">前300年頃</span>
-          <div class="event-body">後期バビロニア天文学で「木星・金星・水星・火星・土星」の順序が定着。これが後の<strong>ベネフィック（吉星：木星・金星）</strong>と<strong>マレフィック（凶星：火星・土星）</strong>の分類基盤となる。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="era">
-      <div class="era-block">
-        <div class="era-head">
-          <span class="era-node"></span>
-          <span class="era-num">III</span>
-          <h2 class="era-title">ストア派哲学と天文学の過渡期</h2>
-        </div>
-
-        <div class="event">
-          <span class="event-meta">前3世紀</span>
-          <div class="event-body">クレアンテスらストア派哲学者により、宇宙を有機的な生命体と捉え、その統治中枢（<strong>ヘゲモニコン／心臓</strong>）を「太陽」とする思想が提唱される。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">前200年頃</span>
-          <div class="event-body">アレクサンドリア図書館長<strong>エラトステネス</strong>が「月→太陽→水星→金星→火星→木星→土星」の順序を提示。太陽近傍内惑星の順序改訂が進む。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="era">
-      <div class="era-block">
-        <div class="era-head">
-          <span class="era-node"></span>
-          <span class="era-num">IV</span>
-          <h2 class="era-title">カルディアン・オーダーと時間システムの確立</h2>
-        </div>
-
-        <div class="event">
-          <span class="event-meta">前150〜130年頃</span>
-          <div class="event-body">ヘレニズム期の占星術師群（ネケプソ、ペトシリス、ヘルメス文書群の著者たち）が、太陽を全7天体の中央（第4天球）に据える配列を確立。<br><br>
-          <strong>降順（標準基準）</strong>：土星→木星→火星→太陽→金星→水星→月<br>
-          <strong>昇順（距離基準）</strong>：月→水星→金星→太陽→火星→木星→土星</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">前150〜130年頃</span>
-          <div class="event-body">降順カルディアン・オーダーを各1時間の支配星に割り当てる<strong>「プラネタリー・アワー」</strong>が考案される。1日24時間のサイクル（24÷7＝3周余り3）から、翌日の第1時間目を司る天体が「3つ先の天体」へ進む数理的規則により、現在の「プラネタリー・デイ（曜日）」の配列（土→日→月→火→水→木→金）が誕生。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">前150〜130年頃</span>
-          <div class="event-body">この配列は、<strong>フェイス（デーカン）</strong>の配分順序、<strong>惑星のジョイ（Joy）</strong>の配置、惑星の本質的性質（熱・冷・乾・湿）の決定論拠となる。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="era">
-      <div class="era-block">
-        <div class="era-head">
-          <span class="era-node"></span>
-          <span class="era-num">V</span>
-          <h2 class="era-title">ヘレニズム世界への普及と実用化</h2>
-        </div>
-
-        <div class="event">
-          <span class="event-meta">前1世紀</span>
-          <div class="event-body"><strong>クリトデムス</strong>や<strong>セラピオ</strong>らの占星術師が、イレクショナル占星術（カタルケー）やホラリーの判断基準として、曜日支配星および時間支配星を実用化。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">前60年頃〜前27年</span>
-          <div class="event-body">ローマ世界へ急速に伝播。<strong>アンティキティラ島の機械</strong>（前60年頃）、キケロの著作、詩人ティブルスの詩文（前27年）等に惑星曜日および配列の採用が確認される。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="era">
-      <div class="era-block">
-        <div class="era-head">
-          <span class="era-node"></span>
-          <span class="era-num">VI</span>
-          <h2 class="era-title">古典体系の完成とプトレマイオスによる定着</h2>
-        </div>
-
-        <div class="event">
-          <span class="event-meta">1世紀</span>
-          <div class="event-body">ポンペイ遺跡の壁画や落書きに、神々（惑星）を冠した7日制カレンダーが日常的に記録される。<strong>マニリウス</strong>が『アストロノミカ』を著し、ハウスと天体空間の対応を記述。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">2世紀</span>
-          <div class="event-body">歴史家<strong>カッシウス・ディオ</strong>が「曜日制度はエジプトを起源とし、ローマ全域に普及した」と記録。<strong>ヴェッティウス・ヴァレンス</strong>がプラネタリー・アワーの厳密な計算法を網羅。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">2世紀</span>
-          <div class="event-body"><strong>クラウディオス・プトレマイオス</strong>が『アルマゲスト』および『テトラビブロス』において、この太陽中心の7天球モデルを標準天文学として採用。古典占星術の基礎教義として中世・ルネサンス期まで不可動の権威となる。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="era">
-      <div class="era-block">
-        <div class="era-head">
-          <span class="era-node"></span>
-          <span class="era-num">VII</span>
-          <h2 class="era-title">「カルディアン・オーダー」呼称の定着</h2>
-        </div>
-
-        <div class="event">
-          <span class="event-meta">4世紀</span>
-          <div class="event-body"><strong>パウルス・アレクサンドリヌス</strong>が『初歩綱要』において「7つのゾーンの球の順序」として詳細に理論化。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">5世紀</span>
-          <div class="event-body"><strong>マクロビウス</strong>が『スキピオの夢注釈』において、このシステムを<strong>「カルデア人の順序（ordo Chaldaeorum）」</strong>と言及。古代の占星術師全般を「カルデア人」と総称した慣用表現が、後世において「バビロニア発祥」という歴史的誤認を生み、名称として固定化。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="era">
-      <div class="era-block">
-        <div class="era-head">
-          <span class="era-node"></span>
-          <span class="era-num">VIII</span>
-          <h2 class="era-title">地動説の登場と暦法体系としての存続</h2>
-        </div>
-
-        <div class="event">
-          <span class="event-meta">1543年</span>
-          <div class="event-body"><strong>ニコラウス・コペルニクス</strong>が『天球の回転について』を発表。地球中心の天球構造モデルとしてのカルディアン・オーダーは天文学的役割を終える。</div>
-        </div>
-        <div class="event">
-          <span class="event-meta">現代</span>
-          <div class="event-body">物理モデルとしての天動説崩壊後も、紀元前2世紀に設計された「降順カルディアン・オーダーと余り3の数理構造」は、7曜日の配列および伝統的占星術の基本技法（フェイス、プラネタリー・アワー等）として完全に継承されている。</div>
-        </div>
-      </div>
-    </div>
-
   </div>
+</section>
 
-  <footer>Ordo Chaldaeorum — 降順基準 · 24 ÷ 7 = 3 周 余り3</footer>
+<section id="horary" class="wrap">
+  <p class="eyebrow">Horary Astrology</p>
+  <h2>ホラリー占星術とは</h2>
+  <p>「今、これはどうなるのか」――具体的な問いが生まれた瞬間の天球図を作り、その配置から答えを読み解く技法です。未来を漠然と眺めるのではなく、ひとつの問いに、ひとつの答えを差し出します。</p>
+  <p>質問者は1ハウス、知りたい事柄は質問の内容に応じたハウスによって示されます。それぞれの支配星が天球図の中でどのような関係（アスペクト）を結ぶか、月の次なる動き（トランスレーション）や飛躍（コレクション）といった古典的な規則を通して、答えを導きます。ホールサインハウス、エジプシャン・ターム、ドロセウス的トリプリシティなど、伝統的な理論体系に基づいて判断します。</p>
+</section>
 
-</div>
+<section id="content" class="wrap">
+  <p class="eyebrow">Interactive</p>
+  <h2>解説コンテンツ</h2>
+  <p>占星術の仕組みを、動く図で見てみるページです。</p>
+  <div class="video-grid">
+    <a class="content-card" href="star.html" target="_blank" rel="noopener">
+      <div class="content-thumb">七芒星</div>
+      <div class="v-title">七芒星が曜日を一筆で描く</div>
+      <div class="c-desc">カルデア順序と曜日の関係を、一筆書きのアニメーションで見る</div>
+    </a>
+    <a class="content-card" href="high.html" target="_blank" rel="noopener">
+      <div class="content-thumb">合</div>
+      <div class="v-title">合（コンジャンクション）を3Dで見る</div>
+      <div class="c-desc">地球から見て重なる惑星も、宇宙では距離が違う――その奥行きを立体で見る</div>
+    </a>
+  </div>
+</section>
+
+<section id="music">
+  <div class="wrap">
+    <p class="eyebrow">Music</p>
+    <h2>星の音楽</h2>
+    <p>サビアンシンボルや惑星の象意に着想を得た楽曲を、SUNOで制作しています。</p>
+
+    <div class="track-list">
+      <a class="track" href="https://suno.com/song/51bec457-47c7-490c-b52b-c4af7cf92885" target="_blank" rel="noopener">
+        <span class="num">01</span>
+        <span class="t-title">Divination Arcana: The Trinity</span>
+        <span class="t-note">Listen ↗</span>
+      </a>
+      <a class="track" href="https://suno.com/s/1OxFOV3Nj1wByouO" target="_blank" rel="noopener">
+        <span class="num">02</span>
+        <span class="t-title">Arôme Gravity －二人の調香（コード）－</span>
+        <span class="t-note">Listen ↗</span>
+      </a>
+      <a class="track" href="https://suno.com/song/5db4395a-e08c-44e5-83ac-3e11bffd1471" target="_blank" rel="noopener">
+        <span class="num">03</span>
+        <span class="t-title">Beyond the Star Map</span>
+        <span class="t-note">Listen ↗</span>
+      </a>
+    </div>
+    <a class="suno-cta" href="https://suno.com/@emiria55manon" target="_blank" rel="noopener">SUNOで全曲を聴く →</a>
+  </div>
+</section>
+
+<section id="videos" class="wrap">
+  <p class="eyebrow">Videos</p>
+  <h2>動画</h2>
+  <p>占星術の技法や実例を、YouTubeで解説しています。</p>
+  <div class="video-grid">
+    <div class="video-card pending">
+      <span class="badge-pending2">準備中</span>
+      <div class="video-thumb">YOUTUBE</div>
+      <div class="v-title">1ハウス vs 7ハウス の徹底比較</div>
+    </div>
+    <div class="video-card pending">
+      <span class="badge-pending2">準備中</span>
+      <div class="video-thumb">YOUTUBE</div>
+      <div class="v-title">月のボイドオブコース、リリーの例外規定</div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="wrap">
+  <p class="eyebrow">Reading Menu</p>
+  <h2>鑑定メニュー</h2>
+  <p class="dim" style="margin-bottom:8px;">ただいま準備中です。近日公開予定ですので、少々お待ちください。</p>
+  <div class="menu-list pending-menu">
+    <div class="menu-item">
+      <div>
+        <div class="m-name">ホラリー鑑定</div>
+        <div class="m-desc">ひとつの具体的な質問について、その瞬間の天球図から読み解きます。</div>
+      </div>
+      <div class="m-price">準備中</div>
+    </div>
+    <div class="menu-item">
+      <div>
+        <div class="m-name">ネイタルチャート鑑定</div>
+        <div class="m-desc">出生図をもとに、性質や人生の傾向を読み解きます。</div>
+      </div>
+      <div class="m-price">準備中</div>
+    </div>
+    <div class="menu-item">
+      <div>
+        <div class="m-name">プロフェクション・ソーラーリターン鑑定</div>
+        <div class="m-desc">年ごとのテーマや、次の1年の傾向を読み解きます。</div>
+      </div>
+      <div class="m-price">準備中</div>
+    </div>
+    <div class="menu-item">
+      <div>
+        <div class="m-name">タロットカード占い</div>
+        <div class="m-desc">カードの象徴から、今の状況や近い未来のヒントを読み解きます。</div>
+      </div>
+      <div class="m-price">準備中</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="wrap">
+  <p class="eyebrow">Contact</p>
+  <h2>お問い合わせ</h2>
+  <p>鑑定のご依頼・お問い合わせはこちらから。</p>
+
+  <form id="contact-form" class="contact-form">
+    <input type="hidden" name="access_key" value="d5bdb364-38a0-4c57-a7cb-cf4c528aac5e">
+    <input type="hidden" name="subject" value="【星に問う】お問い合わせ">
+    <input type="checkbox" name="botcheck" style="display:none;">
+
+    <label>
+      お名前
+      <input type="text" name="name" required>
+    </label>
+    <label>
+      メールアドレス
+      <input type="email" name="email" required>
+    </label>
+    <label>
+      お問い合わせ内容
+      <textarea name="message" rows="5" required></textarea>
+    </label>
+    <button type="submit" class="submit-btn">送信する</button>
+    <p id="form-result" class="form-result"></p>
+  </form>
+
+  <div class="contact-links">
+    <a href="https://suno.com/@emiria55manon" target="_blank" rel="noopener">SUNO</a>
+  </div>
+</section>
+
+<script>
+const form = document.getElementById('contact-form');
+const result = document.getElementById('form-result');
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const btn = form.querySelector('.submit-btn');
+  btn.disabled = true;
+  result.textContent = '送信中…';
+  const data = new FormData(form);
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: data
+  })
+  .then(res => res.json())
+  .then(json => {
+    if (json.success) {
+      result.textContent = '送信しました。ご連絡ありがとうございます。';
+      form.reset();
+    } else {
+      result.textContent = '送信に失敗しました。時間を置いて再度お試しください。';
+    }
+    btn.disabled = false;
+  })
+  .catch(() => {
+    result.textContent = '送信に失敗しました。時間を置いて再度お試しください。';
+    btn.disabled = false;
+  });
+});
+</script>
+
+<footer>星に問う — Traditional &amp; Horary Astrology, Hiroshima</footer>
+
 </body>
 </html>
