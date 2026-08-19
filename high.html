@@ -39,15 +39,15 @@
   }
   h1{
     font-family:var(--mincho);
-    font-size:1.06rem;font-weight:600;letter-spacing:.16em;margin:0;
+    font-size:1.38rem;font-weight:600;letter-spacing:.16em;margin:0;
   }
   .romaji{
-    font-family:var(--mono);font-size:.6rem;letter-spacing:.28em;
+    font-family:var(--mono);font-size:0.78rem;letter-spacing:.28em;
     color:var(--ink-dim);text-transform:uppercase;
   }
   .scenes{display:flex;gap:.15rem;margin-left:auto;flex-wrap:wrap}
   .scene-tab{
-    font-family:var(--mincho);font-size:.78rem;letter-spacing:.08em;
+    font-family:var(--mincho);font-size:1.01rem;letter-spacing:.08em;
     background:none;border:1px solid transparent;border-radius:2px;
     color:var(--ink-dim);padding:.3rem .6rem;cursor:pointer;
     transition:color .18s,border-color .18s;
@@ -71,25 +71,25 @@
   #caption{
     top:.75rem;left:.75rem;max-width:min(23rem,58vw);padding:.6rem .75rem .65rem;
   }
-  #caption .sub{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--gold);margin-bottom:.3rem}
-  #caption .head{font-family:var(--mincho);font-size:1.02rem;letter-spacing:.06em;margin-bottom:.35rem}
-  #caption .note{font-size:.72rem;line-height:1.65;color:var(--ink-dim)}
+  #caption .sub{font-family:var(--mono);font-size:0.75rem;letter-spacing:.14em;color:var(--gold);margin-bottom:.3rem}
+  #caption .head{font-family:var(--mincho);font-size:1.33rem;letter-spacing:.06em;margin-bottom:.35rem}
+  #caption .note{font-size:0.94rem;line-height:1.65;color:var(--ink-dim)}
 
   #readout{
     right:.75rem;top:.75rem;padding:.55rem .7rem;min-width:11.5rem;
-    font-family:var(--mono);font-size:.66rem;letter-spacing:.02em;
+    font-family:var(--mono);font-size:0.86rem;letter-spacing:.02em;
   }
-  #readout .date{color:var(--gold);font-size:.72rem;margin-bottom:.45rem;letter-spacing:.06em}
+  #readout .date{color:var(--gold);font-size:0.94rem;margin-bottom:.45rem;letter-spacing:.06em}
   #readout dl{display:grid;grid-template-columns:auto 1fr;gap:.16rem .7rem;margin:0}
   #readout dt{color:var(--ink-dim)}
   #readout dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
   #readout .rule{grid-column:1/-1;height:1px;background:var(--line);margin:.25rem 0}
   #readout .big{color:var(--accent)}
-  #readout .cap{color:#5C6A78;font-size:.9em}
+  #readout .cap{color:#5C6A78;font-size:1.17em}
 
   #verdict{
     left:50%;transform:translateX(-50%);bottom:.75rem;
-    padding:.4rem .9rem;font-family:var(--mincho);font-size:.8rem;letter-spacing:.1em;
+    padding:.4rem .9rem;font-family:var(--mincho);font-size:1.04rem;letter-spacing:.1em;
     transition:opacity .35s;
   }
   #verdict b{color:var(--gold);font-weight:600}
@@ -103,7 +103,7 @@
   }
   .rail{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
   .rail label{
-    font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;
+    font-family:var(--mono);font-size:0.75rem;letter-spacing:.16em;
     color:var(--ink-dim);white-space:nowrap;
   }
   input[type=range]{
@@ -126,7 +126,7 @@
   .marks button{
     position:absolute;transform:translateX(-50%);
     background:none;border:0;padding:0 .2rem;cursor:pointer;
-    font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;
+    font-family:var(--mono);font-size:0.68rem;letter-spacing:.08em;
     color:var(--accent);white-space:nowrap;
   }
   .marks button::before{
@@ -136,7 +136,7 @@
   .marks button:hover{color:var(--ink)}
 
   button.ctl{
-    font-family:var(--gothic);font-size:.7rem;letter-spacing:.06em;
+    font-family:var(--gothic);font-size:0.91rem;letter-spacing:.06em;
     background:rgba(201,174,116,.07);color:var(--ink);
     border:1px solid var(--line);border-radius:2px;
     padding:.32rem .7rem;cursor:pointer;transition:background .16s,border-color .16s;
@@ -145,18 +145,18 @@
   button.ctl[aria-pressed="true"]{background:rgba(194,72,58,.18);border-color:rgba(194,72,58,.5)}
   button.ctl:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
 
-  button.ctl.step{padding:.3rem .5rem;line-height:1;font-size:.62rem}
+  button.ctl.step{padding:.3rem .5rem;line-height:1;font-size:0.81rem}
   #dateChip{
-    font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;
+    font-family:var(--mono);font-size:0.78rem;letter-spacing:.06em;
     color:var(--gold);min-width:6.4rem;
   }
   .toggle{display:inline-flex;align-items:center;gap:.32rem;cursor:pointer;user-select:none}
   .toggle input{accent-color:var(--gold);width:.85rem;height:.85rem}
-  .toggle span{font-size:.68rem;color:var(--ink-dim)}
+  .toggle span{font-size:0.88rem;color:var(--ink-dim)}
 
-  .hint{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;color:#5C6A78}
+  .hint{font-family:var(--mono);font-size:0.72rem;letter-spacing:.1em;color:#5C6A78}
   .credit{
-    font-family:var(--mono);font-size:.5rem;letter-spacing:.08em;
+    font-family:var(--mono);font-size:0.65rem;letter-spacing:.08em;
     color:#46535F;margin-left:auto;text-align:right;
   }
   .credit a{color:#5E6E7C;text-decoration:none;border-bottom:1px solid rgba(94,110,124,.35)}
@@ -165,23 +165,23 @@
 
   @media (max-width:720px){
     #caption{max-width:min(15rem,64vw);padding:.35rem .5rem;top:.4rem;left:.4rem}
-    #caption .head{font-size:.8rem;margin-bottom:0}
-    #caption .sub{font-size:.5rem;margin-bottom:.15rem}
+    #caption .head{font-size:1.04rem;margin-bottom:0}
+    #caption .sub{font-size:0.65rem;margin-bottom:.15rem}
     #caption .note{display:none}
     #readout{
-      right:.4rem;top:.4rem;font-size:.54rem;min-width:0;padding:.35rem .45rem;
+      right:.4rem;top:.4rem;font-size:0.7rem;min-width:0;padding:.35rem .45rem;
       max-height:42%;overflow:hidden;
     }
-    #readout .date{font-size:.56rem;margin-bottom:.25rem}
+    #readout .date{font-size:0.73rem;margin-bottom:.25rem}
     #readout dl{gap:.1rem .45rem}
-    #verdict{bottom:.4rem;font-size:.66rem;left:.4rem;right:.4rem;transform:none;text-align:center;padding:.3rem .4rem}
-    h1{font-size:.9rem;letter-spacing:.1em}
+    #verdict{bottom:.4rem;font-size:0.86rem;left:.4rem;right:.4rem;transform:none;text-align:center;padding:.3rem .4rem}
+    h1{font-size:1.17rem;letter-spacing:.1em}
     .romaji{display:none}
     .hint{display:none}
     .rail{gap:.4rem}
-    #dateChip{min-width:0;font-size:.56rem}
+    #dateChip{min-width:0;font-size:0.73rem}
     footer{padding:.4rem .5rem .5rem}
-    .credit{font-size:.45rem;width:100%;text-align:left;margin-left:0}
+    .credit{font-size:0.59rem;width:100%;text-align:left;margin-left:0}
   }
   @media (prefers-reduced-motion:reduce){
     *{transition-duration:.01ms !important}
@@ -252,13 +252,13 @@ const EPHEM = {"bodies":["sun","moon","mercury","venus","mars","jupiter","saturn
    天体の見た目：伝統的な金属の色（太陽=金、月=銀、金星=銅の緑青…）
    ============================================================ */
 const BODY = {
-  sun:     {glyph:"☉", name:"太陽", color:"#E6C263", r:7.0},
-  moon:    {glyph:"☽", name:"月",   color:"#CFD6DE", r:5.4},
-  mercury: {glyph:"☿", name:"水星", color:"#7FB2C4", r:4.4},
-  venus:   {glyph:"♀", name:"金星", color:"#9DC08B", r:5.2},
-  mars:    {glyph:"♂", name:"火星", color:"#B8412F", r:4.8},
-  jupiter: {glyph:"♃", name:"木星", color:"#A99BD6", r:6.2},
-  saturn:  {glyph:"♄", name:"土星", color:"#8E9298", r:5.6},
+  sun:     {glyph:"☉", name:"太陽", color:"#E6C263", r:11.5},
+  moon:    {glyph:"☽", name:"月",   color:"#CFD6DE", r:9.0},
+  mercury: {glyph:"☿", name:"水星", color:"#7FB2C4", r:7.5},
+  venus:   {glyph:"♀", name:"金星", color:"#9DC08B", r:8.5},
+  mars:    {glyph:"♂", name:"火星", color:"#B8412F", r:8.0},
+  jupiter: {glyph:"♃", name:"木星", color:"#A99BD6", r:10.0},
+  saturn:  {glyph:"♄", name:"土星", color:"#8E9298", r:9.2},
 };
 const SIGNS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
 const SIGN_NAMES = ["牡羊","牡牛","双子","蟹","獅子","乙女","天秤","蠍","射手","山羊","水瓶","魚"];
@@ -433,8 +433,8 @@ function drawZodiac(){
     const m=(s+0.5)*Math.PI/6;
     const p=project([Math.cos(m)*RING*1.10,Math.sin(m)*RING*1.10,0]);
     if(p){
-      ctx.fillStyle="rgba(201,174,116,.62)";
-      ctx.font="13px "+F_MIN;
+      ctx.fillStyle="rgba(201,174,116,.85)";
+      ctx.font="20px "+F_MIN;
       ctx.textAlign="center"; ctx.textBaseline="middle";
       ctx.fillText(SIGNS[s],p.x,p.y);
     }
@@ -459,11 +459,11 @@ function drawEarth(){
   const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,16);
   g.addColorStop(0,"rgba(120,180,210,.55)"); g.addColorStop(1,"rgba(120,180,210,0)");
   ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,16,0,7); ctx.fill();
-  ctx.fillStyle="#8FC3DC"; ctx.beginPath(); ctx.arc(p.x,p.y,3.4,0,7); ctx.fill();
-  ctx.fillStyle="rgba(230,220,198,.62)";
-  ctx.font="10px "+F_GO;
+  ctx.fillStyle="#8FC3DC"; ctx.beginPath(); ctx.arc(p.x,p.y,5.2,0,7); ctx.fill();
+  ctx.fillStyle="rgba(230,220,198,.85)";
+  ctx.font="15px "+F_GO;
   ctx.textAlign="left"; ctx.textBaseline="middle";
-  ctx.fillText("地球",p.x+8,p.y+9);
+  ctx.fillText("地球",p.x+10,p.y+12);
 }
 
 function drawBody(key, v, isFocus){
@@ -488,14 +488,14 @@ function drawBody(key, v, isFocus){
   ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,rad*3.4,0,7); ctx.fill();
   ctx.fillStyle=b.color; ctx.beginPath(); ctx.arc(p.x,p.y,rad,0,7); ctx.fill();
 
-  ctx.font=(isFocus?"15px ":"12px ")+F_MIN;
+  ctx.font=(isFocus?"26px ":"20px ")+F_MIN;
   ctx.fillStyle=isFocus?"#E6DCC6":"rgba(230,220,198,.66)";
   ctx.textAlign="left"; ctx.textBaseline="middle";
-  ctx.fillText(b.glyph, p.x+rad+5, p.y-6);
+  ctx.fillText(b.glyph, p.x+rad+7, p.y-9);
   if(isFocus){
-    ctx.font="10px "+F_MO;
-    ctx.fillStyle="rgba(230,220,198,.55)";
-    ctx.fillText(fmtAU(r), p.x+rad+5, p.y+7);
+    ctx.font="14px "+F_MO;
+    ctx.fillStyle="rgba(230,220,198,.75)";
+    ctx.fillText(fmtAU(r), p.x+rad+7, p.y+11);
   }
   // 黄道環に落ちる黄経の位置＝ホロスコープに書かれる点
   const q=project(onRing);
