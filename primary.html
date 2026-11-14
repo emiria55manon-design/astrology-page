@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>プライマリー・ディレクション</title>
+<meta name="description" content="空の1回転を人生の年に読み替える、プライマリー・ディレクションの仕組みを、動く図で見るページです。">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+</head>
+<body>
+<style>
+html{-webkit-text-size-adjust:100%}
+img{max-width:100%}
+.back{display:inline-block;font-size:13px;color:var(--mute);text-decoration:none;margin-bottom:14px}.back:hover{color:var(--gold);text-decoration:underline}
+:root{--ink:#0a1020;--panel:#111a30;--panel2:#16213d;--line:#26345a;--text:#ece7d8;--mute:#9ca7c4;--gold:#e3b95c;--stage:#63c7c2;--actor:#f0805f;
+--serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--ink);color:var(--text);font:400 15px/1.8 var(--sans);margin:0;padding-block:24px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.35;text-wrap:balance}
+h1{font-size:clamp(25px,4.6vw,38px)}h2{font-size:20px}h3{font-size:16px}
+p{margin:0}.k{font-size:12px;letter-spacing:.18em;color:var(--gold);margin-bottom:6px}.mute{color:var(--mute)}.small{font-size:13px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.eq{display:flex;gap:10px;flex-wrap:wrap}
+.eq>div{flex:1 1 220px;min-width:0;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.eq b{color:var(--gold)}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mute);min-width:0}
+input,select{font:500 15px var(--sans);color:var(--text);background:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-width:0;width:100%}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.row{display:flex;gap:10px 16px;flex-wrap:wrap;align-items:center}
+button{font:500 14px var(--sans);color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:8px 14px;cursor:pointer}
+button:hover{border-color:var(--gold)}
+button[aria-pressed=true]{border-color:var(--gold);background:#1d2b52}
+#fc button{padding:5px 10px;font-size:13px}
+.chk{display:flex;gap:8px;align-items:center;font-size:14px}.chk input{width:auto;accent-color:var(--gold)}
+.err{color:#ffb199;font-size:14px;min-height:1.4em}
+#out[hidden]{display:none}
+.stage{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
+.stage>div:nth-child(2){order:-1}
+@media(max-width:760px){.stage{grid-template-columns:minmax(0,1fr)}}
+.wheel{position:relative;aspect-ratio:1/1;max-width:min(820px,calc(100vh - 150px));min-width:min(100%,320px);width:100%;margin-inline:auto;border:1px solid var(--line);border-radius:12px;background:radial-gradient(100% 100% at 50% 50%,#070a18 0%,#05070f 55%,#020308 100%);box-shadow:0 0 0 1px rgba(214,184,110,.18),0 10px 40px rgba(40,30,120,.35);overflow:hidden}
+.wheel canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.age{display:flex;flex-direction:column;gap:6px}
+.age input[type=range]{accent-color:var(--gold);padding:0}
+.big{font:700 clamp(22px,4vw,28px) var(--serif);color:var(--gold)}
+.hread{padding:10px 14px;border-left:3px solid var(--gold);background:var(--panel2);border-radius:4px;font-size:15px;min-height:4.6em}
+.tscroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;white-space:nowrap}th{color:var(--mute);font-weight:500;font-size:13px}
+td.n{font-variant-numeric:tabular-nums}
+.dot{display:inline-block;width:.7em;height:.7em;border-radius:50%;margin-right:6px}
+ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
+.leg{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13px;color:var(--mute)}
+.leg span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:14px;height:14px;border-radius:50%}
+</style>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html#content">← 星に問う（解説コンテンツへ）</a>
+  <p class="k">PRIMARY DIRECTIONS</p>
+  <h1>地球が一回りする時間を、人生の年に：<br>プライマリー・ディレクション</h1>
+  <p class="mute" style="margin-top:10px;max-width:44em">空は1日に1回転します（第一運動）。出生のとき、東の地平線にのぼっていた点（ASC）や、いちばん高い点（MC）に、ほかの天体が、空の回転で、あとどれだけ回ると着くのか。その「回る角度」を「年」に読み替えるのが、プライマリー・ディレクションです。</p>
+</header>
+
+<section class="card" aria-label="考え方">
+  <h2>考え方：空が1°回る = 人生の1年</h2>
+  <div class="eq">
+    <div><b>第一運動</b>（空の回転・1日に360°）<br>→ <b>プライマリー</b>：回った角度を年にする。<br><span class="mute small">1°回る = 約1年</span></div>
+    
+  </div>
+  <p class="mute small">天体が黄道を東へ進む動き（第二運動）を使う技法は、<a href="progression.html" style="color:var(--gold)">セカンダリー・プログレッション</a>のページで説明しています。</p>
+  <div class="eq">
+    <div><b>プトレマイオス式</b>：回転1° = ちょうど1年</div>
+    <div><b>ナイボッド式</b>：回転0.9856° = 1年<br><span class="mute small">0.9856°は、太陽が1日に東へ進む平均の角度です。</span></div>
+  </div>
+  <p class="mute small">「なぜ1°が1年なのか」は、天文学の根拠ではなく、占星術の約束事です。このページは、空の回転の角度と年の対応を見せるものです。計算方法には流派があり、ここでは、いちばん素直な見かた（天体そのものの日周円が、4つの角に着くまでの回転角）だけを扱います。</p>
+</section>
+
+<section class="card" aria-label="このページの範囲" style="border-color:var(--gold)">
+  <h2>このページで見せるのは「合」だけです</h2>
+  <p class="small">有名なサイトやソフトの一覧には、天体が角（ASC・MC）に、<b>合（0°）だけでなく、60°・90°・120°・180°のアスペクト</b>で着くときも、たくさん並びます。天王星・海王星・冥王星、ノード、順方向と逆方向の両方も入るので、行数が多くなります。</p>
+  <p class="small">このページは、「空が回って、天体が角に着く」しくみを、見て分かることを目的にしています。そのため、<b>順方向・逆方向の、天体が角に重なる「合」だけ</b>を図にしています。専用ソフトで、黄緯を使わない設定にしたときの合の行は、ほぼ一致します（黄緯なしの点で計算）。黄緯を使う設定のソフトでは、月や水星で1〜3年ほど（高緯度では、もっと）違います。アスペクトの行は、ここには出ません。</p>
+</section>
+
+<section class="card" aria-label="入力">
+  <h2>生年月日と出生地を入れる</h2>
+  <form class="form" id="f" autocomplete="off">
+    <label class="f">生年月日<input type="date" id="bd" min="1850-01-01" max="2050-12-31" required></label>
+    <label class="f">出生時刻<input type="time" id="bt" value="12:00"></label>
+    <label class="f">出生地<select id="pl"></select></label>
+    <label class="f">時差（その土地の標準時）<select id="tz"></select></label>
+  </form>
+  <div class="form" id="ll" hidden>
+    <label class="f">緯度（北が＋、南が−）<input type="number" id="lat" step="any" min="-66" max="66" placeholder="例：34.40"></label>
+    <label class="f">経度（東が＋、西が−）<input type="number" id="lng" step="any" min="-180" max="180" placeholder="例：132.46"></label>
+  </div>
+  <div class="row">
+    <label class="chk"><input type="checkbox" id="nt">出生時刻がわからない（正午として計算）</label>
+    <label class="chk"><input type="checkbox" id="rem">この端末のブラウザに覚えておく</label>
+    <button type="button" id="calc" style="border-color:var(--gold)">計算する</button>
+    <button type="button" id="ex">例で試す（1990年5月1日・東京）</button>
+  </div>
+  <p class="hread" id="locOut" hidden style="min-height:0"></p>
+  <p class="err" id="err" role="status"></p>
+  <p class="mute small">入力した内容は、この画面の中だけで計算されます。送信も保存もしません（「覚えておく」にチェックしたときだけ、この端末のブラウザに残ります）。プライマリーは、出生時刻と出生地で結果が大きく変わります。出生時刻が1分ずれると、約0.25年（3か月ほど）ずれます。夏時間は使わず、その土地の標準時で入れてください（夏時間で記録された時刻は、1時間引いて入れます）。</p>
+</section>
+
+<div id="out" hidden>
+<section class="card" aria-label="回る空">
+  <div class="stage">
+    <div>
+      <div class="row" id="ky" role="group" aria-label="年への換算" style="margin-bottom:10px"><span class="mute small" style="align-self:center">換算：</span><button type="button" data-k="pt" aria-pressed="true">1° = 1年（プトレマイオス）</button><button type="button" data-k="nb" aria-pressed="false">0.9856° = 1年（ナイボッド）</button></div>
+      <div class="row" id="dr" role="group" aria-label="回す向き" style="margin-bottom:10px"><span class="mute small" style="align-self:center">向き：</span><button type="button" data-d="d" aria-pressed="true">順方向（生まれた「あと」の空）</button><button type="button" data-d="c" aria-pressed="false">逆方向（生まれる「まえ」の空へ巻きもどす）</button></div>
+      <p class="hread" id="drNote" style="margin-bottom:10px;min-height:0;font-size:14px"></p>
+      <div class="wheel"><canvas id="cv" aria-label="空の回転の図。左がASC（東の地平線）、上がMC（南中）、右がDSC（西の地平線）、下がIC。各天体は、それぞれの円の上を時計回りに進み、角に着く。"></canvas></div>
+      <div class="row" id="fc" style="margin-top:10px" role="group" aria-label="注目する天体"></div>
+      <div class="leg" style="margin-top:10px"><span><i class="sw" style="border:2px solid #82a5ff"></i><b>輪郭だけの丸</b>＝出生のときの位置</span><span><i class="sw" style="background:#e3b95c"></i><b>塗りの丸</b>＝いま（この年齢）の位置</span><span><b>金の線</b>＝回って来た道のり</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <div class="age">
+        <label for="ag" class="mute small">年齢を動かす</label>
+        <div class="big" id="agOut"></div>
+        <input type="range" id="ag" min="0" max="100" step="0.01" value="0" aria-describedby="agDate">
+        <div class="row"><button type="button" id="play">再生</button><button type="button" id="now">いまの年齢</button><button type="button" id="zero">0歳</button></div>
+        <p class="mute small" id="agDate"></p>
+      </div>
+      <p class="hread" id="read"></p>
+      <p class="mute small" id="howto">図の見かた：空が回るので、ふつうの空と同じく、天体は東（左）からのぼり、いちばん高い所（上）を通り、西（右）にしずみ、下の方（IC）へ回ります。生まれたときに東の地平線にいた天体は、ASCの位置から始まります。4つの角は、図の中で動きません。天体が、角の線に重なったときが、「角に着いた」ときです。</p>
+    </div>
+  </div>
+</section>
+
+<section class="card" aria-label="一覧">
+  <h2>それぞれの天体が、4つの角に着く年齢</h2>
+  <div class="tscroll"><table><thead id="th"></thead><tbody id="tb"></tbody></table></div>
+  <p class="mute small" id="tbNote"></p>
+</section>
+
+<section class="card" aria-label="順番">
+  <h2>着く順に並べると</h2>
+  <div class="tscroll" style="max-height:380px;overflow:auto"><table><thead><tr><th>年齢</th><th>暦の年月</th><th>天体</th><th>着く角</th></tr></thead><tbody id="ev"></tbody></table></div>
+  <p class="mute small">0〜100歳のあいだの、着く年齢の順です。いまの年齢の前後0.5年以内の行に色が付きます。</p>
+</section>
+</div>
+
+<section class="card" aria-label="注意">
+  <details>
+  <summary style="cursor:pointer;font:700 18px var(--serif);color:var(--text)">詳しい注意・用語・精度（開く）</summary>
+  <ul class="small" style="margin-top:12px">
+    <li>ここで求めているのは、<b>天体そのものが、1日に1回転する円の上を、ASC・MC・DSC・ICの4つの角まで回る角度</b>です。これは、プライマリー・ディレクションの基本の考えかたの1つですが、実際の技法には、天体を黄道の度数に置き換えて測る方法、黄緯を使わない方法、「ディレクトする点」と「受ける点」を逆にする方法など、いくつもの流派があります。流派によって、年齢は数か月〜数年変わります。</li>
+    <li>MC・ICに着く角度は、赤経の差そのものです。ASC・DSCに着く角度は、その天体の赤緯と出生地の緯度から出る、昼の半円の長さ（半日周弧）を使っています。天体は、黄道の上の点（黄緯0°）として扱っています。ソフトによって、黄緯を使うかどうかの設定が違います。</li>
+    <li>位置は、NASA（JPL）の近似軌道要素（惑星・太陽）と、簡易な月の式から計算しています。月の視差や、大気による屈折は入れていません。</li>
+    <li><b>順方向（ディレクト）</b>は、空の回転と同じ向きに回します。<b>逆方向（コンバース）</b>は、逆向きに同じだけ回します。着く年齢は、逆方向のとき「360°−順方向の角度」になります。ここでは「空を逆向きに回す」方式です。本やソフトによって、定義の言い方が違うことがあります。</li>
+    <li><b>用語</b>：赤経＝天の赤道に沿って測る、天球の経度。赤緯＝天の赤道からの、天球の緯度。黄緯＝黄道からの角度（このページでは0°にしています）。半日周弧＝天体がのぼってから、いちばん高い所に着くまでに、空が回る角度（ASC・DSCに着く角度に使います）。プレドミネーター・アルコクデン＝寿命の計算に使う、生命を代表する天体と、年数を配る天体です（このページでは扱いません）。</li>
+    <li><b>扱っていないもの</b>：天体が角に重なる（合）ときだけを扱います。60°・90°・120°・180°のアスペクトに着くときや、天王星以遠・ノード、寿命計算（プレドミネーター・アルコクデン）は入っていません。専用ソフトの一覧は、これらを含むので、行数が多くなります。</li>
+    <li>出生時刻が、とても大切です。時刻が1時間ずれると、着く年齢は約15年ずれます。時刻がわからないとき（正午として計算）の年齢は、参考になりません。</li>
+    <li>年齢は、満年齢の小数で表しています。暦の年月は、出生から、年齢×365.2422日後です。</li>
+    <li>歴史的な由来（だれが、いつ、どの換算を用いたか）は、このページでは確認していません。</li>
+    <li>占い・鑑定の結果ではなく、仕組みの説明のための図です。</li>
+  </ul>
+  </details>
+</section>
+</div>
+
+
+<script>
+(function(){
+"use strict";
+var D=Math.PI/180,TAU=Math.PI*2,$=function(s){return document.querySelector(s)};
+var SANS='"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI Symbol",sans-serif';
+var SIGNS=['牡羊座','牡牛座','双子座','蟹座','獅子座','乙女座','天秤座','蠍座','射手座','山羊座','水瓶座','魚座'];
+var SERIF='"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif';
+var SG=['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'].map(function(g){return g+'︎'});
+var BODIES=[
+ {id:'sun',n:'太陽',g:'☉',col:'#f3c65a'},{id:'moon',n:'月',g:'☽',col:'#dfe6f5'},
+ {id:'mer',n:'水星',g:'☿',col:'#c9b8a4'},{id:'ven',n:'金星',g:'♀',col:'#f2a7c3'},
+ {id:'mar',n:'火星',g:'♂',col:'#f0805f'},{id:'jup',n:'木星',g:'♃',col:'#e3b95c'},{id:'sat',n:'土星',g:'♄',col:'#b9a9e8'}
+];
+/* ---- positions: NASA JPL approximate elements (1800-2050) + precession; Moon: short series ---- */
+var EL={
+ mer:{a:[0.38709927,0.00000037],e:[0.20563593,0.00001906],I:[7.00497902,-0.00594749],L:[252.25032350,149472.67411175],w:[77.45779628,0.16047689],O:[48.33076593,-0.12534081]},
+ ven:{a:[0.72333566,0.00000390],e:[0.00677672,-0.00004107],I:[3.39467605,-0.00078890],L:[181.97909950,58517.81538729],w:[131.60246718,0.00268329],O:[76.67984255,-0.27769418]},
+ ear:{a:[1.00000261,0.00000562],e:[0.01671123,-0.00004392],I:[-0.00001531,-0.01294668],L:[100.46457166,35999.37244981],w:[102.93768193,0.32327364],O:[0,0]},
+ mar:{a:[1.52371034,0.00001847],e:[0.09339410,0.00007882],I:[1.84969142,-0.00813131],L:[-4.55343205,19140.30268499],w:[-23.94362959,0.44441088],O:[49.55953891,-0.29257343]},
+ jup:{a:[5.20288700,-0.00011607],e:[0.04838624,-0.00013253],I:[1.30439695,-0.00183714],L:[34.39644051,3034.74612775],w:[14.72847983,0.21252668],O:[100.47390909,0.20469106]},
+ sat:{a:[9.53667594,-0.00125060],e:[0.05386179,-0.00050991],I:[2.48599187,0.00193609],L:[49.95424423,1222.49362201],w:[92.59887831,-0.41897216],O:[113.66242448,-0.28867794]}
+};
+function norm(a){return ((a%360)+360)%360}
+function helio(k,t){
+  var T=t/36525,E=EL[k],g=function(q){return E[q][0]+E[q][1]*T};
+  var a=g('a'),e=g('e'),I=g('I')*D,L=g('L'),w=g('w'),O=g('O');
+  var M=(((L-w)%360+540)%360-180)*D,En=M+e*Math.sin(M),i;
+  for(i=0;i<8;i++)En+=(M-(En-e*Math.sin(En)))/(1-e*Math.cos(En));
+  var xp=a*(Math.cos(En)-e),yp=a*Math.sqrt(1-e*e)*Math.sin(En),wp=(w-O)*D,Om=O*D,c=Math.cos,s=Math.sin;
+  var x=(c(wp)*c(Om)-s(wp)*s(Om)*c(I))*xp+(-s(wp)*c(Om)-c(wp)*s(Om)*c(I))*yp;
+  var y=(c(wp)*s(Om)+s(wp)*c(Om)*c(I))*xp+(-s(wp)*s(Om)+c(wp)*c(Om)*c(I))*yp;
+  var pr=1.396971*T*D,cp=Math.cos(pr),sp=Math.sin(pr);
+  return [x*cp-y*sp,x*sp+y*cp,(s(wp)*s(I))*xp+(c(wp)*s(I))*yp];
+}
+function moonLon(t){
+  var T=t/36525,s=function(x){return Math.sin(x*D)};
+  var Lp=218.3164477+481267.88123421*T,Mp=134.9633964+477198.8675055*T,Dd=297.8501921+445267.1114034*T,M=357.5291092+35999.0502909*T,F=93.2720950+483202.0175233*T;
+  return norm(Lp+6.288774*s(Mp)+1.274027*s(2*Dd-Mp)+0.658314*s(2*Dd)+0.213618*s(2*Mp)-0.185116*s(M)-0.114332*s(2*F)+0.058793*s(2*Dd-2*Mp)+0.057066*s(2*Dd-M-Mp)+0.053322*s(2*Dd+Mp)+0.045758*s(2*Dd-M)-0.040923*s(M-Mp)-0.034720*s(Dd)-0.030383*s(M+Mp));
+}
+function lon(id,t){
+  if(id==='moon')return moonLon(t);
+  var e=helio('ear',t);
+  if(id==='sun')return norm(Math.atan2(-e[1],-e[0])/D);
+  var p=helio(id,t);return norm(Math.atan2(p[1]-e[1],p[0]-e[0])/D);
+}
+function signStr(l){var i=Math.floor(l/30)%12;return SG[i]+' '+SIGNS[i]+' '+Math.floor(l%30)+'°'+String(Math.floor((l%1)*60)).padStart(2,'0')+'′'}
+
+var PL=[['札幌',43.06,141.35],['青森',40.82,140.74],['盛岡',39.70,141.15],['仙台',38.27,140.87],['秋田',39.72,140.10],['山形',38.24,140.36],['福島',37.75,140.47],['水戸',36.34,140.45],['宇都宮',36.57,139.88],['前橋',36.39,139.06],['さいたま',35.86,139.65],['千葉',35.61,140.12],['東京',35.69,139.69],['横浜',35.45,139.64],['新潟',37.90,139.02],['富山',36.70,137.21],['金沢',36.59,136.63],['福井',36.07,136.22],['甲府',35.66,138.57],['長野',36.65,138.18],['岐阜',35.39,136.72],['静岡',34.98,138.38],['名古屋',35.18,136.91],['津',34.73,136.51],['大津',35.00,135.87],['京都',35.02,135.76],['大阪',34.69,135.50],['神戸',34.69,135.20],['奈良',34.69,135.83],['和歌山',34.23,135.17],['鳥取',35.50,134.24],['松江',35.47,133.05],['岡山',34.66,133.93],['広島',34.40,132.46],['山口',34.19,131.47],['徳島',34.07,134.56],['高松',34.34,134.04],['松山',33.84,132.77],['高知',33.56,133.53],['福岡',33.61,130.42],['佐賀',33.25,130.30],['長崎',32.75,129.87],['熊本',32.79,130.74],['大分',33.24,131.61],['宮崎',31.91,131.42],['鹿児島',31.56,130.56],['那覇',26.21,127.68]];
+function angles(t,lat,lonE,dth){
+  var T=t/36525,eps=(23.4392911-0.0130042*T)*D,gm=norm(280.46061837+360.98564736629*t+0.000387933*T*T),th=norm(gm+lonE+(dth||0))*D,ph=lat*D;
+  return {mc:norm(Math.atan2(Math.sin(th),Math.cos(th)*Math.cos(eps))/D),asc:norm(Math.atan2(Math.cos(th),-(Math.sin(th)*Math.cos(eps)+Math.tan(ph)*Math.sin(eps)))/D)};
+}
+/* ---- primary directions ---- */
+var YEAR=365.2422,KEYS={pt:1,nb:0.9856};
+var st={ok:false,age:0,key:'pt',dir:'d',play:false,focus:'all',ms:0,tb:0,off:9,lat:0,lng:0,info:{},ev:[]};
+var ANG=[['mc','MC','いちばん高い所'],['asc','ASC','東の地平線（のぼる）'],['dsc','DSC','西の地平線（しずむ）'],['ic','IC','いちばん低い所']];
+var ORDER=['moon','sun','mer','ven','mar','jup','sat'];
+function pad(n){return String(n).padStart(2,'0')}
+function fmtYM(ms,off){var d=new Date(ms+off*36e5);return d.getUTCFullYear()+'年'+(d.getUTCMonth()+1)+'月'}
+function fmtLocal(ms,off){var d=new Date(ms+off*36e5);return d.getUTCFullYear()+'年'+(d.getUTCMonth()+1)+'月'+d.getUTCDate()+'日 '+pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())}
+function tOf(ms){return (ms-Date.UTC(2000,0,1,12))/864e5}
+function calMs(age){return st.ms+age*YEAR*864e5}
+function arcOf(f,k){var a=f.arc[k];if(a===null)return null;return st.dir==='d'?a:(360-a)%360}
+function bodyOf(id){return BODIES.filter(function(b){return b.id===id})[0]}
+function ramc(t,lonE){var T=t/36525;return norm(280.46061837+360.98564736629*t+0.000387933*T*T+lonE)}
+function eqOf(id,t){
+  var l=lon(id,t)*D,b=0,T=t/36525,e=(23.4392911-0.0130042*T)*D;
+  var dec=Math.asin(Math.sin(b)*Math.cos(e)+Math.cos(b)*Math.sin(e)*Math.sin(l));
+  var ra=norm(Math.atan2(Math.sin(l)*Math.cos(e)-Math.tan(b)*Math.sin(e),Math.cos(l))/D);
+  return {ra:ra,dec:dec/D,lam:l/D,bet:b/D};
+}
+function compute(){
+  var rm=ramc(st.tb,st.lng),ph=st.lat*D;st.rm=rm;st.info={};
+  BODIES.forEach(function(b){
+    var q=eqOf(b.id,st.tb),H=((rm-q.ra+540)%360)-180,c=-Math.tan(ph)*Math.tan(q.dec*D),h0=(Math.abs(c)<1)?Math.acos(c)/D:null;
+    var a={mc:norm(q.ra-rm),ic:norm(q.ra+180-rm),asc:null,dsc:null};
+    if(h0!==null){a.asc=norm(q.ra-h0-rm);a.dsc=norm(q.ra+h0-rm)}
+    st.info[b.id]={ra:q.ra,dec:q.dec,lam:q.lam,H:H,h0:h0,arc:a};
+  });
+}
+function events(){
+  var k=KEYS[st.key],L=[];
+  BODIES.forEach(function(b){ANG.forEach(function(an){
+    var arc=arcOf(st.info[b.id],an[0]);if(arc===null)return;
+    var age=arc/k;if(age<=100)L.push({b:b,a:an,arc:arc,age:age});
+  })});
+  L.sort(function(x,y){return x.age-y.age});st.ev=L;
+}
+/* wheel angle (math deg: left 180, top 90, right 0, bottom 270) */
+function phiOf(Hn,h0){
+  var Hs=Hn>180?Hn-360:Hn;
+  if(Hs>=-h0&&Hs<=h0)return 90-Hs/h0*90;
+  if(Hs>h0)return 360-(Hs-h0)/(180-h0)*90;
+  return 270-(Hs+180)/(180-h0)*90;
+}
+
+/* ---- form ---- */
+var pl=$('#pl'),tz=$('#tz');
+(function(){PL.forEach(function(c,i){var q=document.createElement('option');q.value=i;q.textContent=c[0]+'（日本）';pl.appendChild(q)});
+ var o=document.createElement('option');o.value='other';o.textContent='その他（緯度・経度を入れる）';pl.appendChild(o);pl.value=String(PL.findIndex(function(c){return c[0]==='東京'}));
+ var zs=[],i;for(i=-12;i<=14;i++)zs.push(i);zs=zs.concat([-9.5,-3.5,3.5,4.5,5.5,5.75,6.5,8.75,9.5,10.5,12.75]).sort(function(a,b){return a-b});
+ zs.forEach(function(v){o=document.createElement('option');o.value=v;var ab=Math.abs(v),hh=Math.floor(ab),mm=Math.round((ab-hh)*60);o.textContent=(v===9?'日本（UTC+9）':'UTC'+(v<0?'-':'+')+hh+(mm?':'+pad(mm):''));tz.appendChild(o)});tz.value='9'})();
+var KEY='prim.birth.v1';
+function setErr(m){$('#err').textContent=m||''}
+function readForm(){
+  var d=$('#bd').value;if(!d){setErr('生年月日を入れてください。');return false}
+  var p=d.split('-').map(Number),tm=($('#nt').checked?'12:00':($('#bt').value||'12:00')).split(':').map(Number);
+  if(p[0]<1850||p[0]>2050){setErr('1850〜2050年の生年月日で入れてください。');return false}
+  var off=+tz.value,la,lo,pv=pl.value;
+  if(pv==='other'){la=parseFloat($('#lat').value);lo=parseFloat($('#lng').value);
+    if(isNaN(la)||isNaN(lo)){setErr('緯度と経度を入れてください。');return false}
+    if(Math.abs(la)>66){setErr('緯度は、−66〜66で入れてください。');return false}}
+  else{la=PL[+pv][1];lo=PL[+pv][2]}
+  st.ms=Date.UTC(p[0],p[1]-1,p[2],tm[0],tm[1])-off*36e5;st.tb=tOf(st.ms);st.off=off;st.lat=la;st.lng=lo;
+  compute();var a=angles(st.tb,la,lo);st.asc=a.asc;st.mcl=a.mc;
+  var o=$('#locOut');o.hidden=false;o.textContent='出生地：'+(la<0?'南緯':'北緯')+Math.abs(la).toFixed(2)+'°・'+(lo<0?'西経':'東経')+Math.abs(lo).toFixed(2)+'°　→　ASC '+signStr(a.asc)+'、MC '+signStr(a.mc)+'（出生図）'+($('#nt').checked?'　※出生時刻がわからないので、年齢は参考になりません（1時間で約15年ずれます）。':'');
+  setErr('');return true;
+}
+function go(){
+  if(!readForm()){st.ok=false;st.play=false;$('#out').hidden=true;$('#locOut').hidden=true;return}
+  st.ok=true;$('#out').hidden=false;
+  if(!st._started){st.age=0;$('#ag').value=0;st._started=true}
+  events();resize();render();
+  try{if($('#rem').checked)localStorage.setItem(KEY,JSON.stringify({d:$('#bd').value,t:$('#bt').value,z:tz.value,nt:$('#nt').checked,p:pl.value,la:$('#lat').value,lo:$('#lng').value}));else localStorage.removeItem(KEY)}catch(e){$('#rem').checked=false;setErr('この環境では、保存できませんでした（計算には影響しません）。')}
+}
+pl.addEventListener('change',function(){$('#ll').hidden=(pl.value!=='other');if(pl.value!=='other')tz.value='9'});
+var tmr=0;
+['lat','lng'].forEach(function(i){$('#'+i).addEventListener('input',function(){clearTimeout(tmr);tmr=setTimeout(function(){st._started=false;go()},400)})});
+$('#calc').addEventListener('click',function(){st._started=false;go()});
+['bd','bt','tz','nt','pl'].forEach(function(i){$('#'+i).addEventListener('input',function(){st._started=false;go()})});
+$('#f').addEventListener('submit',function(e){e.preventDefault();go()});
+$('#rem').addEventListener('change',function(){if(st.ok)go()});
+$('#nt').addEventListener('change',function(){$('#bt').disabled=$('#nt').checked});
+$('#ex').addEventListener('click',function(){$('#bd').value='1990-05-01';$('#bt').value='12:00';tz.value='9';pl.value=String(PL.findIndex(function(c){return c[0]==='東京'}));$('#ll').hidden=true;$('#nt').checked=false;$('#bt').disabled=false;st._started=false;go()});
+try{var sv=JSON.parse(localStorage.getItem(KEY)||'null');if(sv&&sv.d){$('#bd').value=sv.d;$('#bt').value=sv.t||'12:00';tz.value=sv.z||'9';$('#nt').checked=!!sv.nt;$('#bt').disabled=!!sv.nt;if(sv.p){pl.value=sv.p;$('#ll').hidden=(sv.p!=='other');$('#lat').value=sv.la||'';$('#lng').value=sv.lo||''}$('#rem').checked=true;go()}}catch(e){}
+
+/* ---- canvas ---- */
+var cv=$('#cv'),cx=cv.getContext('2d'),W=500,Hh=500,dpr=Math.min(window.devicePixelRatio||1,2);
+function resize(){var w=cv.parentNode.clientWidth,h=cv.parentNode.clientHeight;if(!w||!h)return;cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);W=w;Hh=h;if(st.ok)draw()}
+window.addEventListener('resize',resize);
+function shade(hex,f){var n=parseInt(hex.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255;
+  function m(c){return Math.max(0,Math.min(255,Math.round(f>0?c+(255-c)*f:c*(1+f))))}return 'rgb('+m(r)+','+m(g)+','+m(b)+')'}
+function ptOn(R,phi){return [W/2+R*Math.cos(phi*D),Hh/2-R*Math.sin(phi*D)]}
+function draw(){
+  var x=cx;x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,Hh);
+  var c0=W/2,c1=Hh/2,R=Math.min(W,Hh)/2-Math.max(36,Math.min(W,Hh)*.075),k=KEYS[st.key],rot=st.age*k,sg=(st.dir==='d'?1:-1);
+  var small=R<190,dr=Math.max(9,Math.min(24,R*.062)),fs=Math.max(11,dr*1.25);
+  /* sky above horizon */
+  x.fillStyle='rgba(99,199,194,.05)';x.beginPath();x.arc(c0,c1,R,Math.PI,TAU);x.fill();
+  x.strokeStyle='rgba(227,185,92,.35)';x.lineWidth=1;x.beginPath();x.arc(c0,c1,R,0,TAU);x.stroke();
+  x.strokeStyle='rgba(227,185,92,.55)';x.lineWidth=1.2;
+  x.beginPath();x.moveTo(c0-R,c1);x.lineTo(c0+R,c1);x.moveTo(c0,c1-R);x.lineTo(c0,c1+R);x.stroke();
+  /* ring radii */
+  var r0=R*.2,r1=R*.95,rr={};ORDER.forEach(function(id,i){rr[id]=r0+(r1-r0)*i/6});
+  x.strokeStyle='rgba(156,167,196,.16)';
+  ORDER.forEach(function(id){x.beginPath();x.arc(c0,c1,rr[id],0,TAU);x.stroke()});
+  /* angle labels */
+  x.textAlign='center';x.textBaseline='middle';x.fillStyle='#e3b95c';x.font='700 '+(small?14:18)+'px '+SERIF;
+  var lb=Math.max(14,Math.min(W,Hh)*.04);
+  x.fillText('MC',c0,c1-R-lb);x.fillText('IC',c0,c1+R+lb);
+  x.fillText('ASC',c0-R-19,c1);x.fillText('DSC',c0+R+19,c1);
+  x.fillStyle='rgba(156,167,196,.85)';x.font='400 '+(small?10:13)+'px '+SANS;
+  x.save();x.textAlign='left';x.fillText('高い所',c0+(small?20:26),c1-R-lb);x.fillText('低い所',c0+(small?20:26),c1+R+lb);x.restore();
+  x.save();x.textAlign='left';x.fillText('のぼる ↑',c0-R+4,c1-12);x.textAlign='right';x.fillText('↓ しずむ',c0+R-4,c1+12);x.restore();
+  /* center: none */
+  /* bodies */
+  var hits=[];
+  ORDER.forEach(function(id){
+    var b=bodyOf(id),f=st.info[id],R2=rr[id],dim=(st.focus!=='all'&&st.focus!==id),al=dim?.22:1;
+    if(f.h0===null)return;
+    x.globalAlpha=al;
+    var H0=norm(f.H),p0=phiOf(H0,f.h0),i,pt;
+    /* trail */
+    x.strokeStyle='rgba(227,185,92,.85)';x.lineWidth=2;x.beginPath();
+    var n=Math.max(1,Math.ceil(rot));
+    for(i=0;i<=n;i++){var rv=Math.min(rot,i*rot/n),pp=phiOf(norm(H0+sg*rv),f.h0);pt=ptOn(R2,pp);if(i===0)x.moveTo(pt[0],pt[1]);else x.lineTo(pt[0],pt[1])}
+    x.stroke();
+    /* direction arrow at the head of the trail */
+    if(rot>3){var pe=ptOn(R2,phiOf(norm(H0+sg*rot),f.h0)),tr=rot,gd=0;
+      while(tr>0&&gd<600){var qq=ptOn(R2,phiOf(norm(H0+sg*tr),f.h0));if(Math.hypot(qq[0]-pe[0],qq[1]-pe[1])>=dr+5)break;tr-=.2;gd++}
+      if(tr>.5){var a1=ptOn(R2,phiOf(norm(H0+sg*tr),f.h0)),a0=ptOn(R2,phiOf(norm(H0+sg*Math.max(0,tr-1.5)),f.h0)),an=Math.atan2(a1[1]-a0[1],a1[0]-a0[0]),sz=Math.max(6,dr*.6);
+        x.fillStyle='#f6d77a';x.beginPath();x.moveTo(a1[0],a1[1]);x.lineTo(a1[0]-sz*Math.cos(an-.45),a1[1]-sz*Math.sin(an-.45));x.lineTo(a1[0]-sz*Math.cos(an+.45),a1[1]-sz*Math.sin(an+.45));x.closePath();x.fill()}}
+    /* birth marker */
+    pt=ptOn(R2,p0);x.strokeStyle='#82a5ff';x.lineWidth=1.6;x.beginPath();x.arc(pt[0],pt[1],dr,0,TAU);x.stroke();
+    x.fillStyle='rgba(8,12,32,.85)';x.beginPath();x.arc(pt[0],pt[1],dr-1,0,TAU);x.fill();
+    x.fillStyle='#82a5ff';x.font='500 '+fs+'px '+SANS;x.fillText(b.g+'︎',pt[0],pt[1]+.5);
+    /* now */
+    var pn=phiOf(norm(H0+sg*rot),f.h0);pt=ptOn(R2,pn);
+    ANG.forEach(function(an){var a=arcOf(f,an[0]);if(a!==null&&Math.abs(a-rot)<.5)hits.push([b,an,pt]) });
+    var g=x.createRadialGradient(pt[0]-dr*.4,pt[1]-dr*.45,dr*.1,pt[0],pt[1],dr*1.05);
+    g.addColorStop(0,shade(b.col,.55));g.addColorStop(.5,b.col);g.addColorStop(1,shade(b.col,-.45));
+    x.fillStyle=g;x.beginPath();x.arc(pt[0],pt[1],dr,0,TAU);x.fill();
+    x.fillStyle='#0a1020';x.font='700 '+fs+'px '+SANS;x.fillText(b.g+'︎',pt[0],pt[1]+.5);
+    x.globalAlpha=1;
+  });
+  x.save();x.textAlign='left';x.fillStyle='#f6d77a';x.font='500 '+(small?11:13)+'px '+SANS;x.fillText('▶ 動く向き（'+(sg>0?'時計回り':'反時計回り')+'）',12,16);x.restore();
+  hits.forEach(function(h){var pt=h[2];x.strokeStyle='#fff5cf';x.lineWidth=2;x.beginPath();x.arc(pt[0],pt[1],dr+5,0,TAU);x.stroke()});
+  st.hits=hits;
+}
+
+/* ---- render ---- */
+function ageTxt(a){return a.toFixed(1)+'歳'}
+function render(){
+  if(!st.ok)return;
+  var k=KEYS[st.key],rot=st.age*k;
+  $('#agOut').textContent=st.age.toFixed(2)+'歳（回転 '+rot.toFixed(2)+'°）';
+  $('#agDate').textContent='暦では、'+fmtYM(calMs(st.age),st.off)+'ごろ（出生から'+(st.age*YEAR).toFixed(0)+'日後）';
+  draw();
+  var up=st.ev.filter(function(e){return e.age>=st.age-1e-9}).slice(0,3),h=st.hits||[],t='';
+  if(h.length){t='★ いま、'+h.map(function(x){return x[0].n+'が'+x[1][1]}).join('、')+'に、ほぼ着いています（前後0.5°）。'}
+  else if(up.length){t='次に着くのは、'+up.map(function(e){return e.b.n+'が'+e.a[1]+'（'+ageTxt(e.age)+'・'+fmtYM(calMs(e.age),st.off)+'）'}).join('、')+'。'}
+  else t='100歳までに、これ以上、角に着く天体はありません。';
+  $('#read').textContent=t;
+  /* table */
+  var th='<tr><th>天体</th>'+ANG.map(function(a){return '<th>'+a[1]+'</th>'}).join('')+'</tr>';$('#th').innerHTML=th;
+  $('#tb').innerHTML=BODIES.map(function(b){var f=st.info[b.id];
+    return '<tr><td><span class="dot" style="background:'+b.col+'"></span>'+b.n+'</td>'+ANG.map(function(a){var v=arcOf(f,a[0]);
+      if(v===null)return '<td class="mute">—</td>';var ag=v/k;if(ag>100)return '<td class="mute">100歳超</td>';
+      return '<td class="n"'+(Math.abs(ag-st.age)<.5?' style="color:var(--gold);font-weight:700"':'')+'>'+ageTxt(ag)+' <span class="mute small">'+fmtYM(calMs(ag),st.off).replace(/月$/,'月')+'</span></td>'}).join('')+'</tr>'}).join('');
+  (function(){var best=null;BODIES.forEach(function(b){ANG.forEach(function(an){var a=st.info[b.id].arc[an[0]];if(a===null)return;var c=(360-a)%360;if(best===null||c<best.c)best={b:b,an:an,c:c,d:a}})});
+    var t;if(st.dir==='d'){t='順方向＝生まれた「あと」の空。生まれたあと、空が回りつづけて、天体が角に着くまでの角度を、年にします。'}
+    else{t='逆方向＝生まれる「まえ」の空。時計を巻きもどして、その天体が角を通ったのは、生まれる何度まえだったかを見ます。';
+      if(best&&best.c<60){var mn=best.c/0.25069,tt=mn<90?'約'+Math.round(mn)+'分':'約'+(mn/60).toFixed(1)+'時間';t+='例：'+best.b.n+'は、生まれる'+tt+'まえに、'+best.an[1]+'を通りすぎていました（'+best.c.toFixed(1)+'°）。逆方向では、'+best.c.toFixed(1)+'°巻きもどせば'+best.an[1]+'なので、'+ageTxt(best.c/k)+'。順方向では、ほぼ1周（'+best.d.toFixed(1)+'°）先なので、「100歳超」です。'}}
+    $('#drNote').textContent=t;
+    $('#howto').textContent=st.dir==='d'?HOW_D:'いまは、時間を巻きもどしています。図の天体は、西（右）から高い所（上）を通り、東（左）へ、逆向きに動きます。生まれる前の空を見ているので、「のぼる」「しずむ」の向きも逆になります。'})();
+  $('#tbNote').textContent='回転角（度）を、'+(st.key==='pt'?'そのまま年':'0.9856で割って年')+'にしています。例：'+(function(){var f=st.info.sun;return '太陽がMCに着くまでの回転は '+arcOf(f,'mc').toFixed(1)+'°'})()+'。「100歳超」の天体は、向きを切り替えると出てくることがあります（角から100°〜260°ほどはなれた天体は、どちらの向きでも「100歳超」です）。金色の太字は、いまの年齢の前後0.5年以内です。';
+  /* list */
+  $('#ev').innerHTML=st.ev.map(function(e){var near=Math.abs(e.age-st.age)<.5,past=e.age<st.age;
+    return '<tr'+(near?' style="background:#1d2b52"':'')+(past&&!near?' class="mute"':'')+'><td class="n">'+ageTxt(e.age)+'</td><td>'+fmtYM(calMs(e.age),st.off)+'</td><td><span class="dot" style="background:'+e.b.col+'"></span>'+e.b.n+'</td><td>'+e.a[1]+'<span class="mute small">（'+e.a[2]+'）</span></td></tr>'}).join('');
+  syncKey();syncDir();syncFocus();
+}
+function syncDir(){document.querySelectorAll('#dr [data-d]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-d')===st.dir?'true':'false')})}
+function syncKey(){document.querySelectorAll('#ky [data-k]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-k')===st.key?'true':'false')})}
+function syncFocus(){document.querySelectorAll('#fc [data-f]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===st.focus?'true':'false')})}
+var HOW_D=$('#howto').textContent;
+var fc=$('#fc');
+(function(){function add(id,label){var b=document.createElement('button');b.type='button';b.setAttribute('data-f',id);b.textContent=label;fc.appendChild(b)}
+ add('all','全部');BODIES.forEach(function(b){add(b.id,b.g+'︎ '+b.n)})})();
+fc.addEventListener('click',function(e){var b=e.target.closest('[data-f]');if(!b)return;st.focus=b.getAttribute('data-f');render()});
+$('#dr').addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(!b)return;st.dir=b.getAttribute('data-d');events();render()});
+$('#ky').addEventListener('click',function(e){var b=e.target.closest('[data-k]');if(!b)return;st.key=b.getAttribute('data-k');events();render()});
+var ag=$('#ag');
+ag.addEventListener('input',function(){st.age=+ag.value;if(st.play){st.play=false;pb.textContent='再生'}render()});
+$('#zero').addEventListener('click',function(){st.age=0;ag.value=0;render()});
+$('#now').addEventListener('click',function(){var n=Math.max(0,Math.min(100,(Date.now()-st.ms)/864e5/YEAR));st.age=Math.round(n*100)/100;ag.value=st.age;render()});
+var pb=$('#play'),last=0;
+function tick(ts){if(!st.play)return;var dt=Math.min(.05,(ts-last)/1000);last=ts;st.age+=dt*3;if(st.age>100)st.age=0;st.age=Math.round(st.age*100)/100;ag.value=st.age;render();requestAnimationFrame(tick)}
+pb.addEventListener('click',function(){st.play=!st.play;pb.textContent=st.play?'一時停止':'再生';if(st.play){last=performance.now();requestAnimationFrame(tick)}});
+window.__prim={st:st,eqOf:eqOf,ramc:ramc,compute:compute};
+resize();
+})();
+</script>
+</body>
+</html>
