@@ -209,7 +209,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
   <header>
     <p class="kicker">古典占星術 入門</p>
     <h1>星は、ふたつの動きで回っている</h1>
-    <p class="lede">最初の図は、天球です。タブで「第一運動（空の回転）」「第二運動（天体が星の上を東へ進む動き）」「重ねて見る」を切り替えます。</p>
+    <p class="lede">最初の図は、天球です。タブで「第一運動（プライマリー・モーション＝空の回転）」「第二運動（セカンダリー・モーション＝天体が星の上を東へ進む動き）」「重ねて見る」を切り替えます。</p>
     <p class="fine">用語は、ページの最後の「<a href="#kaisetsu">解説・用語集</a>」にまとめています。</p>
 </header>
   
@@ -301,13 +301,13 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
   </section>
 
   <section class="card how-card" aria-label="逆行を見る">
-    <h2>逆行（Retrograde）は、地球が火星を追い越すときに起こる（2027年の例）</h2>
-    <p class="lede2"><b>地球が火星を追い越すとき、火星が逆行して見えます。</b>地球は内側を速く、火星は外側をゆっくり、どちらも東向きに進んでいます。火星が本当に後ろへ進むわけではなく、追い越しのあいだだけ、見かけの向きが逆になります。</p>
-    <p class="lede2"><b>たとえ：</b>電車で、となりの線路をゆっくり走る電車を追い越すとき、相手は、遠くの山に対して、いちど後ろへ下がって見えます。火星も同じです。「遠くの山」が星空、「追い越す電車」が地球です。</p>
+    <h2>逆行（Retrograde）は、追い越しのときに起こる</h2>
+    <p class="lede2"><b>追い越しのとき、相手の天体が逆行して見えます。</b>火星・木星・土星は、内側を速く回る地球が追い越すとき。水星・金星は、内側を速く回る天体が地球を追い越すとき。どちらも東向きに進んでいて、本当に後ろへ進むわけではなく、追い越しのあいだだけ、見かけの向きが逆になります。下のタブで天体を切り替えられます（最初は火星の例です）。</p>
+    <p class="lede2"><b>たとえ：</b>電車で、となりの線路をゆっくり走る電車を追い越すとき、相手は、遠くの山に対して、いちど後ろへ下がって見えます。ほかの天体も同じです。「遠くの山」が星空、「追い越す電車」が地球です。</p>
   <div class="sub3d" id="how3d" role="group" aria-label="逆行を地球から見た空で見る">
-    <h3>地球から見た空では、こう見えます（火星）</h3>
-    <p class="lede2">地球に立って見上げた空です。リングは黄道で<b>左が東</b>、火星の跡は青＝順行、赤＝逆行です。下の2つの図と連動しています。</p>
-    <div class="btabs" id="b3tabs" hidden></div>
+    <h3>地球から見た空では、こう見えます</h3>
+    <p class="lede2">地球に立って見上げた空です。リングは黄道で<b>左が東</b>、天体の跡は青＝順行、赤＝逆行です。下の2つの図と連動しています。</p>
+    <div class="btabs" role="tablist" id="b3tabs" aria-label="天体を選ぶ"></div>
     <div class="sscale" role="group" aria-label="視点">
       <button id="v3earth" aria-pressed="true">地球から見る</button>
       <button id="v3tilt" aria-pressed="false">宇宙から見る（斜め）</button>
@@ -317,7 +317,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
     </div>
   </div>
     <div class="rgrid">
-      <div class="rbox"><canvas id="rv" aria-label="北極の真上から見た、地球と火星の動き"></canvas></div>
+      <div class="rbox"><canvas id="rv" aria-label="北極の真上から見た、地球と天体の動き"></canvas></div>
       <div class="swrap s3wide" id="s3wrap"><canvas id="sv3" aria-label="地球から見た空の図（視点を変えると、宇宙から見た3D図になります）"></canvas></div>
     <div class="hctl" hidden>
       <button id="rplay">一時停止</button>
@@ -334,39 +334,14 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
       <button id="s3again" class="gold">逆行の前から再生</button>
       <div class="srow"><label for="s3spd">速さ</label><input id="s3spd" type="range" min="1" max="60" step="1" value="10"><output id="s3spdOut" for="s3spd"></output></div>
     </div>
-      <div class="rbox rg"><canvas id="rg" aria-label="地球から見た火星の、星に対する位置の時間変化"></canvas></div>
+      <div class="rbox rg"><canvas id="rg" aria-label="地球から見た天体の、星に対する位置の時間変化"></canvas></div>
     </div>
-    <p class="fine">①〜⑦は、同じ日の地球・火星・壁の上の影です（白丸の星は実在の星で、東西の位置だけを並べています）。</p>
+    <p class="fine">①〜⑦は、同じ日の地球・天体・壁の上の影です（白丸の星は実在の星で、東西の位置だけを並べています）。木星・土星は遠いので、距離を平方根で縮めて描いています（線の向きは、実際とは少し違います）。</p>
     <p class="hread" id="s3read"></p>
 <div class="s3cap" id="s3cap"></div>
-    <details class="more3d"><summary>図の見方と、ほかの天体（太陽・水星・金星・木星・土星）</summary>
-    <div class="btabs" role="tablist" id="b3tabs2" aria-label="天体を選ぶ"></div>
-    <div class="sscale" role="group" aria-label="視点">
-      <button id="v3earth2" aria-pressed="true">地球から見る</button>
-      <button id="v3tilt2" aria-pressed="false">宇宙から見る（斜め）</button>
-      <button id="v3top2" aria-pressed="false" hidden>真上から</button>
-      <button id="z3in2" aria-pressed="true">内側にズーム</button>
-      <button id="z3all2" aria-pressed="false">全部入れる</button>
-    </div>
-    <div class="swrap" id="s3wrap2"><canvas id="sv32" aria-label="地球から見た空の図（視点を変えると、宇宙から見た3D図になります）"></canvas></div>
-    <div class="hctl">
-      <button id="s3play2">一時停止</button>
-      <button id="s3step12">1日進める</button>
-      <button id="s3step302">30日進める</button>
-      <button id="s3reset2">今日に戻す</button>
-      <button id="s3stn2" class="gold">次の留の日へ</button>
-      <div class="srow"><label for="s3spd2">速さ</label><input id="s3spd2" type="range" min="1" max="60" step="1" value="10"><output id="s3spdOut2" for="s3spd2"></output></div>
-    </div>
-    <p class="hread" id="s3read2"></p>
-    <div class="s3cap" id="s3cap2"></div>
-    <ol class="hsteps">
-      <li><b>地球から見る</b>　リングの上の位置が、天体の位置（サインと度数）です。ホロスコープに載る位置は、この見え方です。再生すると、天体が左（東）へ進みます。跡の点は、上ほど過去です。</li>
-      <li><b>逆行を探す</b>　水星・金星・木星・土星のどれかを選んで「再生」するか、「次の留の日へ」を押してください。跡が、右（西）へ折り返して、また左へ進みます。折り返しの日が「留」です。太陽は逆行しません。</li>
-      <li><b>宇宙から見る（斜め）</b>　宇宙から斜めに見た太陽系です。地球（青）から天体へ線が引いてあり、オレンジの弧が牡羊座0°からの角度です。なぞると回せます。</li>
-    </ol>
-    </details>
+    
     <p class="hread" id="rread"></p>
-    <details class="fold"><summary>逆行のしくみを、3つに分けて見る</summary>
+    <details class="fold"><summary>逆行のしくみを、3つに分けて見る（火星の例）</summary>
 <ol class="hsteps">
       <li><b>追い越す前（順行：Direct）</b>　地球は内側の近道を速く、火星は外側をゆっくり、どちらも東向きに進みます。このあいだ、火星は星に対して東へ進んで見えます。</li>
       <li><b>追い越しているあいだ（逆行：Retrograde）</b>　地球が火星のすぐ横を通りすぎるとき、火星は星に対して西へ戻って見えます。壁の図で、金の点（火星の影）が右へ戻る様子を見てください（①→②→③は左へ進む順行、③→④→⑤が逆行、⑤→⑥→⑦は、また左へ進む順行です）。</li>
@@ -1707,7 +1682,7 @@ if(window.ResizeObserver){var ro=new ResizeObserver(rs);ro.observe(cv.parentNode
 rs();
 var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-var E={id:'ear',a:1,P:365.256,L0:100.464},M={id:'mar',a:1.524,P:686.980,L0:355.453};
+var E={id:'ear',a:1,P:365.256,L0:100.464},M={id:'mar'};
 function norm360(a){return ((a%360)+360)%360}
 var EL={
  mer:{a:[0.38709927,0.00000037],e:[0.20563593,0.00001906],I:[7.00497902,-0.00594749],L:[252.25032350,149472.67411175],w:[77.45779628,0.16047689],O:[48.33076593,-0.12534081]},
@@ -1735,42 +1710,68 @@ function rad(o,t){var h=helio(o,t);return Math.hypot(h[0],h[1])}
 function geo(t){var e=helio(E,t),m=helio(M,t);return norm360(Math.atan2(m[1]-e[1],m[0]-e[0])/D)}
 function dateStr(t){var dt=new Date(Date.UTC(2000,0,1,12)+t*864e5);return dt.getUTCFullYear()+'年'+(dt.getUTCMonth()+1)+'月'+dt.getUTCDate()+'日'}
 
-/* find an opposition (Earth and Mars on the same side), start ~120 days before */
-var T0=(Date.UTC(2026,9,26)-Date.UTC(2000,0,1,12))/864e5,opp=T0,best=1e9,t;
-for(t=T0;t<T0+800;t+=1){
-  var e=helio(E,t),m=helio(M,t);
-  var df=Math.abs(((Math.atan2(e[1],e[0])-Math.atan2(m[1],m[0]))/D+540)%360-180);
-  if(df<best){best=df;opp=t}
-}
-var START=opp-150,N=300,ARR=[],i,prev=null,off=0;
-for(i=0;i<=N;i++){
-  var g=geo(START+i);
-  if(prev!==null){var dd=g-prev;if(dd>180)off-=360;else if(dd<-180)off+=360}
-  ARR.push(g+off);prev=g;
-}
-var ymin=Math.min.apply(null,ARR),ymax=Math.max.apply(null,ARR);
-var pad=(ymax-ymin)*.18;ymin-=pad;ymax+=pad;
-var stations=[];
-for(i=1;i<N;i++){var a=ARR[i]-ARR[i-1],b=ARR[i+1]-ARR[i];if(a*b<0)stations.push(i)}
-
-var LAT=[];
-for(i=0;i<=N;i++){var e2=helio(E,START+i),m2=helio(M,START+i);LAT.push(Math.atan2(m2[2]-e2[2],Math.hypot(m2[0]-e2[0],m2[1]-e2[1]))/D)}
-var lonMin=Math.min.apply(null,ARR),lonMax=Math.max.apply(null,ARR),lonMid=(lonMin+lonMax)/2,wLo=lonMin-5,wHi=lonMax+5;
-/* real bright stars (J2000 RA/Dec) -> ecliptic longitude/latitude of date; used for the star wall */
+var BODIES={
+ mar:{n:'火星',col:'#f0805f',out:true,N:300},
+ jup:{n:'木星',col:'#e3b95c',out:true,N:300},
+ sat:{n:'土星',col:'#b9a9e8',out:true,N:330},
+ ven:{n:'金星',col:'#f2a7c3',out:false,N:170},
+ mer:{n:'水星',col:'#c9b8a4',out:false,N:100}
+};
+var CUR='mar',NAME='火星',BCOL='#f0805f',OVT='地球が火星を追い越し',OUT=true,START=0,N=300,ARR=[],ymin=0,ymax=1,stations=[],LAT=[],lonMin=0,lonMax=1,lonMid=0,wLo=0,wHi=1,STARS=[],SNAP=[],STD={},RMAXD=1.55;
+var T0b=(Date.UTC(2026,9,26)-Date.UTC(2000,0,1,12))/864e5;
+function cmpR(r){return (OUT&&M.id!=='mar')?Math.sqrt(r):r}
+/* real bright stars near the ecliptic (J2000 RA/Dec): name, h, m, s, dec deg, min, sec, magnitude */
 var STAR_SRC=[
  ['',8,16,30.9,9,11,8,3.5],['',8,44,41.1,18,9,15,3.94],['',8,58,29.2,11,51,28,4.25],['',9,41,9.0,9,53,32,3.52],
  ['レグルス',10,8,22.3,11,58,2.0,1.35],['',11,50,41.7,1,45,53,3.61],['',12,19,54.4,-0.0001,40,0,3.89],
- ['',11,14,14.4,15,25,46,3.34],['',10,16,41.4,23,25,2,3.44]];
-var STARS=(function(){
-  var eps=23.4392911*D,Tm=(START+150)/36525,pre=1.396971*Tm;
-  return STAR_SRC.map(function(q){
+ ['',11,14,14.4,15,25,46,3.34],['',10,16,41.4,23,25,2,3.44],
+ ['アルデバラン',4,35,55.2,16,30,33,0.85],['プレアデス',3,47,29,24,6,18,2.9],['ポルックス',7,45,18.9,28,1,34,1.14],
+ ['',7,34,35.9,31,53,18,1.58],['プロキオン',7,39,18.1,5,13,30,0.34],['',9,27,35.2,-8,39,31,2.0],
+ ['デネボラ',11,49,3.6,14,34,19,2.1],['スピカ',13,25,11.6,-11,9,41,1.0],['',12,41,39.6,-1,26,58,2.7],
+ ['',14,50,52.7,-16,2,30,2.75],['',15,17,0.4,-9,22,59,2.6],['アンタレス',16,29,24.5,-26,25,55,1.06],
+ ['',16,0,20,-22,37,18,2.3],['',16,5,26.2,-19,48,19,2.6],['',18,55,15.9,-26,17,48,2.0],
+ ['',21,47,2.4,-16,7,38,2.9],['',21,31,33.5,-5,34,16,2.9],['',22,5,47,-0.0001,19,0,3.8],
+ ['',23,4,45.6,15,12,19,2.5],['',2,7,10.4,23,27,45,2.0],['',3,2,16.8,4,5,23,2.5],
+ ['',5,26,17.5,28,36,27,1.65],['',6,37,42.7,16,23,57,1.9],['',7,20,7.4,21,58,56,3.5],
+ ['',6,43,55.9,25,7,52,2.9],['',9,45,51,23,46,27,3.0],['',10,19,58,19,50,30,2.0],
+ ['',13,2,10.6,10,57,33,2.8],['',17,10,22.6,-15,43,30,2.4],['',18,24,10.3,-34,23,5,1.8],['',17,33,36.5,-37,6,14,1.6],
+ ['',0,48,41,7,35,6,4.4],['',1,2,43,7,53,24,4.3],['',1,31,29,15,20,45,3.6],['',2,2,2.8,2,45,49,3.8],['',1,54,38,20,48,29,2.6]
+];
+function build(id){
+  var B0=BODIES[id],i,t;
+  M.id=id;NAME=B0.n;BCOL=B0.col;OUT=B0.out;N=B0.N;
+  OVT=OUT?'地球が'+NAME+'を追い越し':NAME+'が地球を追い越し';
+  RMAXD=Math.max(1,cmpR(EL[id].a[0]))*1.0;
+  var syn=360/Math.abs(360/365.256-360/PER[id]),opp=T0b,best=1e9;
+  for(t=T0b-.25*syn;t<T0b+.75*syn;t+=1){
+    var e=helio(E,t),m=helio(M,t);
+    var df=Math.abs(((Math.atan2(e[1],e[0])-Math.atan2(m[1],m[0]))/D+540)%360-180);
+    if(df<best){best=df;opp=t}
+  }
+  START=opp-N/2;ARR=[];var prev=null,off=0;
+  for(i=0;i<=N;i++){
+    var g=geo(START+i);
+    if(prev!==null){var dd=g-prev;if(dd>180)off-=360;else if(dd<-180)off+=360}
+    ARR.push(g+off);prev=g;
+  }
+  ymin=Math.min.apply(null,ARR);ymax=Math.max.apply(null,ARR);
+  var pad=(ymax-ymin)*.18;ymin-=pad;ymax+=pad;
+  stations=[];
+  for(i=1;i<N;i++){var a=ARR[i]-ARR[i-1],b=ARR[i+1]-ARR[i];if(a*b<0)stations.push(i)}
+  LAT=[];
+  for(i=0;i<=N;i++){var e2=helio(E,START+i),m2=helio(M,START+i);LAT.push(Math.atan2(m2[2]-e2[2],Math.hypot(m2[0]-e2[0],m2[1]-e2[1]))/D)}
+  lonMin=Math.min.apply(null,ARR);lonMax=Math.max.apply(null,ARR);lonMid=(lonMin+lonMax)/2;wLo=lonMin-5;wHi=lonMax+5;
+  var eps=23.4392911*D,Tm=(START+N/2)/36525,pre=1.396971*Tm;
+  STARS=STAR_SRC.map(function(q){
     var ra=(q[1]+q[2]/60+q[3]/3600)*15*D,sg=(q[4]<0)?-1:1,dec=sg*(Math.abs(q[4])+q[5]/60+q[6]/3600)*D;
     var lam=norm360(Math.atan2(Math.sin(ra)*Math.cos(eps)+Math.tan(dec)*Math.sin(eps),Math.cos(ra))/D+pre),bet=Math.asin(Math.sin(dec)*Math.cos(eps)-Math.cos(dec)*Math.sin(eps)*Math.sin(ra))/D;
     return {n:q[0],lon:lam,lat:bet,mag:q[7]};
-  });
-})();
-var SNAP=(function(){var a=stations.length>=2?[stations[0]-45,stations[0]-20,stations[0],Math.round((stations[0]+stations[1])/2),stations[1],stations[1]+20,stations[1]+45]:[];return a.filter(function(v){return v>=0&&v<=N})})();
-var STD={};stations.forEach(function(sd){var fr=0;if(sd>0&&sd<N){var p0=ARR[sd-1],p1=ARR[sd],p2=ARR[sd+1],dn=p0-2*p1+p2;if(Math.abs(dn)>1e-9)fr=(p0-p2)/(2*dn)}var dt=new Date(Date.UTC(2000,0,1,12)+(START+sd+fr)*864e5);STD[sd]=(dt.getUTCMonth()+1)+'/'+dt.getUTCDate()});
+  }).filter(function(q){var l=q.lon,lo=norm360(wLo),hi=wLo+(wHi-wLo);var x=norm360(q.lon-wLo)+wLo;return x>=wLo&&x<=wHi});
+  STARS.forEach(function(q){q.lon=norm360(q.lon-wLo)+wLo});
+  if(stations.length>=2){var s0=stations[0],s1=stations[1],dl=s1-s0;SNAP=[s0-.64*dl,s0-.29*dl,s0,(s0+s1)/2,s1,s1+.29*dl,s1+.64*dl].map(Math.round).filter(function(v){return v>=0&&v<=N})}else SNAP=[];
+  STD={};stations.forEach(function(sd){var fr=0;if(sd>0&&sd<N){var p0=ARR[sd-1],p1=ARR[sd],p2=ARR[sd+1],dn=p0-2*p1+p2;if(Math.abs(dn)>1e-9)fr=(p0-p2)/(2*dn)}var dt=new Date(Date.UTC(2000,0,1,12)+(START+sd+fr)*864e5);STD[sd]=(dt.getUTCMonth()+1)+'/'+dt.getUTCDate()});
+}
+build('mar');
 var playing=false,spd=10,day=0;
 function arrowHead(x,px,py,ang,size,color){
   x.fillStyle=color;x.beginPath();x.moveTo(px,py);
@@ -1782,8 +1783,8 @@ function motionAt(d){var k=Math.max(0,Math.min(N-1,Math.floor(d)));return ARR[k+
 function drawTop(){
   var x=xv;x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,Wv,Hv);
   var narrow=Wv<420,fs=narrow?11:12,wallY=narrow?93:105,wallL=narrow?16:24,wallR=Wv-wallL,gap=narrow?58:68,bpad=narrow?52:56;
-  var scl=Math.min(Wv/2-14,(Hv-wallY-gap-bpad)/3.1),cx=Wv/2,cy=wallY+gap+1.55*scl,rotA=(90-lonMid)*D;
-  function P(h){var an=Math.atan2(h[1],h[0])+rotA,r=Math.hypot(h[0],h[1])*scl;return [cx+r*Math.cos(an),cy-r*Math.sin(an)]}
+  var scl=Math.min(Wv/2-14,(Hv-wallY-gap-bpad)/(2*RMAXD*1.03)),cx=Wv/2,cy=wallY+gap+RMAXD*1.03*scl,rotA=(90-lonMid)*D;
+  function P(h){var an=Math.atan2(h[1],h[0])+rotA,r=cmpR(Math.hypot(h[0],h[1]))*scl;return [cx+r*Math.cos(an),cy-r*Math.sin(an)]}
   function WX(l){return wallL+(wHi-l)/(wHi-wLo)*(wallR-wallL)}
   x.textBaseline='middle';
   function lab(t,px,py,al,col,font){x.font=font;x.textAlign=al;x.lineJoin='round';x.lineWidth=3.5;x.strokeStyle='rgba(8,12,28,.9)';x.strokeText(t,px,py);x.fillStyle=col;x.fillText(t,px,py)}
@@ -1798,22 +1799,29 @@ function drawTop(){
   /* orbits */
   var oc='rgba(120,145,210,.4)';
   x.strokeStyle=oc;x.lineWidth=1;x.beginPath();x.arc(cx,cy,scl,0,Math.PI*2);x.stroke();
-  x.beginPath();orbitPts(M.id==='mar'?'mar':'mar',START,120).forEach(function(p,i){var q=P([p[0],p[1]]);if(i)x.lineTo(q[0],q[1]);else x.moveTo(q[0],q[1])});x.closePath();x.stroke();
-  var cd=START+day,mo=motionAt(day),ret=mo<0,col=ret?'#ffb199':'#f0805f';
+  x.beginPath();orbitPts(M.id,START,120).forEach(function(p,i){var q=P([p[0],p[1]]);if(i)x.lineTo(q[0],q[1]);else x.moveTo(q[0],q[1])});x.closePath();x.stroke();
+  var cd=START+day,mo=motionAt(day),ret=mo<0,col=ret?'#ffb199':BCOL;
   /* trail of the shadow on the wall (5-day dots) */
   var ti;for(ti=0;ti<=Math.min(N,Math.floor(day));ti+=3){var tn=(ARR[Math.min(N,ti+1)]-ARR[ti])<0;x.fillStyle=tn?'rgba(255,150,120,.95)':'rgba(120,235,225,.8)';x.beginPath();x.arc(WX(ARR[ti]),wallY+8,2.2,0,Math.PI*2);x.fill()}
   /* snapshots: numbers on Earth, Mars and the wall */
   function badge(n,px,py,c){x.fillStyle='rgba(10,16,32,.92)';x.beginPath();x.arc(px,py,8,0,Math.PI*2);x.fill();x.strokeStyle=c;x.lineWidth=1.5;x.stroke();x.fillStyle=c;x.font='700 '+(fs-1)+'px '+SANS;x.textAlign='center';x.fillText(String(n),px,py+.5)}
   var tier=[],lastX=[[],[],[]];
   SNAP.forEach(function(sd,k3){var bx=WX(ARR[sd]),t=0;while(t<2&&lastX[t].some(function(v){return Math.abs(v-bx)<19}))t++;lastX[t].push(bx);tier[k3]=t});
+  var placedE=[];
   SNAP.forEach(function(sd,k3){if(day<sd)return;
     var he=helio(E,START+sd),hm=helio(M,START+sd),pe=P(he),pm=P(hm),sx=Math.max(1,Math.hypot(pe[0]-cx,pe[1]-cy)),smx=Math.max(1,Math.hypot(pm[0]-cx,pm[1]-cy));
     x.strokeStyle=((ARR[Math.min(N,sd+1)]-ARR[sd])<0)?'rgba(255,177,153,.55)':'rgba(143,240,232,.4)';x.lineWidth=1;x.beginPath();x.moveTo(pe[0],pe[1]);x.lineTo(pm[0],pm[1]);x.stroke();
-    badge(k3+1,pe[0]+(pe[0]-cx)/sx*15,pe[1]+(pe[1]-cy)/sx*15,'#8ff0e8');
-    badge(k3+1,pm[0]+(pm[0]-cx)/smx*15,pm[1]+(pm[1]-cy)/smx*15,'#f0a58c');
+    var ux1=(pe[0]-cx)/sx,uy1=(pe[1]-cy)/sx,rr1=15;
+    while(rr1<80&&placedE.some(function(q){return Math.hypot(q[0]-(pe[0]+ux1*rr1),q[1]-(pe[1]+uy1*rr1))<17}))rr1+=17;
+    placedE.push([pe[0]+ux1*rr1,pe[1]+uy1*rr1]);
+    badge(k3+1,pe[0]+ux1*rr1,pe[1]+uy1*rr1,'#8ff0e8');
+    var ux2=(pm[0]-cx)/smx,uy2=(pm[1]-cy)/smx,tq=(OUT&&M.id!=='mar')?(3-k3)*17:0;
+    badge(k3+1,pm[0]+ux2*18-uy2*tq,pm[1]+uy2*18+ux2*tq,BCOL);
     badge(k3+1,WX(ARR[sd]),wallY-16-17*tier[k3],'#ffe08a');
     if(STD[sd]){var sx2=WX(ARR[sd]),sy2=wallY-16-17*tier[k3],ly=wallY-16-17*3,sl='留 '+STD[sd]+'ごろ',slw;x.font='700 '+(fs-1)+'px '+SANS;slw=x.measureText(sl).width;
-      var lx2=Math.max(wallL+slw/2+3,Math.min(wallR-slw/2-3,sx2));
+      var lx2=sx2,stn=stations.indexOf(sd);
+      if(stations.length>1&&Math.abs(WX(ARR[stations[0]])-WX(ARR[stations[1]]))<slw+14)lx2=sx2+(stn===0?-1:1)*(slw/2+3);
+      lx2=Math.max(wallL+slw/2+3,Math.min(wallR-slw/2-3,lx2));
       x.strokeStyle='rgba(255,224,138,.55)';x.lineWidth=1;x.beginPath();x.moveTo(sx2,ly+8);x.lineTo(sx2,sy2-8);x.stroke();
       x.fillStyle='rgba(10,16,32,.92)';x.fillRect(lx2-slw/2-4,ly-8,slw+8,16);x.fillStyle='#fff4c8';x.textAlign='center';x.textBaseline='middle';x.fillText(sl,lx2,ly);x.textBaseline='alphabetic'}
   });
@@ -1830,16 +1838,16 @@ function drawTop(){
   /* planets */
   var eg=x.createRadialGradient(ep[0]-2,ep[1]-2,1,ep[0],ep[1],8);eg.addColorStop(0,'#4f8fd0');eg.addColorStop(1,'#163b6b');
   x.fillStyle=eg;x.beginPath();x.arc(ep[0],ep[1],7.5,0,Math.PI*2);x.fill();x.strokeStyle='#63c7c2';x.lineWidth=2;x.stroke();
-  x.fillStyle='#f0805f';x.beginPath();x.arc(mp[0],mp[1],6.5,0,Math.PI*2);x.fill();
+  x.fillStyle=BCOL;x.beginPath();x.arc(mp[0],mp[1],6.5,0,Math.PI*2);x.fill();
   var edx=ep[0]-cx,edy=ep[1]-cy,el=Math.hypot(edx,edy)||1,mdx=mp[0]-cx,mdy=mp[1]-cy,ml=Math.hypot(mdx,mdy)||1;
   lab('地球',ep[0]-edx/el*0+edx/el*20,ep[1]+edy/el*16,'center','#8ff0e8','700 '+(fs+1)+'px '+SANS);
-  lab('火星',mp[0]+mdx/ml*22,mp[1]+mdy/ml*16,'center','#f0a58c','700 '+(fs+1)+'px '+SANS);
+  lab(NAME,mp[0]+mdx/ml*22,mp[1]+mdy/ml*16,'center',BCOL,'700 '+(fs+1)+'px '+SANS);
   /* shadow marker on the wall */
   x.fillStyle='#ffe08a';x.beginPath();x.arc(wx,wallY+8,6,0,Math.PI*2);x.fill();x.strokeStyle='#fff';x.lineWidth=1.5;x.stroke();
   x.fillStyle='#ffe08a';x.font='700 '+fs+'px '+SANS;
-  var near=(mp[1]-wallY<80)&&Math.abs(mp[0]-wx)<70,dir=mp[0]>=wx?-1:1,al=near?(dir<0?'right':'left'):(wx<wallL+60?'left':(wx>wallR-60?'right':'center')),lx=near?wx+dir*10:wx+(wx<wallL+60?8:(wx>wallR-60?-8:0)),lw=x.measureText('火星の影').width;
-  x.textAlign=al;x.fillStyle='rgba(10,16,32,.88)';x.fillRect(al==='left'?lx-3:(al==='right'?lx-lw-3:lx-lw/2-3),wallY+30-fs,lw+6,fs+6);x.fillStyle='#ffe08a';x.fillText('火星の影',lx,wallY+30);
-  if(ret){lab('地球が火星を追い越し中',cx,Hv-30,'center','#ffb199','700 '+(fs+1)+'px '+SANS);lab('→ 壁の上の火星の影が、西へ戻る',cx,Hv-13,'center','#ffb199','500 '+fs+'px '+SANS)}
+  var near=(mp[1]-wallY<80)&&Math.abs(mp[0]-wx)<70,dir=mp[0]>=wx?-1:1,al=near?(dir<0?'right':'left'):(wx<wallL+60?'left':(wx>wallR-60?'right':'center')),lx=near?wx+dir*10:wx+(wx<wallL+60?8:(wx>wallR-60?-8:0)),lw=x.measureText(NAME+'の影').width;
+  x.textAlign=al;x.fillStyle='rgba(10,16,32,.88)';x.fillRect(al==='left'?lx-3:(al==='right'?lx-lw-3:lx-lw/2-3),wallY+30-fs,lw+6,fs+6);x.fillStyle='#ffe08a';x.fillText(NAME+'の影',lx,wallY+30);
+  if(ret){lab(OVT+'中',cx,Hv-30,'center','#ffb199','700 '+(fs+1)+'px '+SANS);lab('→ 壁の上の'+NAME+'の影が、西へ戻る',cx,Hv-13,'center','#ffb199','500 '+fs+'px '+SANS)}
   x.fillStyle='#9ca7c4';x.font='500 11px '+SANS;x.textAlign='left';
   x.fillText(dateStr(cd)+'ごろ',10,ret?Hv-58:Hv-12);
 }
@@ -1898,7 +1906,7 @@ function drawGraph(){
   });
   if(stations.length>=2){
     x.fillStyle='#ffb199';x.font='700 '+fs+'px '+SANS;x.textAlign='center';
-    x.fillText('逆行',(X(stations[0])+X(stations[1]))/2,T+10);
+    x.fillText('逆行',(X(stations[0])+X(stations[1]))/2,Bt-10);
   }
   /* current marker */
   var yy=Y(ARR[Math.min(N,Math.round(day))]),xx=X(Math.min(N,day));
@@ -1906,9 +1914,11 @@ function drawGraph(){
   x.strokeStyle='#fff';x.lineWidth=1.5;x.stroke();
   x.fillStyle='#ffe08a';x.font='700 '+fs+'px '+SANS;x.textAlign=(xx<Wg-60)?'left':'right';var nearSt=stations.some(function(i){return Math.abs(day-i)<14});x.fillText(Math.round(norm360(ARR[Math.min(N,Math.round(day))]))+'°',xx+(xx<Wg-60?11:-11),yy+(nearSt?(stations[0]!==undefined&&Math.abs(day-stations[0])<14?16:-12):-12));
   x.fillStyle='#9ca7c4';x.font='500 11px '+SANS;x.textAlign='left';
-  x.fillText('地球から見た火星の位置（牡羊座0°から東へ、上ほど東）',10,14);
+  x.fillText('地球から見た'+NAME+'の位置（牡羊座0°から東へ、上ほど東）',10,14);
 }
 
+window.__rfig={startDay:function(){return START+(stations.length>1?stations[0]-.45*(stations[1]-stations[0]):N*.3)},range:function(){return [START,START+N]}};
+function checkBody(){var q=S3();if(!q||!q.getSel)return;var s2=q.getSel();if(s2!==CUR&&BODIES[s2]){CUR=s2;build(s2);day=0;q.setD(window.__rfig.startDay());q.setP(false);playing=false;labels();outside=false}}
 var rread=$('#rread'),pl=$('#rplay'),spdEl=$('#rspd'),spdOut=$('#rspdOut');
 function labels(){pl.textContent=playing?'一時停止':'再生';spdOut.textContent='1秒で'+spd+'日'}
 function readout(){
@@ -1916,8 +1926,8 @@ function readout(){
   for(k=0;k<stations.length;k++)if(Math.abs(day-stations[k])<3)st=true;
   var badge=st?'<span class="rstate" style="background:#4a4426;color:#fff4c8">止まって見える（留）</span>':
     ret?'<span class="rstate ret">逆行中</span>':'<span class="rstate fwd">順行中</span>';
-  var txt=badge+' 火星は、星に対して1日に '+(mo>=0?'東へ ':'西へ ')+Math.abs(mo).toFixed(2)+'° 動いて見えます。'+(ret?'地球が火星を追い越しているあいだです。':'');
-  if(outside)txt+='<br><span style="color:var(--gold)">いま、上の図は、この下の2つの図の範囲（2026年9月〜2027年7月）の外です。下の2つの図は、端の日付のままです。</span>';
+  var txt=badge+' '+NAME+'は、星に対して1日に '+(mo>=0?'東へ ':'西へ ')+Math.abs(mo).toFixed(2)+'° 動いて見えます。'+(ret?OVT+'ているあいだです。':'');
+  if(outside)txt+='<br><span style="color:var(--gold)">いま、3Dの図の日付は、左の図と右下のグラフの範囲（'+dateStr(START)+'〜'+dateStr(START+N)+'）の外です。左の図とグラフは、端の日付のままです。</span>';
   if(rread.getAttribute('data-k')!==txt){rread.innerHTML=txt;rread.setAttribute('data-k',txt)}
 }
 function S3(){return window.__s3||null}
@@ -1933,12 +1943,13 @@ spdEl.addEventListener('input',function(){spd=+spdEl.value;var q=S3();if(q)q.set
 labels();
 var last=performance.now();
 function frame(now){
+  checkBody();
   var dt=Math.min(.05,(now-last)/1000);last=now;
   if(!IV.v){requestAnimationFrame(frame);return}
   var q=S3();
   if(q){var raw=q.getD()-START,nd=Math.max(0,Math.min(N,raw)),np=q.getP(),ns=q.getSpd();
     outside=raw<-.5||raw>N+.5;
-    if(from2D&&np&&raw>N){q.setP(false);q.setD(START+N);np=false;nd=N;outside=false}
+    if(np&&raw>N){q.setP(false);q.setD(START+N);np=false;nd=N;outside=false}
     if(np!==playing||ns!==spd){playing=np;spd=ns;spdEl.value=ns;labels()}day=nd}
   else if(playing){day+=spd*dt;if(day>N){day=N;playing=false;labels()}}
   drawTop();drawGraph();readout();
@@ -1954,7 +1965,8 @@ var $=function(s){return document.querySelector(s)};
 var wr=$('#s3wrap'),cv=$('#sv3');if(!wr||!cv)return;
 function fail(msg){wr.innerHTML='<p style="padding:24px;color:#9ca7c4;font-size:14px">'+msg+'</p>';wr.style.aspectRatio='auto';
   /* nothing to operate without the 3D view: hide its controls and the empty readout */
-  Array.prototype.forEach.call(wr.parentNode.querySelectorAll('.btabs,.sscale,.hctl,.hread,.s3cap'),function(e){e.style.display='none'})}
+  Array.prototype.forEach.call(document.querySelectorAll('#b3tabs,#how3d .sscale,#s3read,#s3cap'),function(e){e.style.display='none'});
+  Array.prototype.forEach.call(wr.parentNode.querySelectorAll('.hctl'),function(e){e.hidden=!e.hidden})}
 if(!window.THREE){fail('3D表示を読み込めませんでした。下の「太陽系を上から見る」の図をご覧ください。');return}
 var renderer;
 try{renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});}catch(e){fail('この環境では3D表示を使えません。下の「太陽系を上から見る」の図をご覧ください。');return}
@@ -2088,6 +2100,48 @@ var ARC=48;
 var arcGeo=new THREE.BufferGeometry();arcGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array((ARC+1)*3),3));
 var arc=new THREE.Line(arcGeo,new THREE.LineBasicMaterial({color:0xf0805f}));outG.add(arc);
 var arcLab=addLabel(textSprite('東へ 0°','#f0805f',.034,true),outG);
+/* zodiac ring around the Sun, the line from the Sun parallel to the sight line, and the Sun-Earth-body alignment */
+var zRing=lineLoop(1,0xcbd3ea,.55,180);outG.add(zRing);
+var zTicks=(function(){var pts=[],i,h;for(i=0;i<72;i++){h=(i%6===0)?.05:.02;pts.push(P3(1-h,i*5),P3(1+h,i*5))}return new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0xcbd3ea,transparent:true,opacity:.6}))})();outG.add(zTicks);
+var zLabs=[];(function(){for(var i=0;i<12;i++)zLabs.push(addLabel(textSprite(SG[i]+' '+SIGNS[i],'#cbd3ea',.026,false),outG))})();
+var zGeo=new THREE.BufferGeometry();zGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(6),3));
+var zLine=new THREE.Line(zGeo,new THREE.LineDashedMaterial({color:0xffffff,dashSize:.1,gapSize:.08,transparent:true,opacity:.8}));outG.add(zLine);
+var zDot=addDot(dotSprite('#ffffff',.034),outG);
+var zDotLab=addLabel(textSprite('空での位置','#ffffff',.028,true),outG);
+zRing.visible=false;zTicks.visible=false;zLine.visible=false;zDot.visible=false;zDotLab.sp.visible=false;zLabs.forEach(function(l){l.sp.visible=false});
+var alGeo=new THREE.BufferGeometry();alGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(6),3));
+var alLine=new THREE.Line(alGeo,new THREE.LineBasicMaterial({color:0xffe08a}));outG.add(alLine);
+var alLab=addLabel(textSprite('一直線：追い抜く','#ffe08a',.034,true),outG);
+/* snapshots: the sight line from Earth to the body on 7 dates around a retrograde (like the Mars figure) */
+var SNN=7,snapLines=[],snapLabs=[],snapEDots=[],snapELabs=[],snapWin=null;
+(function(){for(var k=0;k<SNN;k++){
+  var g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(6),3));
+  var ln=new THREE.Line(g,new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.9}));ln.frustumCulled=false;outG.add(ln);snapLines.push(ln);
+  snapLabs.push(addLabel(textSprite(String(k+1),'#ffffff',.034,true),outG));
+  snapEDots.push(addDot(dotSprite('#ffffff',.017),outG));
+  snapELabs.push(addLabel(textSprite(String(k+1),'#ffffff',.026,true),outG));
+}})();
+function snapFind(bb,dd){var t,a=null,e=null;for(t=dd-600;t<dd+4000;t+=1){var m=dailyMove(bb,t);if(m<0&&a===null)a=t;if(m>=0&&a!==null){e=t;if(e>=dd-15)break;a=null;e=null}}return (a===null||e===null)?null:{a:a,e:e}}
+function snapUpd(){
+  var show=(view!=='earth'&&sel!=='sun'&&!!byId[sel]),k;
+  if(!show){snapLines.forEach(function(l){l.visible=false});snapLabs.forEach(function(l){l.sp.visible=false});snapEDots.forEach(function(s){s.visible=false});snapELabs.forEach(function(l){l.sp.visible=false});return}
+  var bb=byId[sel];
+  if(!snapWin||snapWin.sel!==sel||d<snapWin.lo||d>snapWin.hi){
+    var w=snapFind(bb,d);
+    if(!w){snapWin=null;snapLines.forEach(function(l){l.visible=false});snapLabs.forEach(function(l){l.sp.visible=false});snapEDots.forEach(function(s){s.visible=false});snapELabs.forEach(function(l){l.sp.visible=false});return}
+    var Ln=w.e-w.a,Tm=[w.a-.6*Ln,w.a-.25*Ln,w.a,(w.a+w.e)/2,w.e,w.e+.25*Ln,w.e+.6*Ln];
+    snapWin={sel:sel,lo:Math.min(Tm[0]-1,d),hi:Tm[6]+1};
+    for(k=0;k<SNN;k++){
+      var eh2=helio(EARTH,Tm[k]),ep=P3(Math.hypot(eh2[0],eh2[1]),norm360(Math.atan2(eh2[1],eh2[0])/D)),bh2=helio(bb,Tm[k]),bp=P3(Math.hypot(bh2[0],bh2[1]),norm360(Math.atan2(bh2[1],bh2[0])/D));
+      var dv=bp.clone().sub(ep),len=dv.length(),ext=.45*Math.max(1,Math.hypot(bh2[0],bh2[1])),en=ep.clone().add(dv.normalize().multiplyScalar(len+ext));
+      var col=(k===2||k===4)?'#ffe08a':(k===3?'#ff8f7a':'#8ff0e8'),pa=snapLines[k].geometry.attributes.position.array;
+      pa[0]=ep.x;pa[1]=ep.y;pa[2]=ep.z;pa[3]=en.x;pa[4]=en.y;pa[5]=en.z;snapLines[k].geometry.attributes.position.needsUpdate=true;snapLines[k].material.color.set(col);
+      snapLabs[k].sp.position.copy(en);snapLabs[k].color=col;snapLabs[k].redraw();
+      snapEDots[k].position.copy(ep);snapEDots[k].material.color.set(col);snapELabs[k].sp.position.copy(ep).multiplyScalar(1.16);snapELabs[k].color=col;snapELabs[k].redraw();
+    }
+  }
+  snapLines.forEach(function(l){l.visible=true});snapLabs.forEach(function(l){l.sp.visible=true});snapEDots.forEach(function(s){s.visible=true});snapELabs.forEach(function(l){l.sp.visible=true});
+}
 
 /* ---------- sky ring (earth view) ---------- */
 var RR=6,sky={};
@@ -2155,6 +2209,7 @@ cv.style.touchAction='pan-y';
 /* ---------- UI ---------- */
 var tabs=$('#b3tabs');
 B.forEach(function(b){
+  if(b.id==='sun')return;
   var bt=document.createElement('button');bt.setAttribute('role','tab');bt.setAttribute('data-b',b.id);
   bt.style.setProperty('--bc',b.col);bt.textContent=b.g+' '+b.n;
   bt.addEventListener('click',function(){sel=b.id;if(view!=='earth'&&(b.id==='jup'||b.id==='sat')&&zoomMode==='in'){zoomMode='all';applyView(false);syncView()}syncTabs()});
@@ -2163,8 +2218,8 @@ B.forEach(function(b){
 function syncTabs(){Array.prototype.forEach.call(tabs.children,function(bt){bt.setAttribute('aria-selected',bt.getAttribute('data-b')===sel?'true':'false')});var sb=$('#s3stn');if(sb)sb.disabled=(sel==='sun')}
 var vb={tilt:$('#v3tilt'),top:$('#v3top'),earth:$('#v3earth')},zin=$('#z3in'),zall=$('#z3all'),cap=$('#s3cap');
 var CAPS={
-  tilt:'斜め上から見た太陽系（なぞると回転。Ctrlキーを押しながらホイール、または2本指で拡大）',
-  top:'北極の真上から見た太陽系（反時計回り＝東向き）',
+  tilt:'斜め上から見た太陽系（なぞると回転。Ctrlキーを押しながらホイール、または2本指で拡大）。①〜⑦の線は、同じ日に地球から天体を見た向きです（順行→逆行→順行）。③〜⑤の逆行のあいだ、線は逆向きに振れます。黄色い線は、太陽・地球・天体が一直線に並ぶ瞬間（追い抜き）です',
+  top:'北極の真上から見た太陽系（反時計回り＝東向き）。①〜⑦の線は、同じ日に地球から天体を見た向きです（順行→逆行→順行）。③〜⑤の逆行のあいだ、線は逆向きに振れます。黄色い線は、太陽・地球・天体が一直線に並ぶ瞬間（追い抜き）です',
   earth:'地球から見た空。リングは黄道（サインの帯）を一周に開いたもの。跡は上ほど過去で、青＝順行（東＝左へ）、赤＝逆行（西＝右へ戻る）、金の「留」＝向きが切り替わる日。留に近づくと、自動でゆっくり再生します（「次の留の日へ」で、その日まで飛べます）'
 };
 function syncView(){
@@ -2193,7 +2248,7 @@ sp.addEventListener('click',function(){playing=!playing;plabels()});
 $('#s3step1').addEventListener('click',function(){playing=false;d+=1;plabels()});
 $('#s3step30').addEventListener('click',function(){playing=false;d+=30;plabels()});
 if($('#s3reset'))$('#s3reset').addEventListener('click',function(){d=T0});
-$('#s3again').addEventListener('click',function(){sel='mar';syncTabs();d=(Date.UTC(2026,11,10)-Date.UTC(2000,0,1,12))/864e5;spd=10;spdEl.value=10;playing=true;plabels();setView('earth')});
+$('#s3again').addEventListener('click',function(){d=(window.__rfig?window.__rfig.startDay():(Date.UTC(2026,11,10)-Date.UTC(2000,0,1,12))/864e5);spd=10;spdEl.value=10;playing=true;plabels();setView('earth')});
 $('#s3stn').addEventListener('click',function(){
   var b=byId[sel];if(sel==='sun')return;playing=false;plabels();
   function nextStn(from){var d0=Math.floor(from)+1,m0=dailyMove(b,d0),j,m1;
@@ -2202,7 +2257,7 @@ $('#s3stn').addEventListener('click',function(){
     return null}
   var nx=nextStn(d),J0=Date.UTC(2000,0,1,12);
   /* Mars: the two figures below cover 2026-09-23 .. 2027-07-20; past that, go back to the first station */
-  if(sel==='mar'&&(nx===null||nx>(Date.UTC(2027,6,20)-J0)/864e5))nx=nextStn((Date.UTC(2026,8,23)-J0)/864e5);
+  var RG=window.__rfig&&window.__rfig.range();if(RG&&(nx===null||nx>RG[1]))nx=nextStn(RG[0]);
   if(nx!==null)d=nx;
 });
 spdEl.addEventListener('input',function(){spd=+spdEl.value;plabels()});
@@ -2246,6 +2301,19 @@ function update(){
     arcLab.sp.visible=gl>20;
     if(gl>20){var mp=P3(ar*1.9+cam.dist*.03,gl/2);arcLab.sp.position.set(ePos.x+mp.x,0,ePos.z+mp.z);arcLab.setText('東へ '+gl.toFixed(0)+'°')}
     sunL.sp.position.set(0,0,0);
+    (function(){
+      var aM=(sel==='sun')?1:EL[sel==='earth'?'ear':sel].a[0],ZR=Math.max(1.6,aM*1.35),i,zp=P3(ZR,gl),mv0=dailyMove(b,d);
+      zRing.scale.set(ZR,1,ZR);zTicks.scale.set(ZR,1,ZR);
+      for(i=0;i<12;i++)zLabs[i].sp.position.copy(P3(ZR*1.09,i*30+15));
+      setPos(zLine,new THREE.Vector3(0,0,0),zp);zLine.material.color.set(b.col);zLine.computeLineDistances();
+      zDot.position.copy(zp);zDotLab.sp.position.copy(P3(ZR*1.0,gl)).add(new THREE.Vector3(0,-cam.dist*.05,0));
+      zDotLab.setText(sel!=='sun'&&mv0<0?'空での位置（逆行中）':'空での位置');
+      var on=false;
+      if(sel!=='sun'){var hb=helio(b,d),bL=norm360(Math.atan2(hb[1],hb[0])/D),dl=((bL-eL+540)%360)-180;
+        if(Math.abs(dl)<5){on=true;var rm=Math.max(Math.hypot(hb[0],hb[1]),Math.hypot(eh[0],eh[1]));setPos(alLine,new THREE.Vector3(0,0,0),P3(rm,bL));alLab.sp.position.copy(P3(rm*.6,bL)).add(new THREE.Vector3(0,cam.dist*.05,0))}}
+      alLine.visible=on;alLab.sp.visible=on;
+    })();
+    snapUpd();
     /* camera */
     cam.el+= (cam.elT-cam.el)*.12;cam.dist+=(cam.distT-cam.dist)*.12;cam.az+=(cam.azT-cam.az)*.2;
     camera.position.set(cam.dist*Math.cos(cam.el)*Math.sin(cam.az),cam.dist*Math.sin(cam.el),cam.dist*Math.cos(cam.el)*Math.cos(cam.az));
@@ -2325,386 +2393,9 @@ function frame(now){
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-window.__s3={getD:function(){return d},setD:function(v){d=v},getP:function(){return playing},setP:function(v){playing=!!v;plabels()},getSpd:function(){return spd},setSpd:function(v){spd=v;spdEl.value=v;plabels()}};
+window.__s3={getSel:function(){return sel},getD:function(){return d},setD:function(v){d=v},getP:function(){return playing},setP:function(v){playing=!!v;plabels()},getSpd:function(){return spd},setSpd:function(v){spd=v;spdEl.value=v;plabels()}};
 })();
 </script>
-<script>
-(function(){
-"use strict";
-var $=function(s){return document.querySelector(s)};
-var wr=$('#s3wrap2'),cv=$('#sv32');if(!wr||!cv)return;
-function fail(msg){wr.innerHTML='<p style="padding:24px;color:#9ca7c4;font-size:14px">'+msg+'</p>';wr.style.aspectRatio='auto';
-  /* nothing to operate without the 3D view: hide its controls and the empty readout */
-  Array.prototype.forEach.call(wr.parentNode.querySelectorAll('.btabs,.sscale,.hctl,.hread,.s3cap'),function(e){e.style.display='none'})}
-if(!window.THREE){fail('3D表示を読み込めませんでした。下の「太陽系を上から見る」の図をご覧ください。');return}
-var renderer;
-try{renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});}catch(e){fail('この環境では3D表示を使えません。下の「太陽系を上から見る」の図をご覧ください。');return}
-var D=Math.PI/180,TAU=Math.PI*2;
-var SANS='"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI Symbol",sans-serif';
-var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-renderer.setClearColor(0x0a1226,1);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
 
-var B=[
- {id:'sun',n:'太陽',g:'☉',col:'#f3c65a'},
- {id:'mer',n:'水星',g:'☿',a:.387,P:87.969,L0:252.251,col:'#c9b8a4'},
- {id:'ven',n:'金星',g:'♀',a:.723,P:224.701,L0:181.980,col:'#f2a7c3'},
- {id:'mar',n:'火星',g:'♂',a:1.524,P:686.980,L0:355.453,col:'#f0805f'},
- {id:'jup',n:'木星',g:'♃',a:5.203,P:4332.59,L0:34.404,col:'#e3b95c'},
- {id:'sat',n:'土星',g:'♄',a:9.537,P:10759.22,L0:49.944,col:'#b9a9e8'}
-];
-var EARTH={id:'earth',n:'地球',g:'⊕',a:1,P:365.256,L0:100.464,col:'#63c7c2'};
-var byId={};B.forEach(function(b){byId[b.id]=b});
-var SIGNS=['牡羊座','牡牛座','双子座','蟹座','獅子座','乙女座','天秤座','蠍座','射手座','山羊座','水瓶座','魚座'];
-var SG=['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'].map(function(g){return g+'︎'});
-var sel='sun',view='tilt',zoomMode='in',playing=false,spd=10;
-var NOW=new Date(),T0=(Date.UTC(NOW.getFullYear(),NOW.getMonth(),NOW.getDate())-Date.UTC(2000,0,1,12))/864e5,d=T0;
 
-function norm360(a){return ((a%360)+360)%360}
-var EL={
- mer:{a:[0.38709927,0.00000037],e:[0.20563593,0.00001906],I:[7.00497902,-0.00594749],L:[252.25032350,149472.67411175],w:[77.45779628,0.16047689],O:[48.33076593,-0.12534081]},
- ven:{a:[0.72333566,0.00000390],e:[0.00677672,-0.00004107],I:[3.39467605,-0.00078890],L:[181.97909950,58517.81538729],w:[131.60246718,0.00268329],O:[76.67984255,-0.27769418]},
- ear:{a:[1.00000261,0.00000562],e:[0.01671123,-0.00004392],I:[-0.00001531,-0.01294668],L:[100.46457166,35999.37244981],w:[102.93768193,0.32327364],O:[0,0]},
- mar:{a:[1.52371034,0.00001847],e:[0.09339410,0.00007882],I:[1.84969142,-0.00813131],L:[-4.55343205,19140.30268499],w:[-23.94362959,0.44441088],O:[49.55953891,-0.29257343]},
- jup:{a:[5.20288700,-0.00011607],e:[0.04838624,-0.00013253],I:[1.30439695,-0.00183714],L:[34.39644051,3034.74612775],w:[14.72847983,0.21252668],O:[100.47390909,0.20469106]},
- sat:{a:[9.53667594,-0.00125060],e:[0.05386179,-0.00050991],I:[2.48599187,0.00193609],L:[49.95424423,1222.49362201],w:[92.59887831,-0.41897216],O:[113.66242448,-0.28867794]}
-};
-var PER={mer:87.969,ven:224.701,ear:365.256,mar:686.98,jup:4332.59,sat:10759.22};
-/* NASA JPL approximate Keplerian elements (valid 1800-2050) + precession to the equinox of date; t = days from J2000.0 */
-function helio(o,t){
-  var k=o.id==='earth'?'ear':o.id,T=t/36525,E=EL[k],g=function(q){return E[q][0]+E[q][1]*T};
-  var a=g('a'),e=g('e'),I=g('I')*D,L=g('L'),w=g('w'),O=g('O');
-  var M=(((L-w)%360+540)%360-180)*D,En=M+e*Math.sin(M),i;
-  for(i=0;i<8;i++)En+=(M-(En-e*Math.sin(En)))/(1-e*Math.cos(En));
-  var xp=a*(Math.cos(En)-e),yp=a*Math.sqrt(1-e*e)*Math.sin(En),wp=(w-O)*D,Om=O*D,c=Math.cos,sn=Math.sin;
-  var x=(c(wp)*c(Om)-sn(wp)*sn(Om)*c(I))*xp+(-sn(wp)*c(Om)-c(wp)*sn(Om)*c(I))*yp;
-  var y=(c(wp)*sn(Om)+sn(wp)*c(Om)*c(I))*xp+(-sn(wp)*sn(Om)+c(wp)*c(Om)*c(I))*yp;
-  var z=sn(wp)*sn(I)*xp+c(wp)*sn(I)*yp,pr=1.396971*T*D,cp=Math.cos(pr),sp_=Math.sin(pr);
-  return [x*cp-y*sp_,x*sp_+y*cp,z];
-}
-function orbitPts(id,t0,n){var r=[],i,h;for(i=0;i<n;i++){h=helio({id:id},t0+PER[id]*i/n);r.push([h[0],h[1]])}return r}
-function rad(o,t){var h=helio(o,t);return Math.hypot(h[0],h[1])}
-function geoLon(b,t){var e=helio(EARTH,t),p=b.id==='sun'?[0,0]:helio(b,t);return norm360(Math.atan2(p[1]-e[1],p[0]-e[0])/D)}
-function geoDist(b,t){var e=helio(EARTH,t),p=b.id==='sun'?[0,0]:helio(b,t);return Math.hypot(p[0]-e[0],p[1]-e[1])}
-function dailyMove(b,t){var a=geoLon(b,t+.5),z=geoLon(b,t-.5);return ((a-z+540)%360)-180}
-function dateStr(t){var dt=new Date(Date.UTC(2000,0,1,12)+t*864e5);return dt.getUTCFullYear()+'年'+(dt.getUTCMonth()+1)+'月'+dt.getUTCDate()+'日'}
-function signStr(lon){var i=Math.floor(lon/30)%12;return SG[i]+' '+SIGNS[i]+' '+Math.floor(lon%30)+'°'}
-/* orbit angle L (counter-clockwise seen from the north) -> scene xyz; y is north */
-function P3(r,L,y){return new THREE.Vector3(r*Math.cos(L*D),y||0,-r*Math.sin(L*D))}
-
-var scene=new THREE.Scene();
-var camera=new THREE.PerspectiveCamera(42,1,.05,200);
-var outG=new THREE.Group(),skyG=new THREE.Group();scene.add(outG);scene.add(skyG);skyG.visible=false;
-
-/* ---------- textures / sprites ---------- */
-var labels=[];
-function textSprite(str,color,size,bold){
-  var sp=new THREE.Sprite(new THREE.SpriteMaterial({transparent:true,depthTest:false,depthWrite:false}));
-  var o={sp:sp,str:str,color:color,k:size,bold:bold,aspect:1};
-  o.redraw=function(){
-    var c=document.createElement('canvas'),x=c.getContext('2d'),f=(o.bold?'700 ':'500 ')+'40px '+SANS;
-    x.font=f;var w=Math.ceil(x.measureText(o.str).width)+24;c.width=w;c.height=64;
-    x.font=f;x.textAlign='center';x.textBaseline='middle';x.lineJoin='round';
-    x.strokeStyle='rgba(7,11,22,.85)';x.lineWidth=7;x.strokeText(o.str,w/2,34);
-    x.fillStyle=o.color;x.fillText(o.str,w/2,34);
-    var t=new THREE.CanvasTexture(c);t.minFilter=THREE.LinearFilter;
-    if(sp.material.map)sp.material.map.dispose();
-    sp.material.map=t;sp.material.needsUpdate=true;o.aspect=w/64;
-  };
-  o.setText=function(s){if(s!==o.str){o.str=s;o.redraw()}};
-  o.redraw();labels.push(o);sp.renderOrder=10;return o;
-}
-function dotSprite(color,k,ring){
-  var c=document.createElement('canvas');c.width=c.height=128;var x=c.getContext('2d');
-  if(ring){x.strokeStyle=color;x.lineWidth=7;x.beginPath();x.arc(64,64,52,0,TAU);x.stroke()}
-  else{
-    var g=x.createRadialGradient(64,64,4,64,64,60);g.addColorStop(0,color);g.addColorStop(.42,color);g.addColorStop(.46,'rgba(255,255,255,.0)');g.addColorStop(1,'rgba(255,255,255,0)');
-    x.fillStyle=g;x.beginPath();x.arc(64,64,60,0,TAU);x.fill();
-  }
-  var t=new THREE.CanvasTexture(c);
-  var sp=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthTest:false,depthWrite:false}));
-  sp.userData.k=k;sp.renderOrder=8;return sp;
-}
-function glowSprite(k){
-  var c=document.createElement('canvas');c.width=c.height=256;var x=c.getContext('2d');
-  var g=x.createRadialGradient(128,128,4,128,128,126);
-  g.addColorStop(0,'rgba(255,240,170,1)');g.addColorStop(.16,'rgba(255,214,110,.95)');g.addColorStop(.32,'rgba(255,190,80,.35)');g.addColorStop(1,'rgba(255,190,80,0)');
-  x.fillStyle=g;x.fillRect(0,0,256,256);
-  var sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthTest:false,depthWrite:false,blending:THREE.AdditiveBlending}));
-  sp.userData.k=k;sp.renderOrder=7;return sp;
-}
-var scaled=[]; /* sprites with constant screen height: {sp, k, aspect fn} */
-function addDot(sp,parent){parent.add(sp);scaled.push(sp);return sp}
-function addLabel(o,parent){parent.add(o.sp);scaled.push(o.sp);o.sp.userData.lab=o;o.sp.userData.k=o.k;return o}
-
-function lineLoop(r,color,op,seg,y){
-  var pts=[];for(var i=0;i<seg;i++){var a=i/seg*TAU;pts.push(new THREE.Vector3(r*Math.cos(a),y||0,-r*Math.sin(a)))}
-  var g=new THREE.BufferGeometry().setFromPoints(pts);
-  return new THREE.LineLoop(g,new THREE.LineBasicMaterial({color:color,transparent:true,opacity:op}));
-}
-
-/* ---------- outside view objects ---------- */
-var bodyObj={};
-B.concat([EARTH]).forEach(function(b){
-  if(b.a){var pts=orbitPts(b.id==='earth'?'ear':b.id,T0,200).map(function(q){return P3(Math.hypot(q[0],q[1]),norm360(Math.atan2(q[1],q[0])/D))});outG.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:b.col,transparent:true,opacity:.42})))}
-});
-var sunG=glowSprite(.11);outG.add(sunG);scaled.push(sunG);
-var sunL=addLabel(textSprite('太陽','#f3c65a',.034,true),outG);
-B.slice(1).concat([EARTH]).forEach(function(b){
-  var dot=addDot(dotSprite(b.col,b.id==='earth'?.026:.02),outG);
-  var lab=addLabel(textSprite(b.g+b.n,b.col,.032,true),outG);
-  bodyObj[b.id]={dot:dot,lab:lab};
-});
-var selRing=addDot(dotSprite('#ffffff',.05,true),outG);
-/* star direction reference line + label */
-var starGeo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(1,0,0)]);
-var starLine=new THREE.Line(starGeo,new THREE.LineDashedMaterial({color:0xfff4c8,dashSize:.12,gapSize:.1,transparent:true,opacity:.8}));
-starLine.computeLineDistances();outG.add(starLine);
-var starLab=addLabel(textSprite('牡羊座0°','#fff0b8',.03,true),outG);
-/* sight line */
-var sightGeo=new THREE.BufferGeometry();sightGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(6),3));
-var sight=new THREE.Line(sightGeo,new THREE.LineBasicMaterial({color:0xffffff}));outG.add(sight);
-/* angle arc */
-var ARC=48;
-var arcGeo=new THREE.BufferGeometry();arcGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array((ARC+1)*3),3));
-var arc=new THREE.Line(arcGeo,new THREE.LineBasicMaterial({color:0xf0805f}));outG.add(arc);
-var arcLab=addLabel(textSprite('東へ 0°','#f0805f',.034,true),outG);
-
-/* ---------- sky ring (earth view) ---------- */
-var RR=6,sky={};
-skyG.add(lineLoop(RR,0x9ca7c4,.7,240));
-var tickPts=[];
-for(var i=0;i<72;i++){var L=i*5,long=(i%6===0),h=long?.28:.12;var p1=P3(RR,L,-h),p2=P3(RR,L,h);tickPts.push(p1,p2)}
-skyG.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(tickPts),new THREE.LineBasicMaterial({color:0x9ca7c4,transparent:true,opacity:.75})));
-for(var i=0;i<12;i++){
-  var l1=textSprite(SG[i]+' '+SIGNS[i],'#cbd3ea',.03,false);l1.sp.position.copy(P3(RR,i*30+15,-1.15));addLabel(l1,skyG);
-  var l2=textSprite((i*30)+'°','#7f8bad',.024,false);l2.sp.position.copy(P3(RR,i*30,-.6));addLabel(l2,skyG);
-}
-B.forEach(function(b){
-  var dot=addDot(dotSprite(b.col,.024),skyG),lab=addLabel(textSprite(b.g+b.n,b.col,.032,true),skyG);
-  sky[b.id]={dot:dot,lab:lab};
-});
-var skySel=addDot(dotSprite('#ffffff',.055,true),skyG);
-/* trail of the chosen body: older points are drawn higher, so back-and-forth motion shows as a zigzag */
-var TN=170,trGeo=new THREE.BufferGeometry(),trPos=new Float32Array(TN*3),trCol=new Float32Array(TN*3);
-trGeo.setAttribute('position',new THREE.BufferAttribute(trPos,3));trGeo.setAttribute('color',new THREE.BufferAttribute(trCol,3));
-var trail=new THREE.Points(trGeo,new THREE.PointsMaterial({size:5,sizeAttenuation:false,vertexColors:true,transparent:true,depthTest:false,depthWrite:false}));
-trail.renderOrder=6;trail.frustumCulled=false;skyG.add(trail);
-var stLab=[0,1,2].map(function(){var o=addLabel(textSprite('留','#ffe08a',.03,true),skyG);o.sp.visible=false;return o});
-
-/* ---------- camera ---------- */
-var cam={az:.35,el:.62,dist:6.2,azT:.35,elT:.62,distT:6.2,yaw:0};
-function applyView(snap){
-  if(view==='top'){cam.elT=1.52}else if(view==='tilt'){cam.elT=.62}
-  if(zoomMode==='in'){cam.distT=6.2}else{cam.distT=30}
-  if(snap){cam.el=cam.elT;cam.dist=cam.distT;cam.az=cam.azT}
-}
-var drag=null,ptrs={},pinch=0;
-cv.style.cursor='grab';
-cv.addEventListener('pointerdown',function(e){
-  if(view==='earth')return;
-  ptrs[e.pointerId]={x:e.clientX,y:e.clientY};pinch=0;
-  drag={id:e.pointerId,x:e.clientX,y:e.clientY,touch:e.pointerType!=='mouse'};
-  try{cv.setPointerCapture(e.pointerId)}catch(_){}
-  cv.style.cursor='grabbing';
-});
-cv.addEventListener('pointermove',function(e){
-  var pp=ptrs[e.pointerId];if(pp){pp.x=e.clientX;pp.y=e.clientY}
-  var pk=Object.keys(ptrs);
-  if(pk.length===2){
-    /* two fingers: pinch to zoom */
-    var pa=ptrs[pk[0]],pb=ptrs[pk[1]],pd=Math.hypot(pa.x-pb.x,pa.y-pb.y);
-    if(pinch&&pd>0){cam.distT=Math.max(3,Math.min(48,cam.distT*pinch/pd));if(zoomMode){zoomMode='';syncView()}}
-    pinch=pd;if(drag){drag.x=e.clientX;drag.y=e.clientY}return;
-  }
-  if(!drag||e.pointerId!==drag.id)return;
-  var dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;
-  cam.azT-=dx*.006;cam.az=cam.azT;
-  if(!drag.touch){cam.elT=Math.max(.12,Math.min(1.52,cam.elT+dy*.006));cam.el=cam.elT;
-    if(view!=='tilt'&&view!=='top')view='tilt';
-    if(cam.elT<1.5&&view==='top'){view='tilt';syncView()}}
-});
-function endDrag(e){delete ptrs[e.pointerId];pinch=0;if(drag&&e.pointerId===drag.id){drag=null;cv.style.cursor=view==='earth'?'default':'grab'}}
-cv.addEventListener('pointerup',endDrag);cv.addEventListener('pointercancel',endDrag);
-cv.addEventListener('wheel',function(e){
-  if(view==='earth'||!(e.ctrlKey||e.metaKey))return;e.preventDefault();
-  cam.distT=Math.max(3,Math.min(48,cam.distT*Math.exp(e.deltaY*.0012)));
-  zoomMode='';syncView();
-},{passive:false});
-cv.style.touchAction='pan-y';
-
-/* ---------- UI ---------- */
-var tabs=$('#b3tabs2');
-B.forEach(function(b){if(b.id==='mar')return;
-  var bt=document.createElement('button');bt.setAttribute('role','tab');bt.setAttribute('data-b',b.id);
-  bt.style.setProperty('--bc',b.col);bt.textContent=b.g+' '+b.n;
-  bt.addEventListener('click',function(){sel=b.id;if(view!=='earth'&&(b.id==='jup'||b.id==='sat')&&zoomMode==='in'){zoomMode='all';applyView(false);syncView()}syncTabs()});
-  tabs.appendChild(bt);
-});
-function syncTabs(){Array.prototype.forEach.call(tabs.children,function(bt){bt.setAttribute('aria-selected',bt.getAttribute('data-b')===sel?'true':'false')});var sb=$('#s3stn2');if(sb)sb.disabled=(sel==='sun')}
-var vb={tilt:$('#v3tilt2'),top:$('#v3top2'),earth:$('#v3earth2')},zin=$('#z3in2'),zall=$('#z3all2'),cap=$('#s3cap2');
-var CAPS={
-  tilt:'斜め上から見た太陽系（なぞると回転。Ctrlキーを押しながらホイール、または2本指で拡大）',
-  top:'北極の真上から見た太陽系（反時計回り＝東向き）',
-  earth:'地球から見た空。リングは黄道（サインの帯）を一周に開いたもの。跡は上ほど過去で、青＝順行（東＝左へ）、赤＝逆行（西＝右へ戻る）、金の「留」＝向きが切り替わる日。留に近づくと、自動でゆっくり再生します（「次の留の日へ」で、その日まで飛べます）'
-};
-function syncView(){
-  Object.keys(vb).forEach(function(k){vb[k].setAttribute('aria-pressed',k===view?'true':'false')});
-  zin.setAttribute('aria-pressed',zoomMode==='in'?'true':'false');zall.setAttribute('aria-pressed',zoomMode==='all'?'true':'false');
-  zin.disabled=zall.disabled=(view==='earth');
-  cap.textContent=CAPS[view];
-  outG.visible=(view!=='earth');skyG.visible=(view==='earth');trail.visible=(view==='earth');
-  cv.style.cursor=view==='earth'?'default':'grab';
-  camera.fov=fovNow();camera.updateProjectionMatrix();
-}
-function setView(v){
-  view=v;
-  if(v==='earth'){cam.yaw=Math.atan2(-Math.sin(geoLon(byId[sel],d)*D),Math.cos(geoLon(byId[sel],d)*D));cam.yawT=cam.yaw;cam.selFor=sel}
-  else{applyView(false)}
-  syncView();
-}
-vb.tilt.addEventListener('click',function(){setView('tilt')});
-vb.top.addEventListener('click',function(){setView('top')});
-vb.earth.addEventListener('click',function(){setView('earth')});
-zin.addEventListener('click',function(){zoomMode='in';applyView(false);syncView()});
-zall.addEventListener('click',function(){zoomMode='all';applyView(false);syncView()});
-var sp=$('#s3play2'),spdEl=$('#s3spd2'),spdOut=$('#s3spdOut2'),rd=$('#s3read2');
-function plabels(){sp.textContent=playing?'一時停止':'再生';spdOut.textContent='1秒で'+spd+'日'}
-sp.addEventListener('click',function(){playing=!playing;plabels()});
-$('#s3step12').addEventListener('click',function(){playing=false;d+=1;plabels()});
-$('#s3step302').addEventListener('click',function(){playing=false;d+=30;plabels()});
-$('#s3reset2').addEventListener('click',function(){d=T0});
-$('#s3stn2').addEventListener('click',function(){
-  var b=byId[sel];if(sel==='sun')return;playing=false;plabels();
-  function nextStn(from){var d0=Math.floor(from)+1,m0=dailyMove(b,d0),j,m1;
-    for(j=1;j<3000;j++){m1=dailyMove(b,d0+j);if(m0*m1<0||(m1===0&&j>1)){var lo=d0+j-1,hi=d0+j,k;for(k=0;k<14;k++){var mid=(lo+hi)/2;if(dailyMove(b,mid)*m0>0)lo=mid;else hi=mid}return (lo+hi)/2}
-      m0=m1}
-    return null}
-  var nx=nextStn(d),J0=Date.UTC(2000,0,1,12);
-  /* Mars: the two figures below cover 2026-09-23 .. 2027-07-20; past that, go back to the first station */
-  if(sel==='mar'&&(nx===null||nx>(Date.UTC(2027,6,20)-J0)/864e5))nx=nextStn((Date.UTC(2026,8,23)-J0)/864e5);
-  if(nx!==null)d=nx;
-});
-spdEl.addEventListener('input',function(){spd=+spdEl.value;plabels()});
-function readout(){
-  var b=byId[sel],gl=geoLon(b,d),mv=dailyMove(b,d),gd=geoDist(b,d),t;
-  t=dateStr(d)+'ごろ　'+b.n+'：地球から '+gd.toFixed(2)+(b.id==='sun'?'。':'、太陽から '+rad(b,d).toFixed(2)+'。');
-  t+=' 空では '+signStr(gl)+' あたり（牡羊座0°から東へ '+gl.toFixed(0)+'°）。'+(Math.abs(mv)<.005?'1日の動きは0.01°未満で、ほぼ止まって見えます（留）。':'1日に '+(mv>=0?'東へ ':'西へ ')+Math.abs(mv).toFixed(2)+'°'+(mv<0?'（逆行中）':'')+'動いています。');
-  if(Math.abs(mv)<.03&&b.id!=='sun')t+=' いまは留のあたりです。前後の数日は、ほとんど動きません（跡の点が、かたまっています）。';
-  if(rd.textContent!==t)rd.textContent=t;
-}
-
-/* ---------- resize ---------- */
-function fovNow(){var w=wr.clientWidth,h=wr.clientHeight,f=view==='earth'?58:42;return (w&&h&&w/h>1.5)?Math.max(.4,h/500)*f:f}
-function resize(){
-  var w=wr.clientWidth,h=wr.clientHeight;if(!w||!h)return;
-  renderer.setSize(w,h,false);camera.aspect=w/h;camera.fov=fovNow();camera.updateProjectionMatrix();
-}
-if(window.ResizeObserver)new ResizeObserver(resize).observe(wr);else window.addEventListener('resize',resize);
-resize();
-
-/* ---------- frame ---------- */
-var tmp=new THREE.Vector3();
-function setPos(line,a,b){var p=line.geometry.attributes.position.array;p[0]=a.x;p[1]=a.y;p[2]=a.z;p[3]=b.x;p[4]=b.y;p[5]=b.z;line.geometry.attributes.position.needsUpdate=true}
-function update(){
-  var eh=helio(EARTH,d),eL=norm360(Math.atan2(eh[1],eh[0])/D),ePos=P3(Math.hypot(eh[0],eh[1]),eL);
-  var b=byId[sel],gl=geoLon(b,d);
-  if(view!=='earth'){
-    B.slice(1).forEach(function(q){var h=helio(q,d),L=norm360(Math.atan2(h[1],h[0])/D),p=P3(Math.hypot(h[0],h[1]),L),o=bodyObj[q.id];
-      o.dot.position.copy(p);o.lab.sp.position.copy(p);o.lab.sp.userData.off=1}) ;
-    bodyObj.earth.dot.position.copy(ePos);bodyObj.earth.lab.sp.position.copy(ePos);
-    var tp=(sel==='sun')?new THREE.Vector3(0,0,0):bodyObj[sel].dot.position.clone();
-    selRing.position.copy(tp);selRing.visible=(sel!=='sun');
-    setPos(sight,ePos,tp);sight.material.color.set(b.col);
-    var sl=cam.dist*.22;starLine.position.copy(ePos);starLine.scale.set(sl,1,1);starLine.computeLineDistances();
-    starLab.sp.position.copy(ePos).add(new THREE.Vector3(sl*.55,0,cam.dist*.05));
-    /* angle arc around earth, radius follows zoom */
-    var ar=Math.max(.5,cam.dist*.045),ap=arc.geometry.attributes.position.array,n=0;
-    var glv=gl>0.5?gl:0.0001;
-    for(var i=0;i<=ARC;i++){var a=i/ARC*glv,pp=P3(ar,a);ap[n++]=ePos.x+pp.x;ap[n++]=pp.y;ap[n++]=ePos.z+pp.z}
-    arc.geometry.attributes.position.needsUpdate=true;arc.visible=gl>.5;
-    arcLab.sp.visible=gl>20;
-    if(gl>20){var mp=P3(ar*1.9+cam.dist*.03,gl/2);arcLab.sp.position.set(ePos.x+mp.x,0,ePos.z+mp.z);arcLab.setText('東へ '+gl.toFixed(0)+'°')}
-    sunL.sp.position.set(0,0,0);
-    /* camera */
-    cam.el+= (cam.elT-cam.el)*.12;cam.dist+=(cam.distT-cam.dist)*.12;cam.az+=(cam.azT-cam.az)*.2;
-    camera.position.set(cam.dist*Math.cos(cam.el)*Math.sin(cam.az),cam.dist*Math.sin(cam.el),cam.dist*Math.cos(cam.el)*Math.cos(cam.az));
-    camera.up.set(0,1,0);camera.lookAt(0,0,0);
-  }else{
-    /* labels of bodies that are close together go on different heights */
-    var lastAt=[-999,-999,-999];
-    B.map(function(q){return {q:q,g:geoLon(q,d)}}).sort(function(a,b){return a.g-b.g}).forEach(function(it){
-      var p=P3(RR,it.g,0),o=sky[it.q.id],lv=0;
-      while(lv<2&&it.g-lastAt[lv]<11)lv++;
-      lastAt[lv]=it.g;
-      o.dot.position.copy(p);o.lab.sp.position.copy(p).add(new THREE.Vector3(0,.55+lv*.5,0));
-    });
-    skySel.position.copy(sky[sel].dot.position);
-    (function(){
-      var cd=new THREE.Color('#8fc6ff'),cr=new THREE.Color('#ff5d5d'),k,p,f,c,Ls=[],mv=[],ns=0,sgn;
-      var dd=Math.floor(d);for(k=0;k<=TN;k++)Ls.push(geoLon(b,dd-k));
-      for(k=0;k<TN;k++)mv.push(((Ls[k]-Ls[k+1]+540)%360)-180);
-      for(k=0;k<TN;k++){
-        p=P3(RR,Ls[k],.15+k*.012);f=1-k/TN*.7;c=mv[k]<0?cr:cd;
-        trPos[k*3]=p.x;trPos[k*3+1]=p.y;trPos[k*3+2]=p.z;trCol[k*3]=c.r*f;trCol[k*3+1]=c.g*f;trCol[k*3+2]=c.b*f;
-        if(k>0&&((mv[k]<0)!==(mv[k-1]<0))&&ns<3){
-          var o=stLab[ns++],eastEnd=Ls[k]>Ls[k-1]&&(k+1>=TN||Ls[k]>Ls[k+1]),q2=P3(RR,Ls[k]+(wr.clientWidth<640?0:(eastEnd?7:-7)),.15+k*.012+.34+(k<40?1.25:0));
-          o.sp.visible=true;o.sp.position.copy(q2);o.setText('留（'+dateStr(dd-k).replace(/^\d+年/,'')+'ごろ）');
-        }
-      }
-      for(;ns<3;ns++)stLab[ns].sp.visible=false;
-      trGeo.attributes.position.needsUpdate=true;trGeo.attributes.color.needsUpdate=true;
-      sky[sel].lab.setText(b.g+b.n+(mv[0]<0?'（逆行中）':''));
-    })();
-    /* the view stays put so the body is seen moving along the ring; it re-centres only
-       when another body is chosen or the body drifts about 20 degrees from the centre */
-    var want=Math.atan2(-Math.sin(gl*D),Math.cos(gl*D));
-    if(cam.yawT==null||cam.selFor!==sel){cam.yawT=want;cam.selFor=sel}
-    if(Math.abs(((want-cam.yawT+Math.PI*3)%TAU)-Math.PI)>.35)cam.yawT=want;
-    var df=((cam.yawT-cam.yaw+Math.PI*3)%TAU)-Math.PI;
-    cam.yaw+=df*.12;
-    camera.position.set(0,.7,0);
-    camera.up.set(0,1,0);
-    var yT=(wr.clientWidth/wr.clientHeight>1.5)?.7+RR*Math.tan(-Math.atan(.7/RR)+.5*camera.fov*D/2):-.1;
-    camera.lookAt(Math.cos(cam.yaw)*RR,yT,Math.sin(cam.yaw)*RR);
-  }
-  /* constant screen size */
-  var fovk=Math.tan(camera.fov*D/2)*2*Math.max(.9,Math.min(2.4,620/Math.max(200,wr.clientHeight)));
-  for(var j=0;j<scaled.length;j++){
-    var s=scaled[j];if(!s.parent||!s.parent.visible)continue;
-    var dist=camera.position.distanceTo(s.getWorldPosition(tmp)),h=dist*fovk*s.userData.k*(s.userData.lab?1:1.3);
-    var asp=s.userData.lab?s.userData.lab.aspect:1;
-    s.scale.set(h*asp,h,1);
-    if(s.userData.lab&&s.userData.off){/* nudge labels up in screen space */}
-  }
-}
-/* label offsets: place each body label slightly above its dot in outside view */
-function nudge(){
-  if(view==='earth')return;
-  var fovk=Math.tan(camera.fov*D/2)*2;
-  B.slice(1).concat([EARTH]).forEach(function(q){
-    var o=bodyObj[q.id],dist=camera.position.distanceTo(o.dot.position),off=dist*fovk*.045;
-    o.lab.sp.position.copy(o.dot.position);o.lab.sp.position.y+=off;
-  });
-  sunL.sp.position.set(0,dist2(0)*0+camera.position.length()*fovk*.06,0);
-}
-function dist2(x){return x}
-var visible=true;
-if(window.IntersectionObserver)new IntersectionObserver(function(es){visible=es[0].isIntersecting},{rootMargin:'80px'}).observe(wr);
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){labels.forEach(function(o){o.redraw()})});
-syncTabs();syncView();applyView(true);plabels();setView('earth');
-sel='mer';syncTabs();d=(Date.now()-Date.UTC(2000,0,1,12))/864e5;setView('earth');
-var last=performance.now();
-function frame(now){
-  var dt=Math.min(.05,(now-last)/1000);last=now;
-  if(playing){var fac=1;if(view==='earth'&&sel!=='sun'){var TY={mer:1.2,ven:.9,mar:.45,jup:.15,sat:.08};fac=Math.max(.12,Math.min(1,Math.abs(dailyMove(byId[sel],d))/((TY[sel]||.3)*.4)))}d+=spd*dt*fac}
-  if(visible){
-    update();nudge();readout();
-    renderer.render(scene,camera);
-  }
-  requestAnimationFrame(frame);
-}
-requestAnimationFrame(frame);
-})();
-</script>
 </body></html>
