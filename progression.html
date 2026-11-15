@@ -51,6 +51,7 @@ td.n{font-variant-numeric:tabular-nums}
 ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
 .leg{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13px;color:var(--mute)}
 .leg span{display:inline-flex;align-items:center;gap:6px}
+#elLeg>span{align-items:flex-start}#elLeg .sw{flex:none;margin-top:3px}#elLeg .t{display:block}
 .sw{display:inline-block;width:14px;height:14px;border-radius:50%}
 </style>
 </head>
@@ -107,7 +108,7 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
       <div class="wheel"><canvas id="cv" aria-label="黄道の12サインの輪。出生時の位置と、プログレスした位置を示す"></canvas></div>
       <div class="row" id="fc" style="margin-top:10px" role="group" aria-label="注目する天体"></div>
       <p class="hread" id="fread" style="margin-top:10px;min-height:3.2em;font-size:14px"></p>
-      <div class="leg" id="elLeg" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 16px"><span><i class="sw" style="background:#f4785c"></i><b>火</b>：熱・乾　意志・行動・情熱<br><small class="mute">牡羊・獅子・射手</small></span><span><i class="sw" style="background:#62c88c"></i><b>地</b>：冷・乾　現実・安定・物質<br><small class="mute">牡牛・乙女・山羊</small></span><span><i class="sw" style="background:#e8c85c"></i><b>風</b>：熱・湿　思考・言葉・つながり<br><small class="mute">双子・天秤・水瓶</small></span><span><i class="sw" style="background:#5c96f0"></i><b>水</b>：冷・湿　感情・共感・無意識<br><small class="mute">蟹・蠍・魚</small></span></div>
+      <div class="leg" id="elLeg" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 16px"><span><i class="sw" style="background:#f4785c"></i><span class="t"><b>火</b>：熱・乾　意志・行動・情熱<br><small class="mute">牡羊・獅子・射手</small></span></span><span><i class="sw" style="background:#62c88c"></i><span class="t"><b>地</b>：冷・乾　現実・安定・物質<br><small class="mute">牡牛・乙女・山羊</small></span></span><span><i class="sw" style="background:#e8c85c"></i><span class="t"><b>風</b>：熱・湿　思考・言葉・つながり<br><small class="mute">双子・天秤・水瓶</small></span></span><span><i class="sw" style="background:#5c96f0"></i><span class="t"><b>水</b>：冷・湿　感情・共感・無意識<br><small class="mute">蟹・蠍・魚</small></span></span></div>
       <div class="leg" style="margin-top:10px"><span><i class="sw" style="background:#e3b95c"></i><b>外の輪（金色）＝プログレス</b>：塗りの丸</span><span><i class="sw" style="border:2px solid #82a5ff"></i><b>内の輪（青）＝出生</b>：輪郭だけの丸</span><span>点の位置が本当の度数。丸は、その点から真っすぐ内か外にずらしています（サイン／ハウスの枠から出ません）。混み合う所は名前を省いて記号だけにしています。天体ボタンを押すと名前と度数が出ます</span><span>天体を選ぶと、出生→プログレスの矢印と、1°以内のアスペクトが出ます</span></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
