@@ -328,10 +328,10 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
 
   <section class="card how-card" aria-label="逆行を見る">
     <h2>逆行（Retrograde）は、追い越しのときに起こる</h2>
-    <p class="lede2"><b>追い越されるほうが、いっとき後ろへ戻って見える。それが逆行です。</b>本当に後ろへ進むのではなく、見かけだけです。下のタブで天体を切り替えられます（最初は火星の例）。</p>
+    <p class="lede2"><b>追い越しのとき、相手の天体が、いっとき後ろへ戻って見える。それが逆行です。</b>本当に後ろへ進むのではなく、見かけだけです。下のタブで天体を切り替えられます（最初は火星の例）。</p>
     <details class="fold"><summary>くわしい説明とたとえ</summary>
       <p class="lede2">火星・木星・土星は、内側を速く回る地球が追い越すとき。水星・金星は、内側を速く回る天体が地球を追い越すときです。どちらも東向きに進んでいて、追い越しのあいだだけ、見かけの向きが逆になります。</p>
-      <p class="lede2"><b>たとえ：</b>電車で、となりの線路をゆっくり走る電車を追い越すとき、相手は、遠くの山に対して、いちど後ろへ下がって見えます。「遠くの山」が星空、「追い越す電車」が地球です。</p>
+      <p class="lede2"><b>たとえ：</b>電車で、となりの線路をゆっくり走る電車を追い越すとき、相手は、遠くの山に対して、いちど後ろへ下がって見えます。「遠くの山」が星空、「追い越す電車」が地球です。水星と金星は、地球より内側を速く回っているので、逆に、地球を追い越していく水星・金星のほうが、後ろへ戻って見えます。</p>
       <p class="lede2"><b>留（りゅう）：</b>惑星自身の東向きの動きと、地球が動くことで惑星が西へずれて見える動きが、ちょうど釣り合って、空での位置が変わらない日です。惑星が止まっているのではなく、見える向きが数日ほとんど変わらないだけです。</p>
     </details>
   <div class="sub3d" id="how3d" role="group" aria-label="逆行を地球から見た空で見る">
@@ -370,7 +370,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
     </div>
       <div class="rbox rg"><canvas id="rg" aria-label="地球から見た天体の、星に対する位置の時間変化"></canvas></div>
     </div>
-    <p class="fine">①〜⑦は、同じ日の地球・天体・壁の上の影です（白丸の星は実在の星で、東西の位置だけを並べています）。木星・土星は遠いので、距離を平方根で縮めて描いています（線の向きは、実際とは少し違います）。</p>
+    <p class="fine">①〜⑦は、同じ日の地球・天体・壁の上の影です（白丸の星は実在の星で、東西の位置だけを並べています）。木星・土星は遠いので、距離を平方根で縮めて描いています（線の向きは、実際とは少し違います）。地球から見た空の図は、東西の位置（黄経）だけを描いています。実際の空では、南北にも少しずれるので（この例では、火星は最大約4.5°北、金星は最大約7.6°南）、道筋は、輪やジグザグの形になります。</p>
     <p class="hread" id="s3read"></p>
 <div class="s3cap" id="s3cap"></div>
     
@@ -468,7 +468,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
       <li><b>第二運動の速さ</b>　月は1日に約13°、太陽は約1°、火星は平均で約0.5°、木星は約0.08°、土星は約0.03°です。向きは、どれも西から東です。</li>
       <li><b>縮尺</b>　実際と違います。実際の月までの距離は、地球の半径の約60倍です。星は無限に遠いとして、向きだけを描いています。月は地球に近すぎて、太陽系の図では地球と重なるので、「地球の外から見ると」の図で描きました。</li>
       <li><b>星の壁</b>　遠い星々は、ずっと向こうにあるので、「地球から見た向き」だけで壁の上の位置が決まります。壁は、その向きの角度を横にならべた目盛りです。金の点（火星の影）は、地球から火星を見た向きの位置です。</li>
-      <li><b>火星の逆行</b>　約2〜3か月です。ここは2027年2月ごろの追い越しの例で、始まりと終わりの日付は、実際と1日以内のずれがあることがあります。</li>
+      <li><b>火星の逆行</b>　約2〜3か月です。ここは2027年2月ごろの追い越しの例で、始まりと終わりの日付は、実際と1日以内のずれがあることがあります。日付は世界時（日本時間より9時間おそい）なので、日本では、1日あとの日付になることがあります。</li>
       <li><b>軌道と位置のずれ</b>　軌道は楕円で、NASA（JPL）の近似軌道要素から計算しています。実際の位置とのずれは、2026〜2028年ごろなら0.1°以下です。サインの境目のごく近くの日だけ、実際のサインと違って出ることがあります。正確な位置は天文暦で確認してください。軌道面の傾きは、同じ平面にそろえています。</li>
     </ul>
     <details class="gloss"><summary>天文に詳しい方へ：前提と簡略化</summary>
@@ -478,7 +478,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
       <li><b>第二運動（Secondary Motion）</b>　天体が黄道に沿って、西から東へ進む運動です。太陽の見かけの年周運動も含みます。黄道は天の赤道に対して約23.4°傾いています（黄道傾斜）。</li>
       <li><b>速さ</b>　月は平均で1日に約13.2°（恒星月27.3日）、太陽は約0.986°です。実際は楕円軌道のため、日によって月は約12〜15°、太陽は約0.95〜1.02°と変わります。</li>
       <li><b>月が遅れる時間</b>　星に対しては約53分、時計の上では約50分です。どちらも月の平均的な遅れで、実際は、その日の月の動きによって変わります。</li>
-      <li><b>惑星の位置</b>　3Dとホロスコープの図の惑星は、仕組みを見せるための例の位置です。実際の日付ではありません。太陽系と逆行の図は、NASA（JPL）の近似軌道要素（2050年まで有効）による計算で、同じ平面の上に描いています。実際の位置とのずれは0.2°以内です。</li>
+      <li><b>惑星の位置</b>　3Dとホロスコープの図の惑星は、仕組みを見せるための例の位置です。実際の日付ではありません。太陽系と逆行の図は、NASA（JPL）の近似軌道要素（2050年まで有効）による計算で、同じ平面の上に描いています。実際の位置とのずれは、2026〜2028年は0.1°以下、2050年までは0.2°以内です。</li>
       <li><b>恒星（Fixed Stars）</b>　スピカは、歳差（Precession、春分点の移動）を入れた現在の位置で、天秤座24°ごろです。黄緯（黄道からの南北のずれ）は、約2°南ですが、図では黄道の上に置いています。</li>
       <li><b>観測地</b>　地上から見た図は、日本の中緯度（北緯35°）の空の例です。</li>
     </ul>
@@ -1765,7 +1765,7 @@ var BODIES={
  ven:{n:'金星',col:'#f2a7c3',out:false,N:170},
  mer:{n:'水星',col:'#c9b8a4',out:false,N:100}
 };
-var CUR='mar',NAME='火星',BCOL='#f0805f',OVT='地球が火星を追い越し',OUT=true,START=0,N=300,ARR=[],ymin=0,ymax=1,stations=[],LAT=[],lonMin=0,lonMax=1,lonMid=0,wLo=0,wHi=1,STARS=[],SNAP=[],STD={},RMAXD=1.55;
+var STW={mer:1,ven:2,mar:3,jup:3,sat:3},CUR='mar',NAME='火星',BCOL='#f0805f',OVT='地球が火星を追い越し',OUT=true,START=0,N=300,ARR=[],ymin=0,ymax=1,stations=[],LAT=[],lonMin=0,lonMax=1,lonMid=0,wLo=0,wHi=1,STARS=[],SNAP=[],STD={},RMAXD=1.55;
 var T0b=(Date.UTC(2026,9,26)-Date.UTC(2000,0,1,12))/864e5;
 function cmpR(r){return (OUT&&M.id!=='mar')?Math.sqrt(r):r}
 /* real bright stars near the ecliptic (J2000 RA/Dec): name, h, m, s, dec deg, min, sec, magnitude */
@@ -1971,7 +1971,7 @@ var rread=$('#rread'),pl=$('#rplay'),spdEl=$('#rspd'),spdOut=$('#rspdOut');
 function labels(){pl.textContent=playing?'一時停止':'再生';spdOut.textContent='1秒で'+spd+'日'}
 function readout(){
   var mo=motionAt(day),ret=mo<0,st=false,k;
-  for(k=0;k<stations.length;k++)if(Math.abs(day-stations[k])<3)st=true;
+  for(k=0;k<stations.length;k++)if(Math.abs(day-stations[k])<(STW[CUR]||3))st=true;
   var badge=st?'<span class="rstate" style="background:#4a4426;color:#fff4c8">止まって見える（留）</span>':
     ret?'<span class="rstate ret">逆行中</span>':'<span class="rstate fwd">順行中</span>';
   var txt=badge+' '+NAME+'は、星に対して1日に '+(mo>=0?'東へ ':'西へ ')+Math.abs(mo).toFixed(2)+'° 動いて見えます。'+(ret?OVT+'ているあいだです。':'');
@@ -2207,7 +2207,7 @@ function snapUpd(){
 }
 
 /* ---------- sky ring (earth view) ---------- */
-var RR=6,sky={};
+var STW3={mer:1,ven:2,mar:3,jup:3,sat:3},RR=6,sky={};
 skyG.add(lineLoop(RR,0xe3b95c,.9,240));
 var tickPts=[];
 for(var i=0;i<72;i++){var L=i*5,long=(i%6===0),h=long?.28:.12;var p1=P3(RR,L,-h),p2=P3(RR,L,h);tickPts.push(p1,p2)}
@@ -2405,14 +2405,14 @@ function update(){
       for(k=0;k<TN;k++){
         p=P3(RR,Ls[k],.15+k*.0048);f=1-k/TN*.7;c=mv[k]<0?cr:cd;
         trPos[k*3]=p.x;trPos[k*3+1]=p.y;trPos[k*3+2]=p.z;trCol[k*3]=c.r*f;trCol[k*3+1]=c.g*f;trCol[k*3+2]=c.b*f;
-        if(k>0&&k<=3&&((mv[k]<0)!==(mv[k-1]<0))&&ns<3){
+        if(k>0&&k<=(STW3[b.id]||3)&&((mv[k]<0)!==(mv[k-1]<0))&&ns<3){
           var o=stLab[ns++],eastEnd=Ls[k]>Ls[k-1]&&(k+1>=TN||Ls[k]>Ls[k+1]),q2=P3(RR,Ls[k]+(eastEnd?(wr.clientWidth<640?10:7):(wr.clientWidth<640?-4:-7)),Math.min(1.0,.15+k*.0048+.3+(k<40?.4:0)));
           o.sp.visible=true;o.sp.position.copy(q2);o.setText('留（'+dateStr(dd-k).replace(/^\d+年/,'')+'ごろ）');
         }
       }
       for(;ns<3;ns++)stLab[ns].sp.visible=false;
       trGeo.attributes.position.needsUpdate=true;trGeo.attributes.color.needsUpdate=true;
-      var mvAt=function(x){return ((geoLon(b,x)-geoLon(b,x-1)+540)%360)-180},nearSt=(mvAt(dd-3)<0)!==(mvAt(dd+3)<0);
+      var mvAt=function(x){return ((geoLon(b,x)-geoLon(b,x-1)+540)%360)-180},nearSt=(mvAt(dd-(STW3[b.id]||3))<0)!==(mvAt(dd+(STW3[b.id]||3))<0);
       sky[sel].lab.setText(b.g+b.n+(nearSt?'（留）':(mv[0]<0?'（逆行中）':'')));
     })();
     /* the view stays put so the body is seen moving along the ring; it re-centres only
