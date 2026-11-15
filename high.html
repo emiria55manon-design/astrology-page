@@ -39,6 +39,8 @@
     border-bottom:1px solid var(--line);
     background:linear-gradient(180deg,#0F1B28,#0C1622);
   }
+  .back{flex-basis:100%;font-family:var(--gothic);font-size:.8rem;color:var(--ink-dim);text-decoration:none;letter-spacing:.04em;margin:0 0 .1rem}
+  .back:hover{color:var(--gold);text-decoration:underline}
   h1{
     font-family:var(--mincho);
     font-size:1.38rem;font-weight:600;letter-spacing:.16em;margin:0;
@@ -193,6 +195,7 @@
 <body>
 <div id="app">
   <header>
+    <a class="back" href="index.html#content">← 星に問う（解説コンテンツへ）</a>
     <h1>合を立体で見る</h1>
     <span class="romaji">conjunction in depth</span>
     <div class="scenes" role="tablist" id="sceneTabs"></div>
