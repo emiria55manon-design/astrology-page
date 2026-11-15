@@ -2213,10 +2213,10 @@ var tickPts=[];
 for(var i=0;i<72;i++){var L=i*5,long=(i%6===0),h=long?.28:.12;var p1=P3(RR,L,-h),p2=P3(RR,L,h);tickPts.push(p1,p2)}
 skyG.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(tickPts),new THREE.LineBasicMaterial({color:0xe3b95c,transparent:true,opacity:.85})));
 for(var i=0;i<12;i++){
-  var l1=textSprite(SG[i]+' '+SIGNS[i],'#cbd3ea',.03,false);l1.sp.position.copy(P3(RR,i*30+15,-1.15));addLabel(l1,skyG);
-  var l2=textSprite((i*30)+'°','#7f8bad',.024,false);l2.sp.position.copy(P3(RR,i*30,-.6));addLabel(l2,skyG);
+  var l1=textSprite(SG[i]+' '+SIGNS[i],'#cbd3ea',.03,false);l1.sp.position.copy(P3(RR,i*30+15,-1.0));addLabel(l1,skyG);
+  var l2=textSprite((i*30)+'°','#7f8bad',.024,false);l2.sp.position.copy(P3(RR,i*30,-1.0));addLabel(l2,skyG);
 }
-for(var q=0;q<6;q++){var le=textSprite('↑黄道','#e3b95c',.028,false);le.sp.position.copy(P3(RR,q*60+15,-1.95));addLabel(le,skyG)}
+var eclLab=textSprite('↑黄道（太陽・月・惑星の通り道）','#e3b95c',.026,false);addLabel(eclLab,skyG);
 B.forEach(function(b){
   var dot=addDot(dotSprite(b.col,.024),skyG),lab=addLabel(textSprite(b.g+b.n,b.col,.032,true),skyG);
   sky[b.id]={dot:dot,lab:lab};
@@ -2403,16 +2403,17 @@ function update(){
       var dd=Math.floor(d);for(k=0;k<=TN;k++)Ls.push(geoLon(b,dd-k));
       for(k=0;k<TN;k++)mv.push(((Ls[k]-Ls[k+1]+540)%360)-180);
       for(k=0;k<TN;k++){
-        p=P3(RR,Ls[k],.15+k*.012);f=1-k/TN*.7;c=mv[k]<0?cr:cd;
+        p=P3(RR,Ls[k],.15+k*.0048);f=1-k/TN*.7;c=mv[k]<0?cr:cd;
         trPos[k*3]=p.x;trPos[k*3+1]=p.y;trPos[k*3+2]=p.z;trCol[k*3]=c.r*f;trCol[k*3+1]=c.g*f;trCol[k*3+2]=c.b*f;
-        if(k>0&&((mv[k]<0)!==(mv[k-1]<0))&&ns<3){
-          var o=stLab[ns++],eastEnd=Ls[k]>Ls[k-1]&&(k+1>=TN||Ls[k]>Ls[k+1]),q2=P3(RR,Ls[k]+(wr.clientWidth<640?0:(eastEnd?7:-7)),.15+k*.012+.34+(k<40?1.25:0));
+        if(k>0&&k<=3&&((mv[k]<0)!==(mv[k-1]<0))&&ns<3){
+          var o=stLab[ns++],eastEnd=Ls[k]>Ls[k-1]&&(k+1>=TN||Ls[k]>Ls[k+1]),q2=P3(RR,Ls[k]+(eastEnd?(wr.clientWidth<640?10:7):(wr.clientWidth<640?-4:-7)),Math.min(1.0,.15+k*.0048+.3+(k<40?.4:0)));
           o.sp.visible=true;o.sp.position.copy(q2);o.setText('留（'+dateStr(dd-k).replace(/^\d+年/,'')+'ごろ）');
         }
       }
       for(;ns<3;ns++)stLab[ns].sp.visible=false;
       trGeo.attributes.position.needsUpdate=true;trGeo.attributes.color.needsUpdate=true;
-      sky[sel].lab.setText(b.g+b.n+(mv[0]<0?'（逆行中）':''));
+      var mvAt=function(x){return ((geoLon(b,x)-geoLon(b,x-1)+540)%360)-180},nearSt=(mvAt(dd-3)<0)!==(mvAt(dd+3)<0);
+      sky[sel].lab.setText(b.g+b.n+(nearSt?'（留）':(mv[0]<0?'（逆行中）':'')));
     })();
     /* the view stays put so the body is seen moving along the ring; it re-centres only
        when another body is chosen or the body drifts about 20 degrees from the centre */
@@ -2421,9 +2422,10 @@ function update(){
     if(Math.abs(((want-cam.yawT+Math.PI*3)%TAU)-Math.PI)>.35)cam.yawT=want;
     var df=((cam.yawT-cam.yaw+Math.PI*3)%TAU)-Math.PI;
     cam.yaw+=df*.12;
+    eclLab.sp.position.copy(P3(RR,-cam.yaw/D,-.5));
     camera.position.set(0,.7,0);
     camera.up.set(0,1,0);
-    var yT=(wr.clientWidth/wr.clientHeight>1.5)?.7+RR*Math.tan(-Math.atan(.7/RR)+.5*camera.fov*D/2):-.1;
+    var yT=(wr.clientWidth/wr.clientHeight>1.5)?.7+RR*Math.tan(-Math.atan(.7/RR)+.16*camera.fov*D/2):-.1;
     camera.lookAt(Math.cos(cam.yaw)*RR,yT,Math.sin(cam.yaw)*RR);
   }
   /* constant screen size */
