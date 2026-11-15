@@ -113,7 +113,7 @@ td.g{font-size:20px;width:2em}
 .how-card[open] summary::before{content:"▼ 閉じる"}
 .how-card[open] summary{margin-bottom:10px}
 .sumhint{font-size:13px;color:var(--mute)}
-.trnote{position:absolute;left:10px;top:8px;z-index:2;font:600 12px var(--sans);color:#cbd3ea;background:rgba(10,15,31,.72);border-radius:8px;padding:4px 8px;pointer-events:none}.trnote i{font-style:normal}.trnote .b{color:#8fb8f0}.trnote .r{color:#ff8f7a}
+.trnote{position:absolute;left:10px;top:8px;z-index:2;font:600 12px var(--sans);color:#cbd3ea;background:rgba(10,15,31,.72);border-radius:8px;padding:4px 8px;pointer-events:none}.trnote .tt{color:#9ca7c4;font-weight:500}.trnote i{font-style:normal}.trnote .b{color:#8fb8f0}.trnote .r{color:#ff8f7a}
 .otabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
 .otabs button{flex:1 1 96px;font:700 14px var(--sans);color:var(--mute);background:var(--panel);
   border:1px solid var(--line);border-bottom:3px solid var(--line);border-radius:8px 8px 0 0;padding:9px 12px;cursor:pointer;min-width:0}
@@ -336,7 +336,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
     </details>
   <div class="sub3d" id="how3d" role="group" aria-label="逆行を地球から見た空で見る">
     <h3>地球から見た空では、こう見えます</h3>
-    <p class="lede2">地球に立って見上げた空です。リングは黄道で<b>左が東</b>です。天体のうしろに伸びる線は跡で、<b>上にいくほど過去</b>、青＝順行、赤＝逆行です。折り返すところが「留」です。下の2つの図と連動しています。</p>
+    <p class="lede2">地球に立って見上げた空です。金色のリングは、太陽・月・惑星が通る道（<b>黄道</b>）を、ぐるっと一周、横に開いたものです。太い目盛りは30°ごと（サインの区切り）、細かい目盛りは5°ごとです。<b>左が東</b>です。天体のうしろに伸びる線は跡で、<b>上にいくほど過去</b>、青＝順行、赤＝逆行です。折り返すところが「留」です。下の2つの図と連動しています。</p>
     <div class="btabs" role="tablist" id="b3tabs" aria-label="天体を選ぶ"></div>
     <div class="sscale" role="group" aria-label="視点">
       <button id="v3earth" aria-pressed="true">地球から見る</button>
@@ -352,7 +352,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
   </div>
     <div class="rgrid">
       <div class="rbox"><canvas id="rv" aria-label="北極の真上から見た、地球と天体の動き"></canvas></div>
-      <div class="swrap s3wide" id="s3wrap"><canvas id="sv3" aria-label="地球から見た空の図（視点を変えると、宇宙から見た3D図になります）"></canvas><div id="trnote" class="trnote">↑ 線は上ほど過去　<i class="b">青＝順行</i>　<i class="r">赤＝逆行</i></div></div>
+      <div class="swrap s3wide" id="s3wrap"><canvas id="sv3" aria-label="地球から見た空の図（視点を変えると、宇宙から見た3D図になります）"></canvas><div id="trnote" class="trnote"><span class="tt">地球から見た空（左が東、右が西）</span><br>↑ 線は上ほど過去　<i class="b">青＝順行</i>　<i class="r">赤＝逆行</i></div></div>
     <div class="hctl" hidden>
       <button id="rplay">一時停止</button>
       <button id="rstep">10日進める</button>
@@ -1354,7 +1354,7 @@ function readout(){
   var txt=stepName(Math.round(dayF))+'、夜のはじめから'+t.toFixed(1)+'時間後。月はスピカから、'+(function(){var cum=dayF*UNIT*13.176,east=((sep%360)+360)%360;if(cum>180)return '東へ '+east.toFixed(1)+'°（'+(cum>360?'ひと回りして、さらに先':'半周より先')+'）';return Math.abs(sep)<0.05?'ほぼ同じ位置':(sep>=0?'東へ ':'西へ ')+a+'°';})()+'。';
   if(hread.textContent!==txt)hread.textContent=txt;
   var days=dayF*UNIT;
-  var mv='ここまでの動き（'+(Math.round(days))+'日ぶん、東向き）：'+BODIES.map(function(o){return o.g+o.n+' +'+fmtM(o.v*days)+'°'}).join('　');
+  var mv='ここまでの動き（1日目から'+(Math.round(days))+'日たった分、東向き）：'+BODIES.map(function(o){return o.g+o.n+' +'+fmtM(o.v*days)+'°'}).join('　');
   if(hmove.textContent!==mv)hmove.textContent=mv;
 }
 var last=performance.now();
@@ -2208,14 +2208,15 @@ function snapUpd(){
 
 /* ---------- sky ring (earth view) ---------- */
 var RR=6,sky={};
-skyG.add(lineLoop(RR,0x9ca7c4,.7,240));
+skyG.add(lineLoop(RR,0xe3b95c,.9,240));
 var tickPts=[];
 for(var i=0;i<72;i++){var L=i*5,long=(i%6===0),h=long?.28:.12;var p1=P3(RR,L,-h),p2=P3(RR,L,h);tickPts.push(p1,p2)}
-skyG.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(tickPts),new THREE.LineBasicMaterial({color:0x9ca7c4,transparent:true,opacity:.75})));
+skyG.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(tickPts),new THREE.LineBasicMaterial({color:0xe3b95c,transparent:true,opacity:.85})));
 for(var i=0;i<12;i++){
   var l1=textSprite(SG[i]+' '+SIGNS[i],'#cbd3ea',.03,false);l1.sp.position.copy(P3(RR,i*30+15,-1.15));addLabel(l1,skyG);
   var l2=textSprite((i*30)+'°','#7f8bad',.024,false);l2.sp.position.copy(P3(RR,i*30,-.6));addLabel(l2,skyG);
 }
+for(var q=0;q<6;q++){var le=textSprite('↑黄道','#e3b95c',.028,false);le.sp.position.copy(P3(RR,q*60+15,-1.95));addLabel(le,skyG)}
 B.forEach(function(b){
   var dot=addDot(dotSprite(b.col,.024),skyG),lab=addLabel(textSprite(b.g+b.n,b.col,.032,true),skyG);
   sky[b.id]={dot:dot,lab:lab};
@@ -2284,7 +2285,7 @@ var vb={tilt:$('#v3tilt'),top:$('#v3top'),earth:$('#v3earth')},zin=$('#z3in'),za
 var CAPS={
   tilt:'斜め上から見た太陽系（なぞると回転。Ctrlキーを押しながらホイール、または2本指で拡大）。①〜⑦の線は、同じ日に地球から天体を見た向きです（順行→逆行→順行）。③〜⑤の逆行のあいだ、線は逆向きに振れます。黄色い線は、太陽・地球・天体が一直線に並ぶ瞬間（追い抜き）です',
   top:'北極の真上から見た太陽系（反時計回り＝東向き）。①〜⑦の線は、同じ日に地球から天体を見た向きです（順行→逆行→順行）。③〜⑤の逆行のあいだ、線は逆向きに振れます。黄色い線は、太陽・地球・天体が一直線に並ぶ瞬間（追い抜き）です',
-  earth:'地球から見た空。リングは黄道（サインの帯）を一周に開いたもの。跡は上ほど過去で、青＝順行（東＝左へ）、赤＝逆行（西＝右へ戻る）、金の「留」＝向きが切り替わる日。留に近づくと、自動でゆっくり再生します（「次の留の日へ」で、その日まで飛べます）'
+  earth:'地球から見た空。金色のリングは黄道（サインの帯）を一周に開いたもの。太い目盛り＝30°、細かい目盛り＝5°。跡は上ほど過去で、青＝順行（東＝左へ）、赤＝逆行（西＝右へ戻る）、金の「留」＝向きが切り替わる日。留に近づくと、自動でゆっくり再生します（「次の留の日へ」で、その日まで飛べます）'
 };
 function syncView(){
   Object.keys(vb).forEach(function(k){vb[k].setAttribute('aria-pressed',k===view?'true':'false')});
