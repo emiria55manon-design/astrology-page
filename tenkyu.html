@@ -61,6 +61,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 }
 .ptitle strong{font:700 13px var(--sans);color:var(--text)}
 .ptitle .d1{color:var(--stage)}.ptitle .d2{color:var(--actor)}
+@media(max-width:520px){.ptitle{top:6px;left:6px;padding:4px 7px;gap:1px;font-size:10.5px;max-width:calc(100% - 12px)}.ptitle strong{font-size:11.5px}}
 .sub{
   padding:11px 16px;border-left:3px solid var(--mc);background:var(--panel);border-radius:4px;
   font-size:clamp(13px,1.9vw,17px);line-height:1.7
@@ -195,6 +196,7 @@ td.g{font-size:20px;width:2em}
 .plchip .n{font-weight:700}
 .starchip{--cc:#fff4c8;font-size:14px}
 .starchip small{font:400 11px var(--sans);letter-spacing:.06em;color:#d9cfa6;margin-left:2px}
+@media(max-width:520px){.plchip,.starchip{font-size:11px;gap:3px;padding:0 5px 1px;letter-spacing:.04em}.plchip .g,.starchip .g{font-size:12px}.starchip small{display:none}}
 .plsvg{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1}
 .live{padding:9px 16px;border-left:3px solid var(--mc);background:var(--panel2);border-radius:4px;font-size:clamp(13px,1.8vw,16px);font-variant-numeric:tabular-nums}
 @media (max-width:760px){
@@ -249,6 +251,21 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
       <button id="full">全画面</button>
     </div>
     <p class="fine" style="margin-top:8px">3Dの操作：なぞると回転、Ctrl＋ホイール（スマホは2本指）で拡大・縮小します。</p>
+  </section>
+
+  <section class="card" aria-label="いまの配置">
+    <h3>いまの配置</h3>
+    <div class="angles">
+      <div>上昇点（ASC）<b id="asc">-</b></div>
+      <div>南中点（MC）<b id="mc">-</b></div>
+    </div>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th></th><th>惑星</th><th>サイン</th><th>ハウス（ホールサイン）</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="note">第一運動だけを動かすと、上昇するサインが変わって、惑星のハウス番号が入れ替わります。惑星のサインは変わりません。第二運動だけを動かすと、サインが変わっていきます。</p>
   </section>
 
   <section class="card how-card" aria-label="地球の外から見る">
@@ -403,20 +420,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
 
   
 
-  <section class="card" aria-label="いまの配置">
-    <h3>いまの配置</h3>
-    <div class="angles">
-      <div>上昇点（ASC）<b id="asc">-</b></div>
-      <div>南中点（MC）<b id="mc">-</b></div>
-    </div>
-    <div class="tblwrap">
-      <table>
-        <thead><tr><th></th><th>惑星</th><th>サイン</th><th>ハウス（ホールサイン）</th></tr></thead>
-        <tbody id="rows"></tbody>
-      </table>
-    </div>
-    <p class="note">第一運動だけを動かすと、上昇するサインが変わって、惑星のハウス番号が入れ替わります。惑星のサインは変わりません。第二運動だけを動かすと、サインが変わっていきます。</p>
-  </section>
+
 
   <section class="cols" aria-label="ふたつの運動のまとめ">
     <div class="card">
@@ -904,7 +908,7 @@ canvas.addEventListener('wheel',function(e){if(!e.ctrlKey)return;e.preventDefaul
 function resize(){
   var w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;
   renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();
-  if(!resize.done){resize.done=1;if(w/h<1.3){distT=dist=36}}
+  if(!resize.done){resize.done=1;if(w/h<1.3){distT=dist=(w<520?40:36)}}
 }
 if(window.ResizeObserver)new ResizeObserver(resize).observe(stage);else window.addEventListener('resize',resize);
 resize();
@@ -971,9 +975,23 @@ function placeChip(){
     it.el.style.display='flex';it.w=it.el.offsetWidth;it.h=it.el.offsetHeight;
     var dx=it.pt[0]-cx,dy=it.pt[1]-cy,L=Math.hypot(dx,dy);
     if(L<1){dx=0;dy=-1;L=1}
-    var ux=dx/L,uy=dy/L,D=rs*1.16+12+Math.abs(ux)*it.w/2+Math.abs(uy)*it.h/2;
+    var ux=dx/L,uy=dy/L,D=(w<520?Math.min(L,rs*1.06)+6:rs*1.16+12)+Math.abs(ux)*it.w/2+Math.abs(uy)*it.h/2;
     it.x=cx+ux*D;it.y=cy+uy*D;
   });
+  /* moon near Spica: put the two labels on opposite sides of their dots so they never stack */
+  if(mode==='both'){
+    var sp=items.filter(function(t){return t.el===chipEl})[0],mo=items.filter(function(t){return t.el===plChips[1]})[0];
+    if(sp&&mo){
+      var pdx=sp.pt[0]-mo.pt[0],pdy=sp.pt[1]-mo.pt[1],pL=Math.hypot(pdx,pdy);
+      if(pL<150){
+        var qx=1,qy=0;if(pL>2){qx=pdx/pL;qy=pdy/pL}
+        if(Math.abs(qy)<.35){qy=0;qx=qx>=0?1:-1}   /* side by side: keep it horizontal */
+        else{qx=0;qy=qy>=0?1:-1}                      /* otherwise stack above / below */
+        sp.x=sp.pt[0]+qx*(Math.abs(qx)*sp.w/2+Math.abs(qy)*sp.h/2+10);sp.y=sp.pt[1]+qy*(Math.abs(qx)*sp.w/2+Math.abs(qy)*sp.h/2+10);
+        mo.x=mo.pt[0]-qx*(Math.abs(qx)*mo.w/2+Math.abs(qy)*mo.h/2+10);mo.y=mo.pt[1]-qy*(Math.abs(qx)*mo.w/2+Math.abs(qy)*mo.h/2+10);
+      }
+    }
+  }
   var ptl=stage.querySelector('.ptitle'),fx=null;
   if(ptl)fx={x:ptl.offsetLeft+ptl.offsetWidth/2,y:ptl.offsetTop+ptl.offsetHeight/2,w:ptl.offsetWidth,h:ptl.offsetHeight};
   function clampAll(){items.forEach(function(it){it.x=Math.max(it.w/2+4,Math.min(w-it.w/2-4,it.x));it.y=Math.max(it.h/2+4,Math.min(h-it.h/2-4,it.y))})}
@@ -984,7 +1002,12 @@ function placeChip(){
       var a=items[i];
       if(fx){
         var fdx=a.x-fx.x,fdy=a.y-fx.y,fox=(a.w+fx.w)/2+4-Math.abs(fdx),foy=(a.h+fx.h)/2+4-Math.abs(fdy);
-        if(fox>0&&foy>0){if(foy<fox)a.y+=(fdy>=0?1:-1)*foy;else a.x+=(fdx>=0?1:-1)*fox;moved=true}
+        if(fox>0&&foy>0){
+          var cand=[[0,-foy],[0,foy],[-fox,0],[fox,0]],best=null;
+          cand.forEach(function(c){var nx=a.x+c[0],ny=a.y+c[1];
+            if(nx>=a.w/2+4&&nx<=w-a.w/2-4&&ny>=a.h/2+4&&ny<=h-a.h/2-4){var m=Math.abs(c[0])+Math.abs(c[1]);if(!best||m<best.m)best={x:nx,y:ny,m:m}}});
+          if(best){a.x=best.x;a.y=best.y}else{a.y=fx.y+fx.h/2+a.h/2+4}
+          moved=true}
       }
       for(j=i+1;j<items.length;j++){
         var b=items[j],dx=a.x-b.x,dy=a.y-b.y,ox=(a.w+b.w)/2+5-Math.abs(dx),oy=(a.h+b.h)/2+3-Math.abs(dy);
@@ -997,6 +1020,11 @@ function placeChip(){
     }
     clampAll();if(!moved)break;
   }
+  /* ease toward the target so the pills glide instead of jittering when overlap resolution flips */
+  items.forEach(function(it){var e=it.el;
+    if(e._sx===undefined||Math.hypot(e._sx-it.x,e._sy-it.y)>240){e._sx=it.x;e._sy=it.y}
+    else{e._sx+=(it.x-e._sx)*.32;e._sy+=(it.y-e._sy)*.32}
+    it.x=e._sx;it.y=e._sy});
   items.forEach(function(it,k){
     it.el.style.display='flex';
     it.el.style.left=it.x+'px';it.el.style.top=(it.y+it.h/2)+'px';
