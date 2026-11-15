@@ -109,6 +109,7 @@ td.g{font-size:20px;width:2em}
 .how-card[open] summary::before{content:"▼ 閉じる"}
 .how-card[open] summary{margin-bottom:10px}
 .sumhint{font-size:13px;color:var(--mute)}
+.trnote{position:absolute;left:10px;top:8px;z-index:2;font:600 12px var(--sans);color:#cbd3ea;background:rgba(10,15,31,.72);border-radius:8px;padding:4px 8px;pointer-events:none}.trnote i{font-style:normal}.trnote .b{color:#8fb8f0}.trnote .r{color:#ff8f7a}
 .otabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
 .otabs button{flex:1 1 96px;font:700 14px var(--sans);color:var(--mute);background:var(--panel);
   border:1px solid var(--line);border-bottom:3px solid var(--line);border-radius:8px 8px 0 0;padding:9px 12px;cursor:pointer;min-width:0}
@@ -313,7 +314,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
     </details>
   <div class="sub3d" id="how3d" role="group" aria-label="逆行を地球から見た空で見る">
     <h3>地球から見た空では、こう見えます</h3>
-    <p class="lede2">地球に立って見上げた空です。リングは黄道で<b>左が東</b>、天体の跡は青＝順行、赤＝逆行です。下の2つの図と連動しています。</p>
+    <p class="lede2">地球に立って見上げた空です。リングは黄道で<b>左が東</b>です。天体のうしろに伸びる線は跡で、<b>上にいくほど過去</b>、青＝順行、赤＝逆行です。折り返すところが「留」です。下の2つの図と連動しています。</p>
     <div class="btabs" role="tablist" id="b3tabs" aria-label="天体を選ぶ"></div>
     <div class="sscale" role="group" aria-label="視点">
       <button id="v3earth" aria-pressed="true">地球から見る</button>
@@ -329,7 +330,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
   </div>
     <div class="rgrid">
       <div class="rbox"><canvas id="rv" aria-label="北極の真上から見た、地球と天体の動き"></canvas></div>
-      <div class="swrap s3wide" id="s3wrap"><canvas id="sv3" aria-label="地球から見た空の図（視点を変えると、宇宙から見た3D図になります）"></canvas></div>
+      <div class="swrap s3wide" id="s3wrap"><canvas id="sv3" aria-label="地球から見た空の図（視点を変えると、宇宙から見た3D図になります）"></canvas><div id="trnote" class="trnote">↑ 線は上ほど過去　<i class="b">青＝順行</i>　<i class="r">赤＝逆行</i></div></div>
     <div class="hctl" hidden>
       <button id="rplay">一時停止</button>
       <button id="rstep">10日進める</button>
@@ -2254,7 +2255,7 @@ function syncView(){
   zin.setAttribute('aria-pressed',zoomMode==='in'?'true':'false');zall.setAttribute('aria-pressed',zoomMode==='all'?'true':'false');
   zin.disabled=zall.disabled=(view==='earth');['#v3rl','#v3rr'].forEach(function(q){var e=$(q);if(e)e.disabled=(view==='earth')});var vo=$('#v3others');if(vo)vo.disabled=(view==='earth');var vl=$('#v3lines');if(vl)vl.disabled=(view==='earth');
   cap.textContent=CAPS[view];
-  outG.visible=(view!=='earth');skyG.visible=(view==='earth');trail.visible=(view==='earth');
+  outG.visible=(view!=='earth');skyG.visible=(view==='earth');trail.visible=(view==='earth');var tn=$('#trnote');if(tn)tn.style.display=(view==='earth')?'':'none';
   cv.style.cursor=view==='earth'?'default':'grab';
   camera.fov=fovNow();camera.updateProjectionMatrix();
 }
