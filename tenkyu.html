@@ -110,7 +110,7 @@ td.g{font-size:20px;width:2em}
 .how-card[open] summary{margin-bottom:10px}
 .sumhint{font-size:13px;color:var(--mute)}
 .otabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
-.otabs button{flex:1 1 150px;font:700 15px var(--sans);color:var(--mute);background:var(--panel);
+.otabs button{flex:1 1 96px;font:700 14px var(--sans);color:var(--mute);background:var(--panel);
   border:1px solid var(--line);border-bottom:3px solid var(--line);border-radius:8px 8px 0 0;padding:9px 12px;cursor:pointer;min-width:0}
 .otabs button small{display:block;font:400 11px var(--sans);opacity:.85}
 .otabs button[aria-selected=true]{color:var(--text);background:var(--panel2)}
@@ -209,7 +209,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
   <header>
     <p class="kicker">古典占星術 入門</p>
     <h1>星は、ふたつの動きで回っている</h1>
-    <p class="lede">最初の図は、天球です。タブで「第一運動（プライマリー・モーション＝空の回転）」「第二運動（セカンダリー・モーション＝天体が星の上を東へ進む動き）」「重ねて見る」を切り替えます。</p>
+    <p class="lede">実際に動く3Dの図で体感できます。最初の図は、天球です。タブで「第一運動（プライマリー・モーション＝空の回転）」「第二運動（セカンダリー・モーション＝天体が星の上を東へ進む動き）」「重ねて見る」を切り替えます。</p>
     <p class="fine">用語は、ページの最後の「<a href="#kaisetsu">解説・用語集</a>」にまとめています。</p>
 </header>
   
@@ -218,7 +218,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
     <div class="tabs" role="tablist">
       <button role="tab" data-mode="primary" aria-selected="true">第一運動<small>天球が東から西へ</small></button>
       <button role="tab" data-mode="secondary" aria-selected="false">第二運動<small>惑星が反時計回りに</small></button>
-      <button role="tab" data-mode="both" aria-selected="false">重ねて見る<small>星は止まり、月だけずれる</small></button>
+      <button role="tab" data-mode="both" aria-selected="false">重ねて見る<small>星は止まり、月だけ動く</small></button>
     </div>
     <div class="rec" id="rec" data-mode="primary" style="margin-top:0">
       <div class="panes">
@@ -249,12 +249,16 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
   </section>
 
   <section class="card how-card" aria-label="地球の外から見る">
-    <h2>地球の外から見ると：第一運動と第二運動を分けて見る</h2>
-    <p class="lede2">北極の真上から見た図です。地球は反時計回り（東向き）に自転し、月も同じ向きに地球のまわりを回っています。遠い星は、ずっと同じ向きにあります。月は第二運動がいちばん速い天体（1日に約13°）なので、星に対するずれがよく見えます。</p>
+    <h2>上から見て、月の動きを体感する</h2>
+    <p class="lede2"><b>自転と公転が重なると、月は星に対して、少しずつ東へ進んでいきます。</b>タブを切り替えて、自転だけ・公転だけ・両方を見比べてください。</p>
+    <p class="lede2">北極の真上から見た図です。</p>
+    <details class="fold"><summary>くわしく見る</summary>
+<p class="lede2">地球は反時計回り（東向き）に自転し、月も同じ向きに地球のまわりを回っています。遠い星は、ずっと同じ向きにあります。月は第二運動がいちばん速い天体（1日に約13°）なので、星に対する動きがよく見えます。</p>
+    </details>
     <div class="otabs" role="tablist">
       <button role="tab" data-om="rot" aria-selected="true">自転だけ<small>第一運動のもと</small></button>
       <button role="tab" data-om="rev" aria-selected="false">公転だけ<small>第二運動のもと</small></button>
-      <button role="tab" data-om="both" aria-selected="false">両方<small>ずれが生まれる</small></button>
+      <button role="tab" data-om="both" aria-selected="false">両方<small>月が東へ進む</small></button>
     </div>
     <div class="owrap"><canvas id="ov" aria-label="北極の真上から見た、地球の自転と月の公転"></canvas></div>
     <div class="hctl">
@@ -302,8 +306,11 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
 
   <section class="card how-card" aria-label="逆行を見る">
     <h2>逆行（Retrograde）は、追い越しのときに起こる</h2>
-    <p class="lede2"><b>追い越しのとき、相手の天体が逆行して見えます。</b>火星・木星・土星は、内側を速く回る地球が追い越すとき。水星・金星は、内側を速く回る天体が地球を追い越すとき。どちらも東向きに進んでいて、本当に後ろへ進むわけではなく、追い越しのあいだだけ、見かけの向きが逆になります。下のタブで天体を切り替えられます（最初は火星の例です）。</p>
-    <p class="lede2"><b>たとえ：</b>電車で、となりの線路をゆっくり走る電車を追い越すとき、相手は、遠くの山に対して、いちど後ろへ下がって見えます。ほかの天体も同じです。「遠くの山」が星空、「追い越す電車」が地球です。</p>
+    <p class="lede2"><b>追い越されるほうが、いっとき後ろへ戻って見える。それが逆行です。</b>本当に後ろへ進むのではなく、見かけだけです。下のタブで天体を切り替えられます（最初は火星の例）。</p>
+    <details class="fold"><summary>くわしい説明とたとえ</summary>
+      <p class="lede2">火星・木星・土星は、内側を速く回る地球が追い越すとき。水星・金星は、内側を速く回る天体が地球を追い越すときです。どちらも東向きに進んでいて、追い越しのあいだだけ、見かけの向きが逆になります。</p>
+      <p class="lede2"><b>たとえ：</b>電車で、となりの線路をゆっくり走る電車を追い越すとき、相手は、遠くの山に対して、いちど後ろへ下がって見えます。「遠くの山」が星空、「追い越す電車」が地球です。</p>
+    </details>
   <div class="sub3d" id="how3d" role="group" aria-label="逆行を地球から見た空で見る">
     <h3>地球から見た空では、こう見えます</h3>
     <p class="lede2">地球に立って見上げた空です。リングは黄道で<b>左が東</b>、天体の跡は青＝順行、赤＝逆行です。下の2つの図と連動しています。</p>
@@ -311,9 +318,13 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
     <div class="sscale" role="group" aria-label="視点">
       <button id="v3earth" aria-pressed="true">地球から見る</button>
       <button id="v3tilt" aria-pressed="false">宇宙から見る（斜め）</button>
-      <button id="v3top" aria-pressed="false" hidden>真上から</button>
-      <button id="z3in" aria-pressed="true">内側にズーム</button>
+      <button id="v3top" aria-pressed="false">真上から</button>
+      <button id="v3rl" aria-label="左へ回す">◀ 回す</button>
+      <button id="v3rr" aria-label="右へ回す">回す ▶</button>
+      <button id="z3in" aria-pressed="true">この天体に合わせる</button>
       <button id="z3all" aria-pressed="false">全部入れる</button>
+      <button id="v3others" aria-pressed="false">ほかの天体も出す</button>
+      <button id="v3lines" aria-pressed="true">番号の線</button>
     </div>
   </div>
     <div class="rgrid">
@@ -352,7 +363,7 @@ header a,.kaisetsu a,.fine a{color:var(--gold)}
 
 
   <details class="card how-card" id="howsys">
-    <summary><h2>もっと詳しく：第二運動のしくみ（太陽系を上から見る）</h2><span class="sumhint">地上から見た図と、火星の逆行の図が分かってから見てください。</span></summary>
+    <summary><h2>もっと詳しく：太陽系を上から見る（惑星が回ると、空の位置はこう変わる）</h2><span class="sumhint">地上から見た図と、火星の逆行の図が分かってから見てください。</span></summary>
     <p class="lede2">太陽・惑星の第二運動の仕組みを、北極の真上から見た図です。<b>真ん中が太陽、青い丸が地球</b>で、惑星はみな太陽のまわりを反時計回り（東向き）に回っています。天体を選ぶと、<b>地球から天体へ引いた線</b>が出ます。その向きが、空で見える位置です。</p>
     <div class="btabs" role="tablist" id="btabs"></div>
     <div class="swrap"><canvas id="sv2" aria-label="北極の真上から見た太陽系。太陽が中心、地球の距離を1とする"></canvas></div>
@@ -817,7 +828,7 @@ var CAP={
 var DIR3={
  primary:'<span class="d1">日周運動　東 → 西（天球が回る）</span>',
  secondary:'<span class="d2">惑星の移動　西 → 東（点が残る）</span>',
- both:'<span class="d1">日周運動　東 → 西</span>　<span class="d2">月のずれ　西 → 東</span>'
+ both:'<span class="d1">日周運動　東 → 西</span>　<span class="d2">月の動き　西 → 東</span>'
 };
 var DIRW={
   primary:'<span class="d1">サインも惑星も時計回り</span>',
@@ -2022,6 +2033,9 @@ function dateStr(t){var dt=new Date(Date.UTC(2000,0,1,12)+t*864e5);return dt.get
 function signStr(lon){var i=Math.floor(lon/30)%12;return SG[i]+' '+SIGNS[i]+' '+Math.floor(lon%30)+'°'}
 /* orbit angle L (counter-clockwise seen from the north) -> scene xyz; y is north */
 function P3(r,L,y){return new THREE.Vector3(r*Math.cos(L*D),y||0,-r*Math.sin(L*D))}
+/* 木星・土星は遠いので、距離だけ縮めて描く（2より外側は平方根で圧縮）。角度（方向）は実際のまま */
+function CR(r){return r>2?Math.sqrt(2*r):r}
+function P3h(r,L,y){return P3(CR(r),L,y)}
 
 var scene=new THREE.Scene();
 var camera=new THREE.PerspectiveCamera(42,1,.05,200);
@@ -2075,9 +2089,9 @@ function lineLoop(r,color,op,seg,y){
 }
 
 /* ---------- outside view objects ---------- */
-var bodyObj={};
+var bodyObj={},orbLoop={},showOthers=false;
 B.concat([EARTH]).forEach(function(b){
-  if(b.a){var pts=orbitPts(b.id==='earth'?'ear':b.id,T0,200).map(function(q){return P3(Math.hypot(q[0],q[1]),norm360(Math.atan2(q[1],q[0])/D))});outG.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:b.col,transparent:true,opacity:.42})))}
+  if(b.a){var pts=orbitPts(b.id==='earth'?'ear':b.id,T0,200).map(function(q){return P3h(Math.hypot(q[0],q[1]),norm360(Math.atan2(q[1],q[0])/D))});orbLoop[b.id]=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:b.col,transparent:true,opacity:.42}));outG.add(orbLoop[b.id])}
 });
 var sunG=glowSprite(.11);outG.add(sunG);scaled.push(sunG);
 var sunL=addLabel(textSprite('太陽','#f3c65a',.034,true),outG);
@@ -2113,17 +2127,17 @@ var alGeo=new THREE.BufferGeometry();alGeo.setAttribute('position',new THREE.Buf
 var alLine=new THREE.Line(alGeo,new THREE.LineBasicMaterial({color:0xffe08a}));outG.add(alLine);
 var alLab=addLabel(textSprite('一直線：追い抜く','#ffe08a',.034,true),outG);
 /* snapshots: the sight line from Earth to the body on 7 dates around a retrograde (like the Mars figure) */
-var SNN=7,snapLines=[],snapLabs=[],snapEDots=[],snapELabs=[],snapWin=null;
+var snapOn=true,SNN=7,snapLines=[],snapLabs=[],snapEDots=[],snapELabs=[],snapWin=null;
 (function(){for(var k=0;k<SNN;k++){
   var g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(6),3));
-  var ln=new THREE.Line(g,new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.9}));ln.frustumCulled=false;outG.add(ln);snapLines.push(ln);
+  var ln=new THREE.Line(g,new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.28}));ln.frustumCulled=false;outG.add(ln);snapLines.push(ln);
   snapLabs.push(addLabel(textSprite(String(k+1),'#ffffff',.034,true),outG));
   snapEDots.push(addDot(dotSprite('#ffffff',.017),outG));
   snapELabs.push(addLabel(textSprite(String(k+1),'#ffffff',.026,true),outG));
 }})();
 function snapFind(bb,dd){var t,a=null,e=null;for(t=dd-600;t<dd+4000;t+=1){var m=dailyMove(bb,t);if(m<0&&a===null)a=t;if(m>=0&&a!==null){e=t;if(e>=dd-15)break;a=null;e=null}}return (a===null||e===null)?null:{a:a,e:e}}
 function snapUpd(){
-  var show=(view!=='earth'&&sel!=='sun'&&!!byId[sel]),k;
+  var show=(view!=='earth'&&sel!=='sun'&&!!byId[sel]&&snapOn),k;
   if(!show){snapLines.forEach(function(l){l.visible=false});snapLabs.forEach(function(l){l.sp.visible=false});snapEDots.forEach(function(s){s.visible=false});snapELabs.forEach(function(l){l.sp.visible=false});return}
   var bb=byId[sel];
   if(!snapWin||snapWin.sel!==sel||d<snapWin.lo||d>snapWin.hi){
@@ -2131,14 +2145,26 @@ function snapUpd(){
     if(!w){snapWin=null;snapLines.forEach(function(l){l.visible=false});snapLabs.forEach(function(l){l.sp.visible=false});snapEDots.forEach(function(s){s.visible=false});snapELabs.forEach(function(l){l.sp.visible=false});return}
     var Ln=w.e-w.a,Tm=[w.a-.6*Ln,w.a-.25*Ln,w.a,(w.a+w.e)/2,w.e,w.e+.25*Ln,w.e+.6*Ln];
     snapWin={sel:sel,lo:Math.min(Tm[0]-1,d),hi:Tm[6]+1};
+    var fitPts=[[0,0]],midB=null;
     for(k=0;k<SNN;k++){
-      var eh2=helio(EARTH,Tm[k]),ep=P3(Math.hypot(eh2[0],eh2[1]),norm360(Math.atan2(eh2[1],eh2[0])/D)),bh2=helio(bb,Tm[k]),bp=P3(Math.hypot(bh2[0],bh2[1]),norm360(Math.atan2(bh2[1],bh2[0])/D));
-      var dv=bp.clone().sub(ep),len=dv.length(),ext=.45*Math.max(1,Math.hypot(bh2[0],bh2[1])),en=ep.clone().add(dv.normalize().multiplyScalar(len+ext));
+      var eh2=helio(EARTH,Tm[k]),ep=P3h(Math.hypot(eh2[0],eh2[1]),norm360(Math.atan2(eh2[1],eh2[0])/D)),bh2=helio(bb,Tm[k]),bp=P3h(Math.hypot(bh2[0],bh2[1]),norm360(Math.atan2(bh2[1],bh2[0])/D));
+      var dv=bp.clone().sub(ep),len=dv.length(),ext=(Math.hypot(bh2[0],bh2[1])>4?.9*len:.2*Math.max(1,Math.hypot(bh2[0],bh2[1]))),en=ep.clone().add(dv.normalize().multiplyScalar(len+ext));
       var col=(k===2||k===4)?'#ffe08a':(k===3?'#ff8f7a':'#8ff0e8'),pa=snapLines[k].geometry.attributes.position.array;
       pa[0]=ep.x;pa[1]=ep.y;pa[2]=ep.z;pa[3]=en.x;pa[4]=en.y;pa[5]=en.z;snapLines[k].geometry.attributes.position.needsUpdate=true;snapLines[k].material.color.set(col);
       snapLabs[k].sp.position.copy(en);snapLabs[k].color=col;snapLabs[k].redraw();
+      fitPts.push([ep.x,ep.z],[bp.x,bp.z],[en.x,en.z]);if(k===3)midB=[bp.x,bp.z];
       snapEDots[k].position.copy(ep);snapEDots[k].material.color.set(col);snapELabs[k].sp.position.copy(ep).multiplyScalar(1.16);snapELabs[k].color=col;snapELabs[k].redraw();
     }
+    (function(){
+      var mnx=1e9,mxx=-1e9,mnz=1e9,mxz=-1e9;
+      fitPts.forEach(function(q){mnx=Math.min(mnx,q[0]);mxx=Math.max(mxx,q[0]);mnz=Math.min(mnz,q[1]);mxz=Math.max(mxz,q[1])});
+      var cx0=(mnx+mxx)/2,cz0=(mnz+mxz)/2,Rr=0;
+      fitPts.forEach(function(q){Rr=Math.max(Rr,Math.hypot(q[0]-cx0,q[1]-cz0))});
+      var tf=Math.tan(camera.fov*D/2),asp=Math.max(.5,camera.aspect||1.6);
+      var dd2=Math.max(Rr/(tf*asp),Rr*Math.sin(.62)/tf)*1.5;
+      snapFit={sel:sel,cx:cx0,cz:cz0,dist:Math.max(4,Math.min(48,dd2)),az:(midB&&Math.hypot(midB[0],midB[1])>4)?Math.atan2(midB[1],-midB[0]):null};
+      if(zoomMode==='in'){cam.distT=snapFit.dist;cam.fxT=snapFit.cx;cam.fzT=snapFit.cz;if(snapFit.az!=null&&!userRot)cam.azT=snapFit.az}
+    })();
   }
   snapLines.forEach(function(l){l.visible=true});snapLabs.forEach(function(l){l.sp.visible=true});snapEDots.forEach(function(s){s.visible=true});snapELabs.forEach(function(l){l.sp.visible=true});
 }
@@ -2166,13 +2192,14 @@ trail.renderOrder=6;trail.frustumCulled=false;skyG.add(trail);
 var stLab=[0,1,2].map(function(){var o=addLabel(textSprite('留','#ffe08a',.03,true),skyG);o.sp.visible=false;return o});
 
 /* ---------- camera ---------- */
-var cam={az:.35,el:.62,dist:6.2,azT:.35,elT:.62,distT:6.2,yaw:0};
+var cam={az:.35,el:.62,dist:6.2,azT:.35,elT:.62,distT:6.2,yaw:0,fx:0,fz:0,fxT:0,fzT:0},snapFit=null;
+function fitDist(){var fb=byId[sel],fa=(fb&&fb.a)?fb.a:1;return (function(c){return Math.max(5.4,3.45*Math.max(1,c)+1.6)})(CR(fa))}
 function applyView(snap){
   if(view==='top'){cam.elT=1.52}else if(view==='tilt'){cam.elT=.62}
-  if(zoomMode==='in'){cam.distT=6.2}else{cam.distT=30}
-  if(snap){cam.el=cam.elT;cam.dist=cam.distT;cam.az=cam.azT}
+  if(zoomMode==='in'){if(snapFit&&snapFit.sel===sel){cam.distT=snapFit.dist;cam.fxT=snapFit.cx;cam.fzT=snapFit.cz;if(snapFit.az!=null)cam.azT=snapFit.az}else{cam.distT=fitDist();cam.fxT=0;cam.fzT=0}}else{cam.distT=30;cam.fxT=0;cam.fzT=0}
+  if(snap){cam.el=cam.elT;cam.dist=cam.distT;cam.az=cam.azT;cam.fx=cam.fxT;cam.fz=cam.fzT}
 }
-var drag=null,ptrs={},pinch=0;
+var drag=null,ptrs={},pinch=0,userRot=false;
 cv.style.cursor='grab';
 cv.addEventListener('pointerdown',function(e){
   if(view==='earth')return;
@@ -2192,7 +2219,7 @@ cv.addEventListener('pointermove',function(e){
   }
   if(!drag||e.pointerId!==drag.id)return;
   var dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;
-  cam.azT-=dx*.006;cam.az=cam.azT;
+  userRot=true;cam.azT-=dx*.006;cam.az=cam.azT;
   if(!drag.touch){cam.elT=Math.max(.12,Math.min(1.52,cam.elT+dy*.006));cam.el=cam.elT;
     if(view!=='tilt'&&view!=='top')view='tilt';
     if(cam.elT<1.5&&view==='top'){view='tilt';syncView()}}
@@ -2212,7 +2239,7 @@ B.forEach(function(b){
   if(b.id==='sun')return;
   var bt=document.createElement('button');bt.setAttribute('role','tab');bt.setAttribute('data-b',b.id);
   bt.style.setProperty('--bc',b.col);bt.textContent=b.g+' '+b.n;
-  bt.addEventListener('click',function(){sel=b.id;if(view!=='earth'&&(b.id==='jup'||b.id==='sat')&&zoomMode==='in'){zoomMode='all';applyView(false);syncView()}syncTabs()});
+  bt.addEventListener('click',function(){sel=b.id;userRot=false;if(zoomMode==='in'){applyView(false)}syncTabs()});
   tabs.appendChild(bt);
 });
 function syncTabs(){Array.prototype.forEach.call(tabs.children,function(bt){bt.setAttribute('aria-selected',bt.getAttribute('data-b')===sel?'true':'false')});var sb=$('#s3stn');if(sb)sb.disabled=(sel==='sun')}
@@ -2225,7 +2252,7 @@ var CAPS={
 function syncView(){
   Object.keys(vb).forEach(function(k){vb[k].setAttribute('aria-pressed',k===view?'true':'false')});
   zin.setAttribute('aria-pressed',zoomMode==='in'?'true':'false');zall.setAttribute('aria-pressed',zoomMode==='all'?'true':'false');
-  zin.disabled=zall.disabled=(view==='earth');
+  zin.disabled=zall.disabled=(view==='earth');['#v3rl','#v3rr'].forEach(function(q){var e=$(q);if(e)e.disabled=(view==='earth')});var vo=$('#v3others');if(vo)vo.disabled=(view==='earth');var vl=$('#v3lines');if(vl)vl.disabled=(view==='earth');
   cap.textContent=CAPS[view];
   outG.visible=(view!=='earth');skyG.visible=(view==='earth');trail.visible=(view==='earth');
   cv.style.cursor=view==='earth'?'default':'grab';
@@ -2240,15 +2267,18 @@ function setView(v){
 vb.tilt.addEventListener('click',function(){setView('tilt')});
 vb.top.addEventListener('click',function(){setView('top')});
 vb.earth.addEventListener('click',function(){setView('earth')});
+var rotB=function(id,dv){var b=$(id);if(b)b.addEventListener('click',function(){userRot=true;cam.azT+=dv})};rotB('#v3rl',-Math.PI/6);rotB('#v3rr',Math.PI/6);
 zin.addEventListener('click',function(){zoomMode='in';applyView(false);syncView()});
 zall.addEventListener('click',function(){zoomMode='all';applyView(false);syncView()});
+var vlBtn=$('#v3lines');if(vlBtn)vlBtn.addEventListener('click',function(){snapOn=!snapOn;vlBtn.setAttribute('aria-pressed',snapOn?'true':'false')});
+var voBtn=$('#v3others');if(voBtn)voBtn.addEventListener('click',function(){showOthers=!showOthers;voBtn.setAttribute('aria-pressed',showOthers?'true':'false')});
 var sp=$('#s3play'),spdEl=$('#s3spd'),spdOut=$('#s3spdOut'),rd=$('#s3read');
 function plabels(){sp.textContent=playing?'一時停止':'再生';spdOut.textContent='1秒で'+spd+'日'}
-sp.addEventListener('click',function(){playing=!playing;plabels()});
+sp.addEventListener('click',function(){var RG=window.__rfig&&window.__rfig.range();if(!playing&&RG&&(d>=RG[1]-1||d<RG[0]))d=window.__rfig.startDay();playing=!playing;plabels()});
 $('#s3step1').addEventListener('click',function(){playing=false;d+=1;plabels()});
 $('#s3step30').addEventListener('click',function(){playing=false;d+=30;plabels()});
 if($('#s3reset'))$('#s3reset').addEventListener('click',function(){d=T0});
-$('#s3again').addEventListener('click',function(){d=(window.__rfig?window.__rfig.startDay():(Date.UTC(2026,11,10)-Date.UTC(2000,0,1,12))/864e5);spd=10;spdEl.value=10;playing=true;plabels();setView('earth')});
+$('#s3again').addEventListener('click',function(){d=(window.__rfig?window.__rfig.startDay():(Date.UTC(2026,11,10)-Date.UTC(2000,0,1,12))/864e5);spd=10;spdEl.value=10;playing=true;plabels()});
 $('#s3stn').addEventListener('click',function(){
   var b=byId[sel];if(sel==='sun')return;playing=false;plabels();
   function nextStn(from){var d0=Math.floor(from)+1,m0=dailyMove(b,d0),j,m1;
@@ -2282,12 +2312,13 @@ resize();
 var tmp=new THREE.Vector3();
 function setPos(line,a,b){var p=line.geometry.attributes.position.array;p[0]=a.x;p[1]=a.y;p[2]=a.z;p[3]=b.x;p[4]=b.y;p[5]=b.z;line.geometry.attributes.position.needsUpdate=true}
 function update(){
-  var eh=helio(EARTH,d),eL=norm360(Math.atan2(eh[1],eh[0])/D),ePos=P3(Math.hypot(eh[0],eh[1]),eL);
+  var eh=helio(EARTH,d),eL=norm360(Math.atan2(eh[1],eh[0])/D),ePos=P3h(Math.hypot(eh[0],eh[1]),eL);
   var b=byId[sel],gl=geoLon(b,d);
   if(view!=='earth'){
-    B.slice(1).forEach(function(q){var h=helio(q,d),L=norm360(Math.atan2(h[1],h[0])/D),p=P3(Math.hypot(h[0],h[1]),L),o=bodyObj[q.id];
+    B.slice(1).forEach(function(q){var h=helio(q,d),L=norm360(Math.atan2(h[1],h[0])/D),p=P3h(Math.hypot(h[0],h[1]),L),o=bodyObj[q.id];
       o.dot.position.copy(p);o.lab.sp.position.copy(p);o.lab.sp.userData.off=1}) ;
     bodyObj.earth.dot.position.copy(ePos);bodyObj.earth.lab.sp.position.copy(ePos);
+    B.slice(1).forEach(function(q){var vv=(showOthers||q.id===sel);bodyObj[q.id].dot.visible=vv;bodyObj[q.id].lab.sp.visible=vv;if(orbLoop[q.id])orbLoop[q.id].visible=vv});
     var tp=(sel==='sun')?new THREE.Vector3(0,0,0):bodyObj[sel].dot.position.clone();
     selRing.position.copy(tp);selRing.visible=(sel!=='sun');
     setPos(sight,ePos,tp);sight.material.color.set(b.col);
@@ -2310,14 +2341,15 @@ function update(){
       zDotLab.setText(sel!=='sun'&&mv0<0?'空での位置（逆行中）':'空での位置');
       var on=false;
       if(sel!=='sun'){var hb=helio(b,d),bL=norm360(Math.atan2(hb[1],hb[0])/D),dl=((bL-eL+540)%360)-180;
-        if(Math.abs(dl)<5){on=true;var rm=Math.max(Math.hypot(hb[0],hb[1]),Math.hypot(eh[0],eh[1]));setPos(alLine,new THREE.Vector3(0,0,0),P3(rm,bL));alLab.sp.position.copy(P3(rm*.6,bL)).add(new THREE.Vector3(0,cam.dist*.05,0))}}
+        if(Math.abs(dl)<5){on=true;var rm=Math.max(Math.hypot(hb[0],hb[1]),Math.hypot(eh[0],eh[1]));setPos(alLine,new THREE.Vector3(0,0,0),P3h(rm,bL));alLab.sp.position.copy(P3(CR(rm)*.6,bL)).add(new THREE.Vector3(0,cam.dist*.05,0))}}
       alLine.visible=on;alLab.sp.visible=on;
     })();
     snapUpd();
     /* camera */
     cam.el+= (cam.elT-cam.el)*.12;cam.dist+=(cam.distT-cam.dist)*.12;cam.az+=(cam.azT-cam.az)*.2;
-    camera.position.set(cam.dist*Math.cos(cam.el)*Math.sin(cam.az),cam.dist*Math.sin(cam.el),cam.dist*Math.cos(cam.el)*Math.cos(cam.az));
-    camera.up.set(0,1,0);camera.lookAt(0,0,0);
+    cam.fx+=(cam.fxT-cam.fx)*.12;cam.fz+=(cam.fzT-cam.fz)*.12;
+    camera.position.set(cam.fx+cam.dist*Math.cos(cam.el)*Math.sin(cam.az),cam.dist*Math.sin(cam.el),cam.fz+cam.dist*Math.cos(cam.el)*Math.cos(cam.az));
+    camera.up.set(0,1,0);camera.lookAt(cam.fx,0,cam.fz);
   }else{
     /* labels of bodies that are close together go on different heights */
     var lastAt=[-999,-999,-999];
