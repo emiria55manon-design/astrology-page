@@ -80,7 +80,7 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
 <section class="card" aria-label="このページの範囲" style="border-color:var(--gold)">
   <h2>このページで見せるのは「合」だけです</h2>
   <p class="small">有名なサイトやソフトの一覧には、天体が角（ASC・MC）に、<b>合（0°）だけでなく、60°・90°・120°・180°のアスペクト</b>で着くときも、たくさん並びます。天王星・海王星・冥王星、ノード、順方向と逆方向の両方も入るので、行数が多くなります。</p>
-  <p class="small">このページは、「空が回って、天体が角に着く」しくみを、見て分かることを目的にしています。そのため、<b>順方向・逆方向の、天体が角に重なる「合」だけ</b>を図にしています。専用ソフトで、黄緯を使わない設定にしたときの合の行は、ほぼ一致します（黄緯なしの点で計算）。黄緯を使う設定のソフトでは、月や水星で1〜3年ほど（高緯度では、もっと）違います。アスペクトの行は、ここには出ません。</p>
+  <p class="small">このページは、「空が回って、天体が角に着く」しくみを、見て分かることを目的にしています。そのため、<b>順方向・逆方向の、天体が角に重なる「合」だけ</b>を図にしています。専用ソフトで、黄緯を使わない設定（ゾディアカル）にしたときの合の行は、ほぼ一致します（初期設定の、黄緯なしの点で計算）。黄緯を使う設定（ムンデン）のソフトとは、図の上の「天体の黄緯を使う」にチェックを入れると、ほぼ一致します。黄緯を使うと、4つの角のどの行も動きます（月は数年、ほかの天体は数か月〜2年ほど）。アスペクトの行は、ここには出ません。</p>
 </section>
 
 <section class="card" aria-label="入力">
@@ -111,7 +111,7 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
       <li><b>出生地</b>：日本の県庁所在地は、プルダウンから選べます。それ以外の場所は「その他」を選んで、緯度と経度を入れます。</li>
       <li><b>時差</b>：その土地の標準時です。日本は「日本（UTC+9）」のままで大丈夫です。夏時間は使いません。</li>
       <li><b>緯度・経度</b>：「度・分」ではなく、<b>小数の度</b>で入れます。「度＋分÷60」で換算します。<br>例：北緯34°23′ → 34＋23÷60 ＝ <b>34.3833</b>　／　東経132°26′ → 132＋26÷60 ＝ <b>132.4333</b><br>北緯・東経は＋、南緯・西経は−（マイナス）をつけます。</li>
-      <li><b>ほかのソフトと比べるとき</b>：生年月日・時刻・緯度・経度を、同じにします。ソフト側は、「黄緯を使わない」設定（ある場合）と、「1°＝1年（プトレマイオス式）」に、そろえてください。このページは、天体が角に「合」で着く行だけを出します。</li>
+      <li><b>ほかのソフトと比べるとき</b>：生年月日・時刻・緯度・経度・換算（1°＝1年）を、そろえます。このページの「天体の黄緯を使う」は、ソフトの設定に合わせます。ソフトが「黄緯なし（ゾディアカル）」ならチェックなし、「黄緯あり（ムンデン）」ならチェックありです。行によって両方が混ざるソフトもあり、月は差が大きく出ます。ASC・MCへのオポジション（☍）の行は、このページの、DSC・ICの行に当たります。</li>
     </ol>
   </details>
   <p class="mute small">入力した内容は、この画面の中だけで計算されます。送信も保存もしません（「覚えておく」にチェックしたときだけ、この端末のブラウザに残ります）。プライマリーは、出生時刻と出生地で結果が大きく変わります。出生時刻が1分ずれると、約0.25年（3か月ほど）ずれます。夏時間は使わず、その土地の標準時で入れてください（夏時間で記録された時刻は、1時間引いて入れます）。</p>
@@ -124,6 +124,8 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
       <div class="row" id="ky" role="group" aria-label="年への換算" style="margin-bottom:10px"><span class="mute small" style="align-self:center">換算：</span><button type="button" data-k="pt" aria-pressed="true">1° = 1年（プトレマイオス）</button><button type="button" data-k="nb" aria-pressed="false">0.9856° = 1年（ナイボッド）</button></div>
       <div class="row" id="dr" role="group" aria-label="回す向き" style="margin-bottom:10px"><span class="mute small" style="align-self:center">向き：</span><button type="button" data-d="d" aria-pressed="true">順方向（生まれた「あと」の空）</button><button type="button" data-d="c" aria-pressed="false">逆方向（生まれる「まえ」の空へ巻きもどす）</button></div>
       <p class="hread" id="drNote" style="margin-bottom:10px;min-height:0;font-size:14px"></p>
+      <label class="chk" style="margin-bottom:6px"><input type="checkbox" id="lt">天体の黄緯を使う（天体の、実際の空の位置で測る）</label>
+      <p class="mute small" id="ephNote" style="margin-bottom:10px"></p>
       <div class="wheel"><canvas id="cv" aria-label="空の回転の図。左がASC（東の地平線）、上がMC（南中）、右がDSC（西の地平線）、下がIC。各天体は、それぞれの円の上を時計回りに進み、角に着く。"></canvas></div>
       <div class="row" id="fc" style="margin-top:10px" role="group" aria-label="注目する天体"></div>
       <label class="chk" style="margin-top:10px"><input type="checkbox" id="hs" checked>外側の帯に、出生図の12ハウス（ホールサイン）を表示する</label>
@@ -166,10 +168,11 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
   <summary style="cursor:pointer;font:700 18px var(--serif);color:var(--text)">詳しい注意・用語・精度（開く）</summary>
   <ul class="small" style="margin-top:12px">
     <li>ここで求めているのは、<b>天体そのものが、1日に1回転する円の上を、ASC・MC・DSC・ICの4つの角まで回る角度</b>です。これは、プライマリー・ディレクションの基本の考えかたの1つですが、実際の技法には、天体を黄道の度数に置き換えて測る方法、黄緯を使わない方法、「ディレクトする点」と「受ける点」を逆にする方法など、いくつもの流派があります。流派によって、年齢は数か月〜数年変わります。</li>
-    <li>MC・ICに着く角度は、赤経の差そのものです。ASC・DSCに着く角度は、その天体の赤緯と出生地の緯度から出る、昼の半円の長さ（半日周弧）を使っています。天体は、黄道の上の点（黄緯0°）として扱っています。ソフトによって、黄緯を使うかどうかの設定が違います。</li>
-    <li>位置は、NASA（JPL）の近似軌道要素（惑星・太陽）と、簡易な月の式から計算しています。月の視差や、大気による屈折は入れていません。</li>
+    <li>MC・ICに着く角度は、赤経の差そのものです。ASC・DSCに着く角度は、その天体の赤緯と出生地の緯度から出る、昼の半円の長さ（半日周弧）を使っています。初期設定では、天体は、黄道の上の点（黄緯0°）として扱っています（図の上の「天体の黄緯を使う」で切り替えられます）。ソフトによって、黄緯を使うかどうかの設定が違います。</li>
+    <li>位置は、astronomy-engine（高精度の暦のライブラリ）で計算した、地球の中心から見た視位置です（光行差・章動・光行時間を含みます）。ライブラリを読み込めないときだけ、NASA（JPL）の近似軌道要素と、簡易な月の式に切り替わります（木星・土星は最大10′ほど、月は最大6′ほどずれます）。月の視差や、大気による屈折は入れていません。</li>
+    <li><b>黄緯の切り替え</b>：「天体の黄緯を使う」にチェックすると、天体の実際の位置（黄緯を含む赤経・赤緯）で、4つの角に着く角度を測ります。専用ソフトの「ムンデン（mundane）」の行に当たります。チェックなしは、黄道の度数で測る「ゾディアカル（黄緯なし）」の行に当たります。</li>
     <li><b>順方向（ディレクト）</b>は、空の回転と同じ向きに回します。<b>逆方向（コンバース）</b>は、逆向きに同じだけ回します。着く年齢は、逆方向のとき「360°−順方向の角度」になります。ここでは「空を逆向きに回す」方式です。本やソフトによって、定義の言い方が違うことがあります。</li>
-    <li><b>用語</b>：赤経＝天の赤道に沿って測る、天球の経度。赤緯＝天の赤道からの、天球の緯度。黄緯＝黄道からの角度（このページでは0°にしています）。半日周弧＝天体がのぼってから、いちばん高い所に着くまでに、空が回る角度（ASC・DSCに着く角度に使います）。プレドミネーター・アルコクデン＝寿命の計算に使う、生命を代表する天体と、年数を配る天体です（このページでは扱いません）。</li>
+    <li><b>用語</b>：赤経＝天の赤道に沿って測る、天球の経度。赤緯＝天の赤道からの、天球の緯度。黄緯＝黄道からの角度（初期設定では0°にしています。切り替えで、実際の値を使えます）。半日周弧＝天体がのぼってから、いちばん高い所に着くまでに、空が回る角度（ASC・DSCに着く角度に使います）。プレドミネーター・アルコクデン＝寿命の計算に使う、生命を代表する天体と、年数を配る天体です（このページでは扱いません）。</li>
     <li><b>扱っていないもの</b>：天体が角に重なる（合）ときだけを扱います。60°・90°・120°・180°のアスペクトに着くときや、天王星以遠・ノード、寿命計算（プレドミネーター・アルコクデン）は入っていません。専用ソフトの一覧は、これらを含むので、行数が多くなります。</li>
     <li>出生時刻が、とても大切です。時刻が1時間ずれると、着く年齢は約15年ずれます。時刻がわからないとき（正午として計算）の年齢は、参考になりません。</li>
     <li><b>サイン・度数・ハウス</b>：4つの角と、7つの天体の出生図での位置を、黄道のサインと度数で出しています（天体は黄緯0°の点）。ハウスは、ホールサイン方式（ASCのあるサイン全体が1ハウス）です。図の円は、空の回転を見せるもので、黄道のサインの輪ではありません。</li>
@@ -181,7 +184,8 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
 </section>
 </div>
 
-
+<!-- 高精度の天体位置（astronomy-engine）。読み込めないときは、下の簡易式に自動で切り替わります。 -->
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js" crossorigin="anonymous"></script>
 <script>
 (function(){
 "use strict";
@@ -227,6 +231,14 @@ function lon(id,t){
   if(id==='sun')return norm(Math.atan2(-e[1],-e[0])/D);
   var p=helio(id,t);return norm(Math.atan2(p[1]-e[1],p[0]-e[0])/D);
 }
+/* accurate apparent position (true ecliptic of date) from astronomy-engine; falls back to the short formulas above */
+var AE=(window.Astronomy&&window.Astronomy.GeoVector&&window.Astronomy.Rotation_EQJ_ECT)?window.Astronomy:null;
+var AEB={sun:'Sun',moon:'Moon',mer:'Mercury',ven:'Venus',mar:'Mars',jup:'Jupiter',sat:'Saturn'};
+function ecl(id,t){
+  if(AE){try{var tm=AE.MakeTime(new Date(Date.UTC(2000,0,1,12)+t*864e5)),s=AE.SphereFromVector(AE.RotateVector(AE.Rotation_EQJ_ECT(tm),AE.GeoVector(AEB[id],tm,true)));
+    if(isFinite(s.lon)&&isFinite(s.lat))return {lam:norm(s.lon),bet:s.lat}}catch(e){}}
+  return {lam:lon(id,t),bet:0};
+}
 /* projection of ecliptic points (lat 0) into the wheel, and its inverse */
 function phiAtLam(l){var e0=(23.4392911-0.0130042*st.tb/36525)*D,lm=l*D,dc=Math.asin(Math.sin(e0)*Math.sin(lm)),ra=norm(Math.atan2(Math.sin(lm)*Math.cos(e0),Math.cos(lm))/D),cc=-Math.tan(st.lat*D)*Math.tan(dc);
   if(Math.abs(cc)>=1)return null;return phiOf(norm(st.rm-ra),Math.acos(cc)/D)}
@@ -246,12 +258,12 @@ function signStr(l){var i=Math.floor(l/30)%12;return SG[i]+' '+SIGNS[i]+' '+Math
 
 var PL=[['札幌',43.06,141.35],['青森',40.82,140.74],['盛岡',39.70,141.15],['仙台',38.27,140.87],['秋田',39.72,140.10],['山形',38.24,140.36],['福島',37.75,140.47],['水戸',36.34,140.45],['宇都宮',36.57,139.88],['前橋',36.39,139.06],['さいたま',35.86,139.65],['千葉',35.61,140.12],['東京',35.69,139.69],['横浜',35.45,139.64],['新潟',37.90,139.02],['富山',36.70,137.21],['金沢',36.59,136.63],['福井',36.07,136.22],['甲府',35.66,138.57],['長野',36.65,138.18],['岐阜',35.39,136.72],['静岡',34.98,138.38],['名古屋',35.18,136.91],['津',34.73,136.51],['大津',35.00,135.87],['京都',35.02,135.76],['大阪',34.69,135.50],['神戸',34.69,135.20],['奈良',34.69,135.83],['和歌山',34.23,135.17],['鳥取',35.50,134.24],['松江',35.47,133.05],['岡山',34.66,133.93],['広島',34.40,132.46],['山口',34.19,131.47],['徳島',34.07,134.56],['高松',34.34,134.04],['松山',33.84,132.77],['高知',33.56,133.53],['福岡',33.61,130.42],['佐賀',33.25,130.30],['長崎',32.75,129.87],['熊本',32.79,130.74],['大分',33.24,131.61],['宮崎',31.91,131.42],['鹿児島',31.56,130.56],['那覇',26.21,127.68]];
 function angles(t,lat,lonE,dth){
-  var T=t/36525,eps=(23.4392911-0.0130042*T)*D,gm=norm(280.46061837+360.98564736629*t+0.000387933*T*T),th=norm(gm+lonE+(dth||0))*D,ph=lat*D;
+  var T=t/36525,eps=(23.4392911-0.0130042*T)*D,gm=gst(t),th=norm(gm+lonE+(dth||0))*D,ph=lat*D;
   return {mc:norm(Math.atan2(Math.sin(th),Math.cos(th)*Math.cos(eps))/D),asc:norm(Math.atan2(Math.cos(th),-(Math.sin(th)*Math.cos(eps)+Math.tan(ph)*Math.sin(eps)))/D)};
 }
 /* ---- primary directions ---- */
 var YEAR=365.2422,KEYS={pt:1,nb:0.9856};
-var st={ok:false,age:0,key:'pt',dir:'d',play:false,focus:'all',ms:0,tb:0,off:9,lat:0,lng:0,info:{},ev:[]};
+var st={ok:false,useLat:false,age:0,key:'pt',dir:'d',play:false,focus:'all',ms:0,tb:0,off:9,lat:0,lng:0,info:{},ev:[]};
 var ANG=[['mc','MC','いちばん高い所'],['asc','ASC','東の地平線（のぼる）'],['dsc','DSC','西の地平線（しずむ）'],['ic','IC','いちばん低い所']];
 var ORDER=['moon','sun','mer','ven','mar','jup','sat'];
 function pad(n){return String(n).padStart(2,'0')}
@@ -261,12 +273,15 @@ function tOf(ms){return (ms-Date.UTC(2000,0,1,12))/864e5}
 function calMs(age){return st.ms+age*YEAR*864e5}
 function arcOf(f,k){var a=f.arc[k];if(a===null)return null;return st.dir==='d'?a:(360-a)%360}
 function bodyOf(id){return BODIES.filter(function(b){return b.id===id})[0]}
-function ramc(t,lonE){var T=t/36525;return norm(280.46061837+360.98564736629*t+0.000387933*T*T+lonE)}
+/* Greenwich sidereal time in degrees: apparent (with nutation) when astronomy-engine is loaded, else mean */
+function gst(t){if(AE){try{var g=AE.SiderealTime(new Date(Date.UTC(2000,0,1,12)+t*864e5))*15;if(isFinite(g))return norm(g)}catch(e){}}
+  var T=t/36525;return norm(280.46061837+360.98564736629*t+0.000387933*T*T)}
+function ramc(t,lonE){return norm(gst(t)+lonE)}
 function eqOf(id,t){
-  var l=lon(id,t)*D,b=0,T=t/36525,e=(23.4392911-0.0130042*T)*D;
+  var p=ecl(id,t),l=p.lam*D,b=(st.useLat?p.bet:0)*D,T=t/36525,e=(23.4392911-0.0130042*T)*D;
   var dec=Math.asin(Math.sin(b)*Math.cos(e)+Math.cos(b)*Math.sin(e)*Math.sin(l));
   var ra=norm(Math.atan2(Math.sin(l)*Math.cos(e)-Math.tan(b)*Math.sin(e),Math.cos(l))/D);
-  return {ra:ra,dec:dec/D,lam:l/D,bet:b/D};
+  return {ra:ra,dec:dec/D,lam:l/D,bet:p.bet};
 }
 function compute(){
   var rm=ramc(st.tb,st.lng),ph=st.lat*D;st.rm=rm;st.info={};
@@ -274,7 +289,7 @@ function compute(){
     var q=eqOf(b.id,st.tb),H=((rm-q.ra+540)%360)-180,c=-Math.tan(ph)*Math.tan(q.dec*D),h0=(Math.abs(c)<1)?Math.acos(c)/D:null;
     var a={mc:norm(q.ra-rm),ic:norm(q.ra+180-rm),asc:null,dsc:null};
     if(h0!==null){a.asc=norm(q.ra-h0-rm);a.dsc=norm(q.ra+h0-rm)}
-    st.info[b.id]={ra:q.ra,dec:q.dec,lam:q.lam,H:H,h0:h0,arc:a};
+    st.info[b.id]={ra:q.ra,dec:q.dec,lam:q.lam,bet:q.bet,H:H,h0:h0,arc:a};
   });
 }
 function events(){
@@ -447,8 +462,9 @@ function render(){
   (function(){var cu=cuspPhis(),sg=(st.dir==='d'?1:-1),rot=st.age*KEYS[st.key];
     $('#posAge').textContent=st.age.toFixed(1)+'歳';
     $('#pbody').innerHTML=BODIES.map(function(b){var f=st.info[b.id],now='<span class="mute">—</span>';
-      if(cu&&f.h0!==null){var l=lamFromPhi(phiOf(norm(norm(f.H)+sg*rot),f.h0),cu);if(l!==null)now=posTxt(l)+'・'+houseOf(l)+'ハウス'}
-      return '<tr><td><span class="dot" style="background:'+b.col+'"></span>'+b.n+'</td><td>'+posTxt(f.lam)+'・'+houseOf(f.lam)+'ハウス</td><td>'+now+'</td></tr>'}).join('');
+      if(cu&&f.h0!==null){var l1=lamFromPhi(phiOf(norm(norm(f.H)+sg*rot),f.h0),cu),l0=lamFromPhi(phiOf(norm(f.H),f.h0),cu);if(l1!==null&&l0!==null){var l=norm(f.lam+((l1-l0+540)%360)-180);now=posTxt(l)+'・'+houseOf(l)+'ハウス'}}
+      return '<tr><td><span class="dot" style="background:'+b.col+'"></span>'+b.n+'</td><td>'+posTxt(f.lam)+'・'+houseOf(f.lam)+'ハウス'+(st.useLat?' <span class="mute small">（黄緯 '+(f.bet<0?'−':'+')+Math.abs(f.bet).toFixed(2)+'°）</span>':'')+'</td><td>'+now+'</td></tr>'}).join('');
+    $('#ephNote').textContent=(AE?'天体の位置：astronomy-engine（高精度の暦）で計算しています。':'天体の位置：簡易式で計算しています（高精度の暦を読み込めませんでした。木星・土星は、最大で10′ほどずれます。黄緯は使えません）。')+(st.useLat?'黄緯あり：天体の実際の位置（赤経・赤緯）で測ります。ASC・DSCだけでなく、MC・ICに着く年齢も変わります（月は、数年変わることがあります）。天体の丸の位置と、外側の帯のハウスが、少しずれて見えることがあります。':'黄緯なし：天体を、黄道の上の点（黄緯0°）として測ります。');
     $('#posNote').textContent='「出生」は、出生図の位置です。「いま」は、空の回転で動いた天体を、図の外側の帯（出生図のサインの境目）に写して読んだ、目安の位置です。ふつうの「プログレスの位置」とは、別のものです。順方向では、空が時計回りに回るので、天体のハウスの番号は、減る向き（10→9→8→7…）に進みます。逆方向では、増える向きに進みます。';
   })();
   /* table */
@@ -474,6 +490,8 @@ function syncKey(){document.querySelectorAll('#ky [data-k]').forEach(function(b)
 function syncFocus(){document.querySelectorAll('#fc [data-f]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===st.focus?'true':'false')})}
 var HOW_D=$('#howto').textContent;
 $('#hs').addEventListener('change',function(){if(st.ok)draw()});
+if(!AE)$('#lt').disabled=true;
+$('#lt').addEventListener('change',function(){st.useLat=AE?$('#lt').checked:false;if(st.ok){compute();events();render()}});
 var fc=$('#fc');
 (function(){function add(id,label){var b=document.createElement('button');b.type='button';b.setAttribute('data-f',id);b.textContent=label;fc.appendChild(b)}
  add('all','全部');BODIES.forEach(function(b){add(b.id,b.g+'︎ '+b.n)})})();
