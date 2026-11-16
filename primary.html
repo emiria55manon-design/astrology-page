@@ -103,6 +103,17 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
   </div>
   <p class="hread" id="locOut" hidden style="min-height:0"></p>
   <p class="err" id="err" role="status"></p>
+  <details class="small" style="background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 14px">
+    <summary style="cursor:pointer;font-weight:700">入力のしかた（開く）</summary>
+    <ol style="margin-top:8px">
+      <li><b>生年月日</b>：西暦で入れます（1850〜2050年）。</li>
+      <li><b>出生時刻</b>：24時間表記で、分まで入れます（午後1時53分なら、13:53）。時刻が1分ずれると、着く年齢が約3か月ずれるので、母子手帳などの記録で、確かめてください。わからないときは、「出生時刻がわからない」にチェックします。</li>
+      <li><b>出生地</b>：日本の県庁所在地は、プルダウンから選べます。それ以外の場所は「その他」を選んで、緯度と経度を入れます。</li>
+      <li><b>時差</b>：その土地の標準時です。日本は「日本（UTC+9）」のままで大丈夫です。夏時間は使いません。</li>
+      <li><b>緯度・経度</b>：「度・分」ではなく、<b>小数の度</b>で入れます。「度＋分÷60」で換算します。<br>例：北緯34°23′ → 34＋23÷60 ＝ <b>34.3833</b>　／　東経132°26′ → 132＋26÷60 ＝ <b>132.4333</b><br>北緯・東経は＋、南緯・西経は−（マイナス）をつけます。</li>
+      <li><b>ほかのソフトと比べるとき</b>：生年月日・時刻・緯度・経度を、同じにします。ソフト側は、「黄緯を使わない」設定（ある場合）と、「1°＝1年（プトレマイオス式）」に、そろえてください。このページは、天体が角に「合」で着く行だけを出します。</li>
+    </ol>
+  </details>
   <p class="mute small">入力した内容は、この画面の中だけで計算されます。送信も保存もしません（「覚えておく」にチェックしたときだけ、この端末のブラウザに残ります）。プライマリーは、出生時刻と出生地で結果が大きく変わります。出生時刻が1分ずれると、約0.25年（3か月ほど）ずれます。夏時間は使わず、その土地の標準時で入れてください（夏時間で記録された時刻は、1時間引いて入れます）。</p>
 </section>
 
@@ -115,7 +126,13 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
       <p class="hread" id="drNote" style="margin-bottom:10px;min-height:0;font-size:14px"></p>
       <div class="wheel"><canvas id="cv" aria-label="空の回転の図。左がASC（東の地平線）、上がMC（南中）、右がDSC（西の地平線）、下がIC。各天体は、それぞれの円の上を時計回りに進み、角に着く。"></canvas></div>
       <div class="row" id="fc" style="margin-top:10px" role="group" aria-label="注目する天体"></div>
-      <div class="leg" style="margin-top:10px"><span><i class="sw" style="border:2px solid #82a5ff"></i><b>輪郭だけの丸</b>＝出生のときの位置</span><span><i class="sw" style="background:#e3b95c"></i><b>塗りの丸</b>＝いま（この年齢）の位置</span><span><b>金の線</b>＝回って来た道のり</span></div>
+      <label class="chk" style="margin-top:10px"><input type="checkbox" id="hs" checked>外側の帯に、出生図の12ハウス（ホールサイン）を表示する</label>
+      <div class="leg" style="margin-top:10px"><span><i class="sw" style="border:2px solid #82a5ff"></i><b>輪郭だけの丸</b>＝出生のときの位置</span><span><i class="sw" style="background:#e3b95c"></i><b>塗りの丸</b>＝いま（この年齢）の位置</span><span><b>金の線</b>＝回って来た道のり</span><span><b>外側の帯</b>＝出生図の12ハウス（数字＝ハウス、記号＝サイン。スマホの狭い画面では数字だけ）</span></div>
+      <div class="eq" id="angBox" style="margin-top:12px"></div>
+      <p class="mute small" id="angNote" style="margin-top:8px"></p>
+      <h3 style="margin-top:14px">天体の位置：出生と、いまの年齢</h3>
+      <div class="tscroll"><table><thead><tr><th>天体</th><th>出生（サイン・度数・ハウス）</th><th>いま（<span id="posAge"></span>）</th></tr></thead><tbody id="pbody"></tbody></table></div>
+      <p class="mute small" id="posNote" style="margin-top:6px"></p>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
       <div class="age">
@@ -126,7 +143,7 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
         <p class="mute small" id="agDate"></p>
       </div>
       <p class="hread" id="read"></p>
-      <p class="mute small" id="howto">図の見かた：空が回るので、ふつうの空と同じく、天体は東（左）からのぼり、いちばん高い所（上）を通り、西（右）にしずみ、下の方（IC）へ回ります。生まれたときに東の地平線にいた天体は、ASCの位置から始まります。4つの角は、図の中で動きません。天体が、角の線に重なったときが、「角に着いた」ときです。</p>
+      <p class="mute small" id="howto">図の見かた：空が回るので、ふつうの空と同じく、天体は東（左）からのぼり、いちばん高い所（上）を通り、西（右）にしずみ、下の方（IC）へ回ります。生まれたときに東の地平線にいた天体は、ASCの位置から始まります。4つの角は、図の中で動きません。角の横の、サイン・度数・ハウスは、出生図のものです（ハウスは、ASCのサインを1ハウスとするホールサイン）。天体が、角の線に重なったときが、「角に着いた」ときです。</p>
     </div>
   </div>
 </section>
@@ -139,7 +156,7 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
 
 <section class="card" aria-label="順番">
   <h2>着く順に並べると</h2>
-  <div class="tscroll" style="max-height:380px;overflow:auto"><table><thead><tr><th>年齢</th><th>暦の年月</th><th>天体</th><th>着く角</th></tr></thead><tbody id="ev"></tbody></table></div>
+  <div class="tscroll" style="max-height:380px;overflow:auto"><table><thead><tr><th>年齢</th><th>暦の年月</th><th>天体</th><th>着く角（出生図でのサインと位置）</th></tr></thead><tbody id="ev"></tbody></table></div>
   <p class="mute small">0〜100歳のあいだの、着く年齢の順です。いまの年齢の前後0.5年以内の行に色が付きます。</p>
 </section>
 </div>
@@ -155,6 +172,7 @@ ol,ul{margin:0;padding-left:1.4em}li{margin:4px 0}
     <li><b>用語</b>：赤経＝天の赤道に沿って測る、天球の経度。赤緯＝天の赤道からの、天球の緯度。黄緯＝黄道からの角度（このページでは0°にしています）。半日周弧＝天体がのぼってから、いちばん高い所に着くまでに、空が回る角度（ASC・DSCに着く角度に使います）。プレドミネーター・アルコクデン＝寿命の計算に使う、生命を代表する天体と、年数を配る天体です（このページでは扱いません）。</li>
     <li><b>扱っていないもの</b>：天体が角に重なる（合）ときだけを扱います。60°・90°・120°・180°のアスペクトに着くときや、天王星以遠・ノード、寿命計算（プレドミネーター・アルコクデン）は入っていません。専用ソフトの一覧は、これらを含むので、行数が多くなります。</li>
     <li>出生時刻が、とても大切です。時刻が1時間ずれると、着く年齢は約15年ずれます。時刻がわからないとき（正午として計算）の年齢は、参考になりません。</li>
+    <li><b>サイン・度数・ハウス</b>：4つの角と、7つの天体の出生図での位置を、黄道のサインと度数で出しています（天体は黄緯0°の点）。ハウスは、ホールサイン方式（ASCのあるサイン全体が1ハウス）です。図の円は、空の回転を見せるもので、黄道のサインの輪ではありません。</li>
     <li>年齢は、満年齢の小数で表しています。暦の年月は、出生から、年齢×365.2422日後です。</li>
     <li>歴史的な由来（だれが、いつ、どの換算を用いたか）は、このページでは確認していません。</li>
     <li>占い・鑑定の結果ではなく、仕組みの説明のための図です。</li>
@@ -209,6 +227,21 @@ function lon(id,t){
   if(id==='sun')return norm(Math.atan2(-e[1],-e[0])/D);
   var p=helio(id,t);return norm(Math.atan2(p[1]-e[1],p[0]-e[0])/D);
 }
+/* projection of ecliptic points (lat 0) into the wheel, and its inverse */
+function phiAtLam(l){var e0=(23.4392911-0.0130042*st.tb/36525)*D,lm=l*D,dc=Math.asin(Math.sin(e0)*Math.sin(lm)),ra=norm(Math.atan2(Math.sin(lm)*Math.cos(e0),Math.cos(lm))/D),cc=-Math.tan(st.lat*D)*Math.tan(dc);
+  if(Math.abs(cc)>=1)return null;return phiOf(norm(st.rm-ra),Math.acos(cc)/D)}
+function cuspPhis(){var a=[],k,v;for(k=0;k<12;k++){v=phiAtLam(k*30);if(v===null)return null;a.push(v)}return a}
+function lamFromPhi(ph,cu){
+  var k,m=function(x){return ((x%360)+360)%360};
+  for(k=0;k<12;k++){var dl=m(cu[(k+1)%12]-cu[k]),t=m(ph-cu[k]);
+    if(t<dl||k===11){var lo=k*30,hi=k*30+30,i,mid,v;
+      for(i=0;i<40;i++){mid=(lo+hi)/2;v=phiAtLam(mid);if(v===null)return null;if(m(v-cu[k])<t)lo=mid;else hi=mid}
+      return (lo+hi)/2}}
+  return null}
+function degStr(l){return Math.floor(l%30)+'°'+String(Math.floor((l%1)*60)).padStart(2,'0')+'′'}
+function sgOf(l){return Math.floor(norm(l)/30)%12}
+function houseOf(l){return ((sgOf(l)-sgOf(st.asc)+12)%12)+1}
+function posTxt(l){return SG[sgOf(l)]+' '+SIGNS[sgOf(l)]+' '+degStr(norm(l))}
 function signStr(l){var i=Math.floor(l/30)%12;return SG[i]+' '+SIGNS[i]+' '+Math.floor(l%30)+'°'+String(Math.floor((l%1)*60)).padStart(2,'0')+'′'}
 
 var PL=[['札幌',43.06,141.35],['青森',40.82,140.74],['盛岡',39.70,141.15],['仙台',38.27,140.87],['秋田',39.72,140.10],['山形',38.24,140.36],['福島',37.75,140.47],['水戸',36.34,140.45],['宇都宮',36.57,139.88],['前橋',36.39,139.06],['さいたま',35.86,139.65],['千葉',35.61,140.12],['東京',35.69,139.69],['横浜',35.45,139.64],['新潟',37.90,139.02],['富山',36.70,137.21],['金沢',36.59,136.63],['福井',36.07,136.22],['甲府',35.66,138.57],['長野',36.65,138.18],['岐阜',35.39,136.72],['静岡',34.98,138.38],['名古屋',35.18,136.91],['津',34.73,136.51],['大津',35.00,135.87],['京都',35.02,135.76],['大阪',34.69,135.50],['神戸',34.69,135.20],['奈良',34.69,135.83],['和歌山',34.23,135.17],['鳥取',35.50,134.24],['松江',35.47,133.05],['岡山',34.66,133.93],['広島',34.40,132.46],['山口',34.19,131.47],['徳島',34.07,134.56],['高松',34.34,134.04],['松山',33.84,132.77],['高知',33.56,133.53],['福岡',33.61,130.42],['佐賀',33.25,130.30],['長崎',32.75,129.87],['熊本',32.79,130.74],['大分',33.24,131.61],['宮崎',31.91,131.42],['鹿児島',31.56,130.56],['那覇',26.21,127.68]];
@@ -278,8 +311,9 @@ function readForm(){
     if(Math.abs(la)>66){setErr('緯度は、−66〜66で入れてください。');return false}}
   else{la=PL[+pv][1];lo=PL[+pv][2]}
   st.ms=Date.UTC(p[0],p[1]-1,p[2],tm[0],tm[1])-off*36e5;st.tb=tOf(st.ms);st.off=off;st.lat=la;st.lng=lo;
-  compute();var a=angles(st.tb,la,lo);st.asc=a.asc;st.mcl=a.mc;
-  var o=$('#locOut');o.hidden=false;o.textContent='出生地：'+(la<0?'南緯':'北緯')+Math.abs(la).toFixed(2)+'°・'+(lo<0?'西経':'東経')+Math.abs(lo).toFixed(2)+'°　→　ASC '+signStr(a.asc)+'、MC '+signStr(a.mc)+'（出生図）'+($('#nt').checked?'　※出生時刻がわからないので、年齢は参考になりません（1時間で約15年ずれます）。':'');
+  compute();var a=angles(st.tb,la,lo);st.asc=a.asc;st.mcl=a.mc;st.al={asc:a.asc,mc:a.mc,dsc:norm(a.asc+180),ic:norm(a.mc+180)};
+  var o=$('#locOut');o.hidden=false;function dm(v){v=Math.abs(v);var d=Math.floor(v),m=Math.round((v-d)*60);if(m===60){d++;m=0}return d+'°'+pad(m)+'′'}
+  o.textContent='出生地：'+(la<0?'南緯':'北緯')+Math.abs(la).toFixed(4)+'°（'+dm(la)+'）・'+(lo<0?'西経':'東経')+Math.abs(lo).toFixed(4)+'°（'+dm(lo)+'）　→　ASC '+signStr(a.asc)+'、MC '+signStr(a.mc)+'（出生図）'+($('#nt').checked?'　※出生時刻がわからないので、年齢は参考になりません（1時間で約15年ずれます）。':'');
   setErr('');return true;
 }
 function go(){
@@ -309,7 +343,7 @@ function shade(hex,f){var n=parseInt(hex.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&2
 function ptOn(R,phi){return [W/2+R*Math.cos(phi*D),Hh/2-R*Math.sin(phi*D)]}
 function draw(){
   var x=cx;x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,Hh);
-  var c0=W/2,c1=Hh/2,R=Math.min(W,Hh)/2-Math.max(36,Math.min(W,Hh)*.075),k=KEYS[st.key],rot=st.age*k,sg=(st.dir==='d'?1:-1);
+  var c0=W/2,c1=Hh/2,M=Math.max(62,Math.min(W,Hh)*.09),R=Math.min(W,Hh)/2-M,k=KEYS[st.key],rot=st.age*k,sg=(st.dir==='d'?1:-1);
   var small=R<190,dr=Math.max(9,Math.min(24,R*.062)),fs=Math.max(11,dr*1.25);
   /* sky above horizon */
   x.fillStyle='rgba(99,199,194,.05)';x.beginPath();x.arc(c0,c1,R,Math.PI,TAU);x.fill();
@@ -317,17 +351,46 @@ function draw(){
   x.strokeStyle='rgba(227,185,92,.55)';x.lineWidth=1.2;
   x.beginPath();x.moveTo(c0-R,c1);x.lineTo(c0+R,c1);x.moveTo(c0,c1-R);x.lineTo(c0,c1+R);x.stroke();
   /* ring radii */
-  var r0=R*.2,r1=R*.95,rr={};ORDER.forEach(function(id,i){rr[id]=r0+(r1-r0)*i/6});
+  var showH=$('#hs').checked,bw=showH?Math.max(18,R*.1):0,rb=R-bw,r0=R*.16,r1=showH?Math.max(R*.6,Math.min(R*.95,rb-dr-2)):R*.95,rr={};ORDER.forEach(function(id,i){rr[id]=r0+(r1-r0)*i/6});
   x.strokeStyle='rgba(156,167,196,.16)';
   ORDER.forEach(function(id){x.beginPath();x.arc(c0,c1,rr[id],0,TAU);x.stroke()});
-  /* angle labels */
-  x.textAlign='center';x.textBaseline='middle';x.fillStyle='#e3b95c';x.font='700 '+(small?14:18)+'px '+SERIF;
-  var lb=Math.max(14,Math.min(W,Hh)*.04);
-  x.fillText('MC',c0,c1-R-lb);x.fillText('IC',c0,c1+R+lb);
-  x.fillText('ASC',c0-R-19,c1);x.fillText('DSC',c0+R+19,c1);
+  /* 12 houses (whole sign): sign boundaries projected into this wheel */
+  if(showH&&st.al){
+    var ph0=[],kk,ra0,dc0,e0=(23.4392911-0.0130042*st.tb/36525)*D,rmv=st.rm,latR=st.lat*D,okH=true;
+    for(kk=0;kk<12;kk++){var lm=kk*30*D;dc0=Math.asin(Math.sin(e0)*Math.sin(lm));ra0=norm(Math.atan2(Math.sin(lm)*Math.cos(e0),Math.cos(lm))/D);
+      var cc=-Math.tan(latR)*Math.tan(dc0);if(Math.abs(cc)>=1){okH=false;break}
+      ph0.push(phiOf(norm(rmv-ra0),Math.acos(cc)/D))}
+    if(okH){
+      var as0=sgOf(st.asc);
+      for(kk=0;kk<12;kk++){
+        var pa=ph0[kk],dl=(((ph0[(kk+1)%12]-pa)%360)+360)%360,hn=((kk-as0+12)%12)+1,ang=(hn===1||hn===4||hn===7||hn===10);
+        x.beginPath();x.arc(c0,c1,R,-pa*D,-(pa+dl)*D,true);x.arc(c0,c1,rb,-(pa+dl)*D,-pa*D,false);x.closePath();
+        x.fillStyle=(hn%2?'rgba(227,185,92,.10)':'rgba(99,199,194,.07)');x.fill();
+        x.strokeStyle='rgba(227,185,92,.45)';x.lineWidth=1;var q0=ptOn(r0,pa),q1=ptOn(R,pa);x.beginPath();x.moveTo(q0[0],q0[1]);x.lineTo(q1[0],q1[1]);x.stroke();
+        var pm=ptOn(rb+bw/2,pa+dl/2),fz=small?10:12.5;x.textAlign='center';x.textBaseline='middle';
+        x.fillStyle=ang?'#63c7c2':'#9fe0dc';x.font='700 '+fz+'px '+SANS;x.fillText(String(hn),pm[0]-(small?0:fz*.55),pm[1]);
+        if(!small){x.fillStyle='rgba(236,231,216,.9)';x.font='500 '+fz+'px '+SANS;x.fillText(SG[kk],pm[0]+fz*.55,pm[1])}}
+      x.strokeStyle='rgba(227,185,92,.5)';x.lineWidth=1;x.beginPath();x.arc(c0,c1,rb,0,TAU);x.stroke()}
+  }
+  /* angle labels: sign, degree, whole-sign house */
+  var al=st.al,lb=Math.max(14,Math.min(W,Hh)*.04),f1=small?14:18,f2=small?10.5:12.5;
+  function lt(k){return SG[sgOf(al[k])]+' '+degStr(norm(al[k]))}
+  function ht(k){return houseOf(al[k])+'ハウス'}
+  x.textAlign='center';x.textBaseline='middle';
+  [['asc',M/2,c1],['dsc',W-M/2,c1]].forEach(function(q){
+    x.fillStyle='#e3b95c';x.font='700 '+f1+'px '+SERIF;x.fillText(q[0].toUpperCase(),q[1],q[2]-f1*1.1);
+    x.fillStyle='#ece7d8';x.font='500 '+f2+'px '+SANS;x.fillText(lt(q[0]),q[1],q[2]+f2*.2);
+    x.fillStyle='#63c7c2';x.fillText(ht(q[0]),q[1],q[2]+f2*1.55)});
+  [['mc',c1-R-lb],['ic',c1+R+lb]].forEach(function(q){
+    var nm=q[0].toUpperCase();x.textAlign='center';x.fillStyle='#e3b95c';x.font='700 '+f1+'px '+SERIF;
+    var wN=x.measureText(nm).width,txt=lt(q[0]),hz=ht(q[0]);
+    x.font='500 '+f2+'px '+SANS;var wT=x.measureText(txt+'　'+hz).width,tot=wN+10+wT,x0=c0-tot/2;
+    x.textAlign='left';x.fillStyle='#e3b95c';x.font='700 '+f1+'px '+SERIF;x.fillText(nm,x0,q[1]);
+    x.font='500 '+f2+'px '+SANS;x.fillStyle='#ece7d8';x.fillText(txt,x0+wN+10,q[1]);
+    x.fillStyle='#63c7c2';x.fillText(hz,x0+wN+10+x.measureText(txt+'　').width,q[1])});
+  x.textAlign='center';
   x.fillStyle='rgba(156,167,196,.85)';x.font='400 '+(small?10:13)+'px '+SANS;
-  x.save();x.textAlign='left';x.fillText('高い所',c0+(small?20:26),c1-R-lb);x.fillText('低い所',c0+(small?20:26),c1+R+lb);x.restore();
-  x.save();x.textAlign='left';x.fillText('のぼる ↑',c0-R+4,c1-12);x.textAlign='right';x.fillText('↓ しずむ',c0+R-4,c1+12);x.restore();
+  if(!(showH&&small)){x.save();x.textAlign='left';x.fillText('のぼる ↑',c0-rb+4,c1-12);x.textAlign='right';x.fillText('↓ しずむ',c0+rb-4,c1+12);x.restore()}
   /* center: none */
   /* bodies */
   var hits=[];
@@ -377,10 +440,21 @@ function render(){
   else if(up.length){t='次に着くのは、'+up.map(function(e){return e.b.n+'が'+e.a[1]+'（'+ageTxt(e.age)+'・'+fmtYM(calMs(e.age),st.off)+'）'}).join('、')+'。'}
   else t='100歳までに、これ以上、角に着く天体はありません。';
   $('#read').textContent=t;
+  /* angle box */
+  $('#angBox').innerHTML=ANG.map(function(a){var l=st.al[a[0]];return '<div><b>'+a[1]+'</b> <span class="mute small">'+a[2]+'</span><br>'+posTxt(l)+'<br><span style="color:var(--stage)">'+houseOf(l)+'ハウス</span></div>'}).join('');
+  $('#angNote').textContent='出生図の4つの角です。ハウスは、ASCのあるサインを1ハウスとする、ホールサイン方式です。図の外側の帯は、12のサインの境目を、この図に写したものです（出生図のハウスなので、年齢を動かしても動きません）。DSCは、7ハウスのサインの中にあります。MC・ICのハウスは、出生地や時刻によって変わります。';
+  /* body positions: birth and now (projected back onto the zodiac through the wheel) */
+  (function(){var cu=cuspPhis(),sg=(st.dir==='d'?1:-1),rot=st.age*KEYS[st.key];
+    $('#posAge').textContent=st.age.toFixed(1)+'歳';
+    $('#pbody').innerHTML=BODIES.map(function(b){var f=st.info[b.id],now='<span class="mute">—</span>';
+      if(cu&&f.h0!==null){var l=lamFromPhi(phiOf(norm(norm(f.H)+sg*rot),f.h0),cu);if(l!==null)now=posTxt(l)+'・'+houseOf(l)+'ハウス'}
+      return '<tr><td><span class="dot" style="background:'+b.col+'"></span>'+b.n+'</td><td>'+posTxt(f.lam)+'・'+houseOf(f.lam)+'ハウス</td><td>'+now+'</td></tr>'}).join('');
+    $('#posNote').textContent='「出生」は、出生図の位置です。「いま」は、空の回転で動いた天体を、図の外側の帯（出生図のサインの境目）に写して読んだ、目安の位置です。ふつうの「プログレスの位置」とは、別のものです。順方向では、空が時計回りに回るので、天体のハウスの番号は、減る向き（10→9→8→7…）に進みます。逆方向では、増える向きに進みます。';
+  })();
   /* table */
-  var th='<tr><th>天体</th>'+ANG.map(function(a){return '<th>'+a[1]+'</th>'}).join('')+'</tr>';$('#th').innerHTML=th;
+  var th='<tr><th>天体</th>'+ANG.map(function(a){var l=st.al[a[0]];return '<th>'+a[1]+'<br><span class="mute small" style="font-weight:400">'+posTxt(l)+'・'+houseOf(l)+'ハウス</span></th>'}).join('')+'</tr>';$('#th').innerHTML=th;
   $('#tb').innerHTML=BODIES.map(function(b){var f=st.info[b.id];
-    return '<tr><td><span class="dot" style="background:'+b.col+'"></span>'+b.n+'</td>'+ANG.map(function(a){var v=arcOf(f,a[0]);
+    return '<tr><td><span class="dot" style="background:'+b.col+'"></span>'+b.n+'<br><span class="mute small">出生：'+posTxt(f.lam)+'・'+houseOf(f.lam)+'ハウス</span></td>'+ANG.map(function(a){var v=arcOf(f,a[0]);
       if(v===null)return '<td class="mute">—</td>';var ag=v/k;if(ag>100)return '<td class="mute">100歳超</td>';
       return '<td class="n"'+(Math.abs(ag-st.age)<.5?' style="color:var(--gold);font-weight:700"':'')+'>'+ageTxt(ag)+' <span class="mute small">'+fmtYM(calMs(ag),st.off).replace(/月$/,'月')+'</span></td>'}).join('')+'</tr>'}).join('');
   (function(){var best=null;BODIES.forEach(function(b){ANG.forEach(function(an){var a=st.info[b.id].arc[an[0]];if(a===null)return;var c=(360-a)%360;if(best===null||c<best.c)best={b:b,an:an,c:c,d:a}})});
@@ -392,13 +466,14 @@ function render(){
   $('#tbNote').textContent='回転角（度）を、'+(st.key==='pt'?'そのまま年':'0.9856で割って年')+'にしています。例：'+(function(){var f=st.info.sun;return '太陽がMCに着くまでの回転は '+arcOf(f,'mc').toFixed(1)+'°'})()+'。「100歳超」の天体は、向きを切り替えると出てくることがあります（角から100°〜260°ほどはなれた天体は、どちらの向きでも「100歳超」です）。金色の太字は、いまの年齢の前後0.5年以内です。';
   /* list */
   $('#ev').innerHTML=st.ev.map(function(e){var near=Math.abs(e.age-st.age)<.5,past=e.age<st.age;
-    return '<tr'+(near?' style="background:#1d2b52"':'')+(past&&!near?' class="mute"':'')+'><td class="n">'+ageTxt(e.age)+'</td><td>'+fmtYM(calMs(e.age),st.off)+'</td><td><span class="dot" style="background:'+e.b.col+'"></span>'+e.b.n+'</td><td>'+e.a[1]+'<span class="mute small">（'+e.a[2]+'）</span></td></tr>'}).join('');
+    return '<tr'+(near?' style="background:#1d2b52"':'')+(past&&!near?' class="mute"':'')+'><td class="n">'+ageTxt(e.age)+'</td><td>'+fmtYM(calMs(e.age),st.off)+'</td><td><span class="dot" style="background:'+e.b.col+'"></span>'+e.b.n+'</td><td>'+e.a[1]+'<span class="mute small">（'+e.a[2]+'）</span><br><span class="mute small">'+posTxt(st.al[e.a[0]])+'・'+houseOf(st.al[e.a[0]])+'ハウス</span></td></tr>'}).join('');
   syncKey();syncDir();syncFocus();
 }
 function syncDir(){document.querySelectorAll('#dr [data-d]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-d')===st.dir?'true':'false')})}
 function syncKey(){document.querySelectorAll('#ky [data-k]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-k')===st.key?'true':'false')})}
 function syncFocus(){document.querySelectorAll('#fc [data-f]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===st.focus?'true':'false')})}
 var HOW_D=$('#howto').textContent;
+$('#hs').addEventListener('change',function(){if(st.ok)draw()});
 var fc=$('#fc');
 (function(){function add(id,label){var b=document.createElement('button');b.type='button';b.setAttribute('data-f',id);b.textContent=label;fc.appendChild(b)}
  add('all','全部');BODIES.forEach(function(b){add(b.id,b.g+'︎ '+b.n)})})();
